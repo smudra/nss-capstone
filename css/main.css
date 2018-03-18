@@ -41,7 +41,7 @@ p {
     font-weight: 300;
     line-height: 2.2rem;
 }
-a:link, a:hover, a:visited {
+a, a:link, a:hover, a:visited {
     color: #F62E26;
     text-decoration: none;
 }
@@ -87,18 +87,18 @@ footer > p {
     border-color: #F62E26;
     border-radius: 0;
 }
-.btn-primary:hover {
+.btn-primary.disabled, .btn-primary:disabled, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active {
     color: #FFFFFF;
     background-color: #F62E26;
     border-color: #F62E26;
 }
-.btn-outline-success {
+.btn-outline-success, .btn-outline-success:visited  {
     color: #F62E26;
     background-color: #FFFFFF;
     border: 1px solid #F62E26;
     border-radius: 0;
 }
-.btn-outline-success:hover {
+.btn-outline-success:hover, .btn-outline-success:active, .btn-outline-success:not(:disabled):not(.disabled):active  {
     background-color: #F62E26;
     border-color: #F62E26;
 }
@@ -127,6 +127,11 @@ footer > p {
     background-color: #FFFFFF;
     border-top: 1px solid rgba(92, 92, 92, 0.3);
 }
+/* .disabled {
+    background-color: #F62E26;
+    color: #FFFFFF;
+    border: 1px solid #F62E26;
+} */
 .notes {
     background-color: #FFFFFF;
     color: #000000;
