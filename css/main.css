@@ -117,6 +117,9 @@ footer > p {
 .card-body {
     padding: 1.5rem;
 }
+.card-uppercase {
+    text-transform: uppercase;
+}
 .text-muted {
     font-weight: 300;
 }
@@ -125,15 +128,15 @@ footer > p {
     border-top: 1px solid rgba(92, 92, 92, 0.3);
 }
 .notes {
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
-}
-a.notes {
-    color: #FFFFFF;
-}
-a:hover.notes {
     background-color: #FFFFFF;
     color: #000000;
     border: 1px solid #000000;
+}
+a.notes {
+    color: #000000;
+}
+a:hover.notes {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
 }
