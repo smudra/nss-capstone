@@ -29,17 +29,20 @@ h2 {
     padding: 0 3rem;
     font-size: 2.25rem;
     color: #FFFFFF;
-    font-weight: 300;
 }
 h3 {
     font-size: 1.5rem;
     color: #F62E26;
-    font-size: 300;
+}
+h2, h3, p {
+    font-weight: 300;
+}
+h3, p {
+    line-height: 1.5rem;
 }
 p, .form-control {
     font-size: 1rem;
     color: #5C5C5C;
-    font-weight: 300;
 }
 p, textarea.form-control {
     line-height: 2.2rem;
@@ -119,6 +122,9 @@ footer > p {
 }
 .card {
     border-radius: 0;
+}
+.card-title {
+    margin-bottom: 0;
 }
 .card-body {
     padding: 1.5rem;
