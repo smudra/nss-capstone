@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POWER Cache</title>
+
+    <!-- Stylesheets with browserify, font awesome, google font, and css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Begin Nav Bar -->
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <h3><a class="navbar-brand">POWER Cache</a></h3>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search a Super Hero" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fa-fw select-all fas fa-search"></span></button>
+            </form>
+            <p class="fas fa-user"><a href="#"><span class="user-style"> &nbsp; Login </span></a></p>
+        </nav>
+        <!-- End Nav Bar -->
+
+        <!-- Begin Saved Super Hero Section -->
+        <h2>Save Your Favorite Super Hero</h2>
+        <div class="card-deck card-padding">
+            <div class="card">
+              <img class="card-img-top" src="images/Avengers-Infinity-War.png" alt="Card image cap">
+              <div class="card-body">
+                <h3 class="card-title"><a href="https://news.marvel.com/movies/86226/marvel-studios-avengers-infinity-war-trailer-tomorrow/" target="_blank">In theaters April 27!</a></h3>
+                <p class="card-text">Marvelites, we’re nearing the culmination of the last decade of the MCU with the release of Marvel Studios’ “Avengers: Infinity War,” in theaters April 27!</p>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="btn btn-primary float-left notes">Make Notes</a>
+                <a href="#" class="btn btn-primary float-right">Delete</a>
+        </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="images/spiderman.png" alt="Comic Character Spider-man">
+              <div class="card-body">
+                <h3 class="card-title"><a href="https://news.marvel.com/movies/86221/hulk-back-ragnarok-ready-battle-avengers-infinity-war/" target="_blank">Mark Ruffalo talks Hulk's place on the team and the evolution of speaking in full sentences!</a></h3>
+                <p class="card-text">After Marvel Studios’ “Thor: Ragnarok,” Hulk has seen it all and done it all. He can even control his anger…somewhat. The Big Guy has grown and evolved, and now he’s ready to take his place…</p>
+              </div>
+            </div>
+          </div>
+          <!-- End Saved Super Hero Section -->
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="images/spiderman.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Spider-Man</h5>
+                    <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
+                </div>
+                <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    <a href="#" class="btn btn-primary float-right">Save</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="images/thor.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Thor</h5>
+                <p class="card-text">As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.</p>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+                <a href="#" class="btn btn-primary float-right">Save</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="images/black-widow.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Black Widow</h5>
+                    <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+                <a href="#" class="btn btn-primary float-right">Save</a>
+                </div>
+            </div>
+        </div>
+        <!-- End Saved Super Hero Section -->
+
+        <!-- Begin Footer Section -->
+        <footer>
+            <p>&copy; 2018 MARVEL. All Rights Reserved <span class="float-right">POWER Cache</span> </p>
+        </footer>
+        <!-- End Footer Section -->
+    </div> 
+    <!-- End Main Container Fluid Section -->
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</body>
+</html>

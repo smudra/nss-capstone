@@ -1,0 +1,139 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900,900i');
+
+body {
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    color: #5C5C5C;
+    margin:  0 auto;
+    padding: 0;
+    font-size: 18px;
+  }
+.container-fluid {
+    background-image: url("../images/Pepper-Potts-elektra-bkgd.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0 auto;
+}
+h1, h2, h3, h4, h5, p {
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    text-align: left;
+    line-height: 2rem;
+}
+h1 {
+    font-size: 3rem;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+h2 {
+    padding: 0 3rem;
+    font-size: 2.25rem;
+    color: #FFFFFF;
+    font-weight: 300;
+}
+h3 {
+    font-size: 1.5rem;
+    color: #F62E26;
+    font-size: 300;
+}
+p {
+    font-size: 1rem;
+    color: #5C5C5C;
+    font-weight: 300;
+    line-height: 2.2rem;
+}
+a:link, a:hover, a:visited {
+    color: #F62E26;
+    text-decoration: none;
+}
+footer {
+    margin-top: 1rem;
+    background-color: #000000;
+    padding: 1rem;
+    font-weight: 700;
+}
+footer > p {
+    color: #FFFFFF;
+    padding: .5rem 2.5rem;
+    font-size: 1rem;
+    line-height: 2rem;
+
+}
+.navbar{
+    padding: 1rem;
+    margin: 0;
+    margin-bottom: 2rem;
+}
+.bg-light {
+    background-color: #FFFFFF;
+}
+.navbar-brand {
+    color: #F62E26;
+}
+.form-control {
+    border-radius: 0;
+    border-color: #5C5C5C;
+    border-right: 0;
+}
+.mr-sm-2 {
+    margin-right: 0!important;
+}
+.user-style {
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+.btn-primary {
+    background-color: #FFFFFF;
+    border-color: #F62E26;
+    border-radius: 0;
+}
+.btn-primary:hover {
+    color: #FFFFFF;
+    background-color: #F62E26;
+    border-color: #F62E26;
+}
+.btn-outline-success {
+    color: #F62E26;
+    background-color: #FFFFFF;
+    border: 1px solid #F62E26;
+    border-radius: 0;
+}
+.btn-outline-success:hover {
+    background-color: #F62E26;
+    border-color: #F62E26;
+}
+.input-width {
+    width: 50% !important;
+    padding: .5rem 3rem 5rem 3rem;
+
+}
+.card-padding {
+    padding: 3rem;
+    padding-top: 0;
+}
+.card {
+    border-radius: 0;
+}
+.card-body {
+    padding: 1.5rem;
+}
+.text-muted {
+    font-weight: 300;
+}
+.card-footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(92, 92, 92, 0.3);
+}
+.notes {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+a.notes {
+    color: #FFFFFF;
+}
+a:hover.notes {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #000000;
+}
