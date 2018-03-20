@@ -4,3 +4,4 @@ dist/
 css/
 lib/node_modules
 js/fb-key.js
+js/api-request.js
