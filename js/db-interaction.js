@@ -2,6 +2,7 @@
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
+    currentUser = null,
     provider = new firebase.auth.GoogleAuthProvider();
 
 function getFBDetails(user) {
@@ -18,7 +19,7 @@ function addUserFB(userObj) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/user.json`,
         type: 'POST',
-        data: JSON.stringify(UserObj),
+        data: JSON.stringify(userObj),
         dataType: 'json'
     }).done((fbID) => {
         return fbID;
@@ -54,13 +55,31 @@ function loginUser(userObj) {
     });
 }
 
-function logInGoogle() {
+function googlelogIn() {
     return firebase.auth().signInWithPopup(provider);
 }
 
-function logOut() {
+function googleLogOut() {
     return firebase.auth().signOut();
 }
+
+function setUser(val) {
+    currentUser = val;
+}
+
+function getUser() {
+    return currentUser;
+}
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        currentUser = user;
+        console.log("This user is logged in: ", currentUser);
+    } else {
+        currentUser = null;
+        console.log("user is not logged in.");
+    }
+});
 
 module.exports = {
     getFBDetails,
@@ -68,6 +87,6 @@ module.exports = {
     updateUserFB,
     createUser,
     loginUser,
-    logInGoogle,
-    logOut
+    googlelogIn,
+    googleLogOut
 };

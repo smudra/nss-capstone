@@ -1,5 +1,5 @@
 "use strict";
-let $ = require('jquery')
+let $ = require('jquery'),
     apiKey = require('./api-request');
 
 const marvelApiURL = apiKey.marvelApiURL;

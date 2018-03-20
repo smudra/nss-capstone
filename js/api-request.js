@@ -1,7 +1,7 @@
 "use strict";
 
 let $ = require('jquery');
-let marvelApiURL = "http://gateway.marvel.com/v1/public/comics?&apikey=a0e48461d9a3fb743776209380da6b53"
+let marvelApiURL = "http://gateway.marvel.com/v1/public/comics?&apikey=a0e48461d9a3fb743776209380da6b53";
 
 
 // get the API from Marvel Comics
