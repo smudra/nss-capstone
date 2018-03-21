@@ -109,6 +109,10 @@ function getCharacterFB(chars) {
     });
 }
 
+
+/////----- Posting Firebase data to DOM -----/////
+
+
 module.exports = {
     getFBDetails,
     addUserFB,
