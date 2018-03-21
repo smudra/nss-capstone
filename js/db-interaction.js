@@ -3,7 +3,8 @@
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     currentUser = null,
-    provider = new firebase.auth.GoogleAuthProvider();
+    provider = new firebase.auth.GoogleAuthProvider(),
+    marvelCharacters = require('./marvel-characters');
 
 function getFBDetails(user) {
     return $.ajax({
@@ -81,6 +82,21 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+
+/////----- Posting API data into Firebase -----/////
+
+// function addCharacterFB(characterObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json`,
+//         type: 'POST',
+//         data: JSON.stringify(characterObj),
+//         dataType: 'json'
+//     }).done((tacoFBId) => {
+//         return tacoFBId;
+//     });
+// }
+
+
 module.exports = {
     getFBDetails,
     addUserFB,
@@ -88,5 +104,6 @@ module.exports = {
     createUser,
     loginUser,
     googlelogIn,
-    googleLogOut
+    googleLogOut,
+    // addCharacterFB
 };

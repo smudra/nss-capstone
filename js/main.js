@@ -6,4 +6,5 @@ let $ = require('jquery'),
     build = require('./buildFBObj'),
     db = require('./db-interaction'),
     fbConfig = require('./fb-config'),
-    user = require('./user');
+    user = require('./user'),
+    marvelCharacters = require('./marvel-characters');
