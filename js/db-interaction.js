@@ -119,3 +119,36 @@ module.exports = {
     googleLogOut,
     addCharacterFB
 };
+
+
+
+
+
+
+
+
+
+
+
+// function setCharObj(obj) {
+//     console.log("What's in setCharObj: ", obj);
+
+//     for(var i = 0; i < characterData.length; i++) {
+
+//         var charId = characterData[i].id;
+//         var charName = characterData[i].name;
+//         var charDescrip = characterData[i].description;
+//         var charThumbnail = characterData[i].thumbnail.path;
+//         var charThumbnailExt = characterData[i].thumbnail.extension;
+//         var charUrl = characterData[i].urls[0].url;
+
+//         // Add dom element here. target class card-body <div class="card-body">
+
+//         characterInfo.innerHTML = `<h5 class="card-title">${charName}</h5>
+//         <p class="card-text">ID: ${charId}<br>
+//         DESCRIPTION: ${charDescrip}<br>
+//         THUMBNAIL: ${charThumbnail} + "." + ${charThumbnailExt}<br>
+//         URL: ${charUrl}</p>`;
+//     }
+//     return characterData;
+// }
