@@ -11,8 +11,8 @@ let $ = require('jquery'),
 let userLogin = document.getElementById("#login");
 
 let currentUser = {
-    uid: null,
-    name: ""
+    name: "",
+    uid: null
 };
 
 $('#user-pic').click(() => {
@@ -22,6 +22,14 @@ $('#user-pic').click(() => {
 function userProfile() {
     $('#nav-container').html(`<p id="user-pic" class="fas fa-user"><span class="user-style" id="login"> &nbsp; <a href="#">Login</a> </span></p>
     <p id="log-out"><span class="user-style"> &nbsp; <a href="#">Logout</a> </span></p>`);
+}
+
+function setUserVars(obj) {
+    return new Promise((resolve, reject) => {
+    currentUser.name = obj.name;
+    currentUser.uid = obj.uid;
+        resolve(currentUser);
+    });
 }
 
 // ======= User Login and Logout functions ========
