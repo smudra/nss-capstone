@@ -99,18 +99,19 @@ function addCharacterFB(characterObj) {
 /////----- Getting API data From Firebase -----/////
 // Find out what else you need to show on to the DOM
 
-function getCharacterFB(chars) {
+function getCharacterFB(charsObj) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/characters/${chars}.json`,
-    }).done((charInfo) => {
-        return charInfo;
+        url: `${firebase.getFBsettings().databaseURL}/chars.json?orderBy="uid"`
+    }).done((resolve) => {
+        return resolve;
     }).fail((error) => {
         return error;
     });
 }
 
 
-/////----- Posting Firebase data to DOM -----/////
+        console.log("What's in getCharacterFB charsObj ", getCharacterFB());
+
 
 
 module.exports = {
