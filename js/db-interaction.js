@@ -108,8 +108,6 @@ function getCharacterFB(charsObj) {
         return error;
     });
 }
-
-
         console.log("What's in getCharacterFB charsObj ", getCharacterFB());
 
 
