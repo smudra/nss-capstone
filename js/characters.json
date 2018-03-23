@@ -1,0 +1,147 @@
+{
+    "characters": [
+        {   
+            "id": " ",
+            "name": "Dare Devil",
+            "description": "A short bio or description of the character",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/9/90/54aedc448b925.jpg",
+            "comics": "http://marvel.com/characters/list/11/ardIssuesByArchetype/Daredevil",
+            "stories": "A resource list of stories in which this character appears",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com/characters/list/11/ardIssuesByArchetype/Daredevil",
+            "uid": " "
+        },
+        {
+            "id": "1017583",
+            "name": "Devil Dinosaur (Devil Dinosaur)",
+            "description": "description not available",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/9/90/54aedc448b925.jpg",
+            "comics": "http://marvel.com/characters/list/3452/ardIssuesByArchetype/Devil Dinosaur",
+            "stories": "https://news.marvel.com/comics/86422/moon-girl-devil-dinosaur-jumps-reality/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com//tv/show/189/marvels_hulk_and_the_agents_of_smash.",
+            "uid": " "
+        },
+        {
+            "id": "1014905",
+            "name": "Squadron Sinister",
+            "description": "Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin. Trained at a young age by the KGB's infamous Red Room Academy, the Black Widow was formerly an enemy to the Avengers. She later became their ally after breaking out of the U.S.S.R.'s grasp, and also serves as a top S.H.I.E.L.D. agent.",
+            "thumbnail": "https://news.marvel.com/wp-content/uploads/2016/09/555f380fdd83d.jpg",
+            "comics": "http://marvel.com/comics/collection/2817/avengers_the_serpent_crown_trade_paperback   ",
+            "stories": "https://marvel.com/comics/issue/7006/avengers_1963_148",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "Hmm, we're working to give you the best.",
+            "uid": " "
+        },
+        {
+            "id": "1009287",
+            "name": "Electro",
+            "description": "Dillon is a living electrical capacitor, powered by the micro-fine rhythmic muscle contractions that normally regulate body temperature. He can generate electrostatic energy at a rate of about 1,000 volts per minute and store up to 1,000,000 volts allowing him to emit lightning arcs from his fingertips at speeds of up to 1,100 feet per second, achieving a maximum distance of about 100 feet. In addition, he can override electrically powered devices and manipulate them mentally, travel along conductive surfaces (such as power lines) at speeds as fast as 140 mph, create electrostatic 'bridges' to travel varying distances and disrupt Spider-Man's ability to cling to walls. When fully charged, however, Electro becomes extremely sensitive to anything that can 'short circuit' his abilities, particularly water.",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/4c003f1214bd7/standard_xlarge.jpg",
+            "comics": "http://marvel.com/characters/list/604/ardIssuesByArchetype/Electro",
+            "stories": "https://news.marvel.com/gear-toys/85432/hasbros-avengers-infinity-war-toys-include-new-marvel-legends-figures-much/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/tv/show/62/the_spectacular_spider-man",
+            "uid": " "
+        },
+        {
+            "id": "1009512",
+            "name": "Psylocke",
+            "description": "",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/537bbf150acc9/standard_xlarge.jpg",
+            "comics": "https://news.marvel.com/comics/61843/flashback-friday-psylocke/",
+            "stories": "https://news.marvel.com/games/86240/entering-contest-champions-bishop/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "Hmm, we're working to give you the best.",
+            "uid": " "
+        },
+        {
+            "id": "1011295",
+            "name": "The Howling Commandos",
+            "description": "",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/standard_xlarge.jpg",
+            "comics": "https://news.marvel.com/comics/24621/monsters_smash_across_the_warzones_in_mrs_deadpool_and_the_howling_commandos_1/",
+            "stories": "https://news.marvel.com/comics/24855/marvel_concept_to_cover_mrs_deadpool_the_howling_commandos/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com/comics/list/1011295/chdSeriesByCharacter/the_howling_commandos",
+            "uid": " "
+        },
+        {
+            "id": "1010860",
+            "name": "Squirrel Girl",
+            "description": "",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/8/60/4c0035beb0c55/standard_incredible.jpg",
+            "comics": "https://comics/events/260/live_kree_or_die",
+            "stories": "https://news.marvel.com/comics/85694/coming-marvel-unlimited-march-2018/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://news.marvel.com/./tv/",
+            "uid": " "
+        },
+        {
+            "id": "1009189",
+            "name": "Black Widow",
+            "description": "Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin. Trained at a young age by the KGB's infamous Red Room Academy, the Black Widow was formerly an enemy to the Avengers. She later became their ally after breaking out of the U.S.S.R.'s grasp, and also serves as a top S.H.I.E.L.D. agent.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/f/30/50fecad1f395b/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=black+widow&category=comicevents",
+            "stories": "https://marvel.com/search?q=black+widow&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/search?q=black+widow&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009664",
+            "name": "Thor",
+            "description": "As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir. While others have described Thor as an over-muscled, oafish imbecile, he's quite smart and compassionate.  He's self-assured, and he would never, ever stop fighting for a worthwhile cause.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5317738e6dc12/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=thor&category=comicevents",
+            "stories": "https://marvel.com/search?q=thor&category=news",
+            "events": "https://marvel.com/search?q=thor&category=comicevents",
+            "series": "https://marvel.com/search?q=thor&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1011432",
+            "name": "Enchantress (Sylvie Lushton)",
+            "description": "",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/standard_incredible.jpg",
+            "comics": "http://marvel.com/characters/list/616/ardIssuesByArchetype/Enchantress",
+            "stories": "https://marvel.com/search?q=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com/characters/list/616/ardSeriesByArchetype/Enchantress",
+            "uid": " "
+        },
+        {
+            "id": "1009212",
+            "name": "Bullseye",
+            "description": "",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/6/30/539a08f322fd1/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=Bullseye&category=comicevents",
+            "stories": "https://marvel.com/search?q=Bullseye&category=news",
+            "events": "https://marvel.com/search?q=Bullseye&category=comicevents",
+            "series": "https://marvel.com/search?q=Bullseye&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009471",
+            "name": "Nick Fury",
+            "description": "",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5261a745e658d/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "stories": "https://marvel.com/search?q=nick+fury&category=news",
+            "events": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "series": "https://marvel.com/search?q=nick+fury&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009471",
+            "name": "Nick Fury",
+            "description": "",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5261a745e658d/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "stories": "https://marvel.com/search?q=nick+fury&category=news",
+            "events": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "series": "https://marvel.com/search?q=nick+fury&category=tv",
+            "uid": " "
+        }
+    ]
+}
