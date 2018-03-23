@@ -101,9 +101,9 @@ function addCharacterFB(characterObj) {
 
 function getCharacterFB(charsObj) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/chars.json?orderBy="uid"`
-    }).done((resolve) => {
-        return resolve;
+        url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
+    }).done((getInfo) => {
+        return getInfo;
     }).fail((error) => {
         return error;
     });
@@ -120,7 +120,8 @@ module.exports = {
     loginUser,
     googlelogIn,
     googleLogOut,
-    addCharacterFB
+    addCharacterFB,
+    getCharacterFB
 };
 
 
