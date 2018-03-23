@@ -106,22 +106,26 @@ function charLoop() {
                         thumbnailext: charThumbnailExt, // add extension .jpg to this path.jpg
                         powers: charUrl
                 };
-
-                refinedData.push(characterObj);
-                charsToFB();                
-                // var chars = firebase.database().ref('chars/');
-                // refinedData.forEach((item) => {
-                //     chars.push(item);
-                // });
+/////----- Working Code for POST API data to Firebase  -----/////
+                // refinedData.push(characterObj);
+                // charsToFB();                
+                // // var chars = firebase.database().ref('chars/');
+                // // refinedData.forEach((item) => {
+                // //     chars.push(item);
+                // // });
             }
 }
-var chars = firebase.database().ref('chars/');
-function charsToFB() {
 // var chars = firebase.database().ref('chars/');
-refinedData.forEach((item) => {
-    chars.push(item);
-});
-}
+// function charsToFB() {
+// refinedData.forEach((item) => {
+//     chars.push(item);
+// });
+// }
+/////----- Working Code for POST API data to Firebase  -----/////
+// I had to gray out because everytime the page is refreshed it uploads api info to FB causing Objects created 56 times every time the page loads in the browser"
+//
+
+// var chars = firebase.database().ref('chars/');
 // Create an Object with the necessary character Info
 
     module.exports = getAPIKeyRequest;

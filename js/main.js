@@ -8,4 +8,5 @@ let $ = require('jquery'),
     db = require('./db-interaction'),
     fbConfig = require('./fb-config'),
     user = require('./user'),
+    characterDOMbuilder = require('./characterDOMbuilder'),
     marvelCharacters = require('./marvel-characters');
