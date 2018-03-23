@@ -39,20 +39,20 @@ function getAPIKeyRequest() {
         });
 }
 
-    getAPIKeyRequest()
-    .then((marvelData) => {
+    // getAPIKeyRequest()
+    // .then((marvelData) => {
 
-        // refining only the data that is necessary
-        characterData = marvelData.data.results;
-        console.log("What's in characterData ", characterData);
+    //     // refining only the data that is necessary
+    //     characterData = marvelData.data.results;
+    //     console.log("What's in characterData ", characterData);
 
-        // =====================
+    //     // =====================
 
-        // Push info into firebase.
+    //     // Push info into firebase.
 
-        db.addCharacterFB(characterData)
-        .then((result) => {
-            charLoop();
+    //     db.addCharacterFB(characterData)
+    //     .then((result) => {
+    //         charLoop();
             // console.log("Characters added using object CharacterObj", characterData);
 
             // var refinedData = [];
@@ -84,8 +84,8 @@ function getAPIKeyRequest() {
             //     console.log("refined Data ", refinedData);            
             //     console.log("What's in .then characterData ", characterData);
             // return characterObj;
-        });
-    });
+    //     });
+    // });
     
     var refinedData = [];
 function charLoop() {
