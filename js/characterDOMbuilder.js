@@ -57,10 +57,11 @@ function listCharacters(getcInfo) {
         let charStories = getcInfo[characters].stories;
         let charSeries = getcInfo[characters].series;
         let charEvents = getcInfo[characters].events;
+        
 
-        displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
+        // displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
 
-        console.log ("Whats in displayChars : ", displayChars);
+        /////----- Creating Index.HTML -----/////
         displayChars += `<h2>Save Your Favorite Super Hero</h2>
         <div class="card-deck">
             <div class="card col-4">
@@ -76,27 +77,27 @@ function listCharacters(getcInfo) {
                 </div>
             </div>
             <div class="card col-4">
-                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                <h5 class="card-title">${charName}</h5>
-                <p class="card-text">${charId}<br>${charDesc}</p>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">Character ID: ${charId}</small>
+            <img class="card-img-top" src="${charThumb}" alt="Card image cap">
+            <div class="card-body"></div>
+            <div>
+                <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
+                <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+            </div>
+            <div class="card-footer">
+                    <small class="text-muted">Character ID: ${charId}</small>
                 <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
                 </div>
             </div>
             <div class="card col-4">
-                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                    <h5 class="card-title">${charName}</h5>
-                    <p class="card-text">${charId}<br>${charDesc}</p>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">Character ID: ${charId}</small>
-                <a href="#" class="btn btn-primary float-right disabled">Save</a>
+            <img class="card-img-top" src="${charThumb}" alt="Card image cap">
+            <div class="card-body"></div>
+            <div>
+                <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
+                <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+            </div>
+            <div class="card-footer">
+                    <small class="text-muted">Character ID: ${charId}</small>
+                <a href="#" class="btn btn-primary float-right">Save</a>
                 </div>
             </div>
         </div>`;
@@ -111,52 +112,52 @@ $("#new-chars").html(function() {
 });
 
 /////----- Creating Index.HTML -----/////
-function displayCharsDom(char) {
-    let showCharsDOM = $(`<h2>Save Your Favorite Super Hero</h2>
-        <div class="card-deck">
-            <div class="card col-4">
-                <img class="card-img-top" src="images/spiderman.png" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                    <h5 class="card-title">Spider-Man</h5>
-                    <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
-                </div>
-                <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    <a href="#" class="btn btn-primary float-right disabled">Save</a>
-                </div>
-            </div>
-            <div class="card col-4">
-                <img class="card-img-top" src="images/thor.png" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                <h5 class="card-title">Thor</h5>
-                <p class="card-text">As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.</p>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
-                </div>
-            </div>
-            <div class="card col-4">
-                <img class="card-img-top" src="images/black-widow.png" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                    <h5 class="card-title">Black Natasha Widow</h5>
-                    <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <a href="#" class="btn btn-primary float-right disabled">Save</a>
-                </div>
-            </div>
-        </div>`);
+// function displayCharsDom(char) {
+//     let showCharsDOM = $(`<h2>Save Your Favorite Super Hero</h2>
+//         <div class="card-deck">
+//             <div class="card col-4">
+//                 <img class="card-img-top" src="images/spiderman.png" alt="Card image cap">
+//                 <div class="card-body"></div>
+//                 <div>
+//                     <h5 class="card-title">Spider-Man</h5>
+//                     <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
+//                 </div>
+//                 <div class="card-footer">
+//                         <small class="text-muted">Last updated 3 mins ago</small>
+//                     <a href="#" class="btn btn-primary float-right disabled">Save</a>
+//                 </div>
+//             </div>
+//             <div class="card col-4">
+//                 <img class="card-img-top" src="images/thor.png" alt="Card image cap">
+//                 <div class="card-body"></div>
+//                 <div>
+//                 <h5 class="card-title">Thor</h5>
+//                 <p class="card-text">As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.</p>
+//                 </div>
+//                 <div class="card-footer">
+//                 <small class="text-muted">Last updated 3 mins ago</small>
+//                 <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
+//                 </div>
+//             </div>
+//             <div class="card col-4">
+//                 <img class="card-img-top" src="images/black-widow.png" alt="Card image cap">
+//                 <div class="card-body"></div>
+//                 <div>
+//                     <h5 class="card-title">Black Natasha Widow</h5>
+//                     <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
+//                 </div>
+//                 <div class="card-footer">
+//                 <small class="text-muted">Last updated 3 mins ago</small>
+//                 <a href="#" class="btn btn-primary float-right disabled">Save</a>
+//                 </div>
+//             </div>
+//         </div>`);
 
-    $(".character").html(showCharsDOM);
-}
+//     $(".character").html(showCharsDOM);
+// }
 
 module.exports = {
-    displayCharsDom,
+    // displayCharsDom,
     showChars,
     listCharacters,
     getCharactersFB
