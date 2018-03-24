@@ -2,28 +2,113 @@
 console.log("characterDOMbuilder is in the house");
 
 let $ = require('jquery'),
-    db = require('./db-interaction');
+firebase = require("./fb-config");
 
 // All variables
-// var charInfo;
+var showCharsDOM = "";
+let displayChars;
 
-// To Display chars on DOM getCharactersFB is in db-interaction
-function showChars() {
-    db.getCharactersFB()
-    .then((getInfo) => {
-        console.log("what is in charData ", getInfo);
+/////----- Getting data From Firebase -----/////
+// Find out what else you need to show on to the DOM
+
+function getCharactersFB(charsObj) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
+    }).done((getInfo) => {
+        console.log("what's in getInfo from JSON FB ", getInfo);
         return getInfo;
-    }).then((showCharsDOM) => {
-        // console.log("What's in charData ", charData);
-        $(".character").html(showCharsDOM);
+    }).fail((error) => {
+        return error;
     });
 }
+        // console.log("What's in getCharacterFB charsObj ",charsObj);
 
-showChars();
+// To Display chars on DOM getCharactersFB is in db-interaction
 
 
 /////----- Posting Firebase data to DOM -----/////
+function showChars() {
+    getCharactersFB(event)
+    .then((getcInfo) => {
+        console.log("what is in getcInfo showChars", getcInfo);
+        listCharacters(getcInfo);
+        console.log("listCharacters ", listCharacters);
+    });
+} 
 
+// function showChars() {
+//     getCharactersFB(event)
+//     .then(function(getcInfo) {
+//         console.log("what is in getcInfo showChars", getcInfo);
+//         listCharacters(getcInfo);
+//     });
+// }    
+//Loop through Object to place in Array
+function listCharacters(getcInfo) {
+    console.log("What's in getCInfo listCharacters ", getcInfo);
+
+    for(let characters in getcInfo) {
+
+        let charName = getcInfo[characters].name;
+        let charId = getcInfo[characters].id;
+        let charDesc = getcInfo[characters].description;
+        let charComics = getcInfo[characters].comics;
+        let charThumb = getcInfo[characters].thumbnail;
+        let charStories = getcInfo[characters].stories;
+        let charSeries = getcInfo[characters].series;
+        let charEvents = getcInfo[characters].events;
+
+        displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
+
+        console.log ("Whats in displayChars : ", displayChars);
+        displayChars += `<h2>Save Your Favorite Super Hero</h2>
+        <div class="card-deck">
+            <div class="card col-4">
+                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
+                <div class="card-body"></div>
+                <div>
+                    <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
+                    <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+                </div>
+                <div class="card-footer">
+                        <small class="text-muted">Character ID: ${charId}</small>
+                    <a href="#" class="btn btn-primary float-right disabled">Save</a>
+                </div>
+            </div>
+            <div class="card col-4">
+                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
+                <div class="card-body"></div>
+                <div>
+                <h5 class="card-title">${charName}</h5>
+                <p class="card-text">${charId}<br>${charDesc}</p>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Character ID: ${charId}</small>
+                <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
+                </div>
+            </div>
+            <div class="card col-4">
+                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
+                <div class="card-body"></div>
+                <div>
+                    <h5 class="card-title">${charName}</h5>
+                    <p class="card-text">${charId}<br>${charDesc}</p>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Character ID: ${charId}</small>
+                <a href="#" class="btn btn-primary float-right disabled">Save</a>
+                </div>
+            </div>
+        </div>`;
+
+        $("#new-chars").html(displayChars);
+
+    }
+}
+
+$("#new-chars").html(function() {
+    showChars();
+});
 
 /////----- Creating Index.HTML -----/////
 function displayCharsDom(char) {
@@ -72,7 +157,9 @@ function displayCharsDom(char) {
 
 module.exports = {
     displayCharsDom,
-    showChars
+    showChars,
+    listCharacters,
+    getCharactersFB
     // myfavoritesDOM
 };
 
@@ -165,11 +252,11 @@ module.exports = {
 // }
 
 /////----- Loading on to DOM after user logs in index.HTML -----/////
-document.addEventListener('DOMContentLoaded', function() {
-    $('#home-user').on('click', function() {
-        db.getCharacterFB();
-    });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     $('#home-user').on('click', function() {
+//         db.getCharacterFB();
+//     });
+// });
 
 /////----- Loading JSON file on to DOM  -----/////
 
