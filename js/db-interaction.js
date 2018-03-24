@@ -85,30 +85,18 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 /////----- Posting API data into Firebase -----/////
 
-function addCharacterFB(characterObj) {
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/characters.json`,
-        type: 'PUT',
-        data: JSON.stringify(characterObj),
-        dataType: 'json'
-    }).done((tacoFBId) => {
-        return tacoFBId;
-    });
-}
+// function addCharacterFB(characterObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json`,
+//         type: 'PATCH',
+//         data: JSON.stringify(characterObj),
+//         dataType: 'json'
+//     }).done((tacoFBId) => {
+//         return tacoFBId;
+//     });
+// }
 
-/////----- Getting API data From Firebase -----/////
-// Find out what else you need to show on to the DOM
 
-function getCharacterFB(charsObj) {
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/chars.json?orderBy="uid"`
-    }).done((resolve) => {
-        return resolve;
-    }).fail((error) => {
-        return error;
-    });
-}
-        console.log("What's in getCharacterFB charsObj ", getCharacterFB());
 
 
 
@@ -120,7 +108,8 @@ module.exports = {
     loginUser,
     googlelogIn,
     googleLogOut,
-    addCharacterFB
+    // addCharacterFB,
+    // getCharacterFB
 };
 
 
@@ -155,3 +144,19 @@ module.exports = {
 //     }
 //     return characterData;
 // }
+
+
+///// ----- Working file for API ------ /////
+
+// function getCharacterFB(charsObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
+//     }).done((getInfo) => {
+//         console.log("what's in getInfo from JSON FB ", getInfo)
+//         return getInfo;
+//     }).fail((error) => {
+//         return error;
+//     });
+// }
+//         console.log("What's in getCharacterFB charsObj ", getCharacterFB());
+

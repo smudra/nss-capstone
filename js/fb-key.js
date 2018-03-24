@@ -2,9 +2,9 @@
 
 function getKey() {
     return {
-        apiKey: "AIzaSyBawV8Z7yRgmgOaJUDRx0pluQ_daRF8YnQ",
-        authDomain: "nss-capstone-powercache.firebaseapp.com",
-        databaseURL: "https://nss-capstone-powercache.firebaseio.com"
+        apiKey: "AIzaSyABhODTQpvGTBbt2Im2cE78RgliwHJWQ0Q",
+        authDomain: "nss-capstone-powercache-reboot.firebaseapp.com",
+        databaseURL: "https://nss-capstone-powercache-reboot.firebaseio.com"
     };
 }
 

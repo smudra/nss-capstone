@@ -1,0 +1,147 @@
+{
+    "characters": [
+        {   
+            "id": " ",
+            "name": "Dare Devil",
+            "description": "Abandoned by his mother, Matt Murdock was raised by his father, boxer 'Battling Jack' Murdock, in Hell's Kitchen. Realizing that rules were needed to prevent people from behaving badly, young Matt decided to study law; however, when he saved a man from an oncoming truck, it spilled a radioactive cargo that rendered Matt blind while enhancing his remaining senses. Under the harsh tutelage of blind martial arts master Stick, Matt mastered his heightened senses and became a formidable fighter.",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/537ba6f0e2fa3.jpg",
+            "comics": "http://marvel.com/characters/list/11/ardIssuesByArchetype/Daredevil",
+            "stories": "https://marvel.com/search?q=daredevil&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com/characters/list/11/ardIssuesByArchetype/Daredevil",
+            "uid": " "
+        },
+        {
+            "id": "1009368",
+            "name": "Iron Man",
+            "description": "Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=iron+man&category=comicevents",
+            "stories": "https://marvel.com/search?q=iron+man&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/search?q=iron+man&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1014905",
+            "name": "Squadron Sinister",
+            "description": "Several years ago the Grandmaster, an Elder of the Universe and cosmic gamesman, had traveled to the alternate reality of the Squadron Supreme (Earth-712) where he challenged the Scarlet Centurion to a contest of champions. The Grandmaster picked the Squadron while the Centurion picked the Institute Of Evil as his champions, and the Squadron emerged triumphant giving the Grandmaster a victory. The Grandmaster then traveled back to the prime Earth (Earth-616) where he sought out Kang The Conqueror. The Grandmaster challenged Kang to a similar contest. Kang chose the Avengers as his champions, but the Grandmaster decided to create his own. He modeled his pawns after four members of the Squadron Supreme. He gave James Saunders a chemical formula to grant himself super speed, and he became the Whizzer. The Grandmaster drafted the recently turned superhuman Kyle Richmond and called him the Nighthawk. He gave the power prism to Dr. Kinji Obatu who became Doctor Spectrum. To round out his team the Grandmaster created the Superhuman Hyperion from nothing. After gathering his pawns together he named them the Squadron Sinister and sent them to fight the Avengers. The Avengers won the battle, and the Grandmaster abandoned the Squadron Sinister and the group disbanded.",
+            "thumbnail": "https://news.marvel.com/wp-content/uploads/2016/09/555f380fdd83d.jpg",
+            "comics": "http://marvel.com/comics/collection/2817/avengers_the_serpent_crown_trade_paperback   ",
+            "stories": "https://marvel.com/comics/issue/7006/avengers_1963_148",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "Hmm, we're working to give you the best.",
+            "uid": " "
+        },
+        {
+            "id": "1009287",
+            "name": "Electro",
+            "description": "Dillon is a living electrical capacitor, powered by the micro-fine rhythmic muscle contractions that normally regulate body temperature. He can generate electrostatic energy at a rate of about 1,000 volts per minute and store up to 1,000,000 volts allowing him to emit lightning arcs from his fingertips at speeds of up to 1,100 feet per second, achieving a maximum distance of about 100 feet. In addition, he can override electrically powered devices and manipulate them mentally, travel along conductive surfaces (such as power lines) at speeds as fast as 140 mph, create electrostatic 'bridges' to travel varying distances and disrupt Spider-Man's ability to cling to walls. When fully charged, however, Electro becomes extremely sensitive to anything that can 'short circuit' his abilities, particularly water.",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/4c003f1214bd7/standard_xlarge.jpg",
+            "comics": "http://marvel.com/characters/list/604/ardIssuesByArchetype/Electro",
+            "stories": "https://news.marvel.com/gear-toys/85432/hasbros-avengers-infinity-war-toys-include-new-marvel-legends-figures-much/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/tv/show/62/the_spectacular_spider-man",
+            "uid": " "
+        },
+        {
+            "id": "1009512",
+            "name": "Psylocke",
+            "description": "Betsy Braddock was Sir James Braddock's second child, and like her twin brother Brian, her life was secretly manipulated by Merlyn. The twins shared a close connection, but as they matured the adventurous Betsy also grew close to their elder brother Jamie. By the time their parents died, apparently in a lab accident but really murdered by the computer Mastermind, Betsy had become a charter pilot. When Mastermind's agent Doctor Synne tried to kill Jamie, a concerned Betsy fetched Brian, but as she flew them home, Synne's psychic attack caused her to crash. When she awoke, Synne's illusions made Betsy attack her brothers, seeing them as monsters. After Synne was defeated she and Jamie were taken hostage by the Red Skull's agents. Freed by Captains America and Britain, Betsy learned the latter was her brother Brian. Perhaps because of Synne's mental intrusions, Betsy began to develop precognitive powers. She took up modeling, while her powers grew to include telepathy. Agent Matthew recruited Betsy into S.T.R.I.K.E.'s Psi Division, and she became fellow psi Tom Lennox's lover.",
+            "thumbnail": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/537bbf150acc9/standard_xlarge.jpg",
+            "comics": "https://news.marvel.com/comics/61843/flashback-friday-psylocke/",
+            "stories": "https://news.marvel.com/games/86240/entering-contest-champions-bishop/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "Hmm, we're working to give you the best.",
+            "uid": " "
+        },
+        {
+            "id": "1009220",
+            "name": "Captain America",
+            "description": "Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain America is the living, breathing symbol of freedom and liberty.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/5/80/53176a0bb810c/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=captain+america&category=comicevents",
+            "stories": "https://marvel.com/search?q=captain+america&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/search?q=captain+america&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1010860",
+            "name": "Squirrel Girl",
+            "description": "Escaping the taunts of her fellow school students regarding her physical mutation, Los-Angeles born Doreen Green fled into the nearby woods where she quickly discovered her affinity for squirrels. Idolizing Iron Man, she adopted the costumed identity of Squirrel Girl in the hope of becoming his crime-fighting partner.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/8/60/4c0035beb0c55/standard_incredible.jpg",
+            "comics": "https://comics/events/260/live_kree_or_die",
+            "stories": "https://news.marvel.com/comics/85694/coming-marvel-unlimited-march-2018/",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://news.marvel.com/./tv/",
+            "uid": " "
+        },
+        {
+            "id": "1009189",
+            "name": "Black Widow",
+            "description": "Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin. Trained at a young age by the KGB's infamous Red Room Academy, the Black Widow was formerly an enemy to the Avengers. She later became their ally after breaking out of the U.S.S.R.'s grasp, and also serves as a top S.H.I.E.L.D. agent.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/f/30/50fecad1f395b/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=black+widow&category=comicevents",
+            "stories": "https://marvel.com/search?q=black+widow&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/search?q=black+widow&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009664",
+            "name": "Thor",
+            "description": "As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir. While others have described Thor as an over-muscled, oafish imbecile, he's quite smart and compassionate.  He's self-assured, and he would never, ever stop fighting for a worthwhile cause.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5317738e6dc12/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=thor&category=comicevents",
+            "stories": "https://marvel.com/search?q=thor&category=news",
+            "events": "https://marvel.com/search?q=thor&category=comicevents",
+            "series": "https://marvel.com/search?q=thor&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1011432",
+            "name": "Enchantress (Sylvie Lushton)",
+            "description": "Sylvie Lushton was given power beyond her wildest dreams by the Asgardian god of mischief, Loki, but with this gift came uncertainty of her true place in the world. She is a mortal who suspected she was part of the Asgardian race, making her highly vulnerable to dashed hopes",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/standard_incredible.jpg",
+            "comics": "http://marvel.com/characters/list/616/ardIssuesByArchetype/Enchantress",
+            "stories": "https://marvel.com/search?q=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "http://marvel.com/characters/list/616/ardSeriesByArchetype/Enchantress",
+            "uid": " "
+        },
+        {
+            "id": "1009212",
+            "name": "Jessica Jones",
+            "description": "Months after the accident, while running home from school in an emotionally distraught state, Jessica manifested superhuman powers as a result of the experimental material to which she had been exposed; her inexperienced flying led her to crash-land in the bay, where she was rescued by Thor. She soon realized that she had also gained superhuman strength.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/d/00/5390e41260345/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=jessica+Jones&category=comicevents",
+            "stories": "https://marvel.com/search?q=jessica+Jones&category=news",
+            "events": "https://www.marveluniverselive.com/",
+            "series": "https://marvel.com/search?q=jessica+Jones&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009471",
+            "name": "Nick Fury",
+            "description": "Son of World War I pilot Jack Fury, Nick Fury became a legendary hero in the early years of World War II, taking missions into Europe alongside his friend Red Hargrove, under the command of Lt. Samuel Sawyer. During one mission, Fury’s left eye was damaged by a grenade and his lack of medical care eventually aggravated the wound.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5261a745e658d/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "stories": "https://marvel.com/search?q=nick+fury&category=news",
+            "events": "https://marvel.com/search?q=nick+fury&category=comicevents",
+            "series": "https://marvel.com/search?q=nick+fury&category=tv",
+            "uid": " "
+        },
+        {
+            "id": "1009610",
+            "name": "Spiderman",
+            "description": "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.",
+            "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b/standard_incredible.jpg",
+            "comics": "https://marvel.com/search?q=spiderman&category=comicevents",
+            "stories": "https://marvel.com/search?q=spiderman&category=news",
+            "events": "https://marvel.com/search?q=spiderman&category=comicevents",
+            "series": "https://marvel.com/search?q=spiderman&category=tv",
+            "uid": " "
+        }
+    ]
+}
