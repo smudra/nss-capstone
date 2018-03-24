@@ -96,20 +96,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 //     });
 // }
 
-/////----- Getting data From Firebase -----/////
-// Find out what else you need to show on to the DOM
 
-function getCharacterFB(charsObj) {
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
-    }).done((getInfo) => {
-        console.log("what's in getInfo from JSON FB ", getInfo);
-        return getInfo;
-    }).fail((error) => {
-        return error;
-    });
-}
-        console.log("What's in getCharacterFB charsObj ", getCharacterFB());
 
 
 
@@ -122,7 +109,7 @@ module.exports = {
     googlelogIn,
     googleLogOut,
     // addCharacterFB,
-    getCharacterFB
+    // getCharacterFB
 };
 
 
