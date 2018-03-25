@@ -27,7 +27,8 @@ h1 {
 h2 {
   padding: 0 3rem;
   font-size: 2.25rem;
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  margin: 1rem 0; }
 
 h3 {
   font-size: 1.5rem;

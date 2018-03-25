@@ -47,16 +47,45 @@ function showChars() {
 function listCharacters(getcInfo) {
     console.log("What's in getCInfo listCharacters ", getcInfo);
 
-    for(let characters in getcInfo) {
+    // for(let characters in getcInfo) {
+    //     let charName = getcInfo[characters].name;
+    //     let charId = getcInfo[characters].id;
+    //     let charDesc = getcInfo[characters].description;
+    //     let charComics = getcInfo[characters].comics;
+    //     let charThumb = getcInfo[characters].thumbnail;
+    //     let charStories = getcInfo[characters].stories;
+    //     let charSeries = getcInfo[characters].series;
+    //     let charEvents = getcInfo[characters].events;
 
-        let charName = getcInfo[characters].name;
-        let charId = getcInfo[characters].id;
-        let charDesc = getcInfo[characters].description;
-        let charComics = getcInfo[characters].comics;
-        let charThumb = getcInfo[characters].thumbnail;
-        let charStories = getcInfo[characters].stories;
-        let charSeries = getcInfo[characters].series;
-        let charEvents = getcInfo[characters].events;
+        for(var i = 0; i < getcInfo.length; (i = i + 3)) {
+            console.log("What's in getCInfo length ", getcInfo);
+            let charName1 = getcInfo[i].name;
+            let charId1 = getcInfo[i].id;
+            let charDesc1 = getcInfo[i].description;
+            let charComics1 = getcInfo[i].comics;
+            let charThumb1 = getcInfo[i].thumbnail;
+            let charStories1 = getcInfo[i].stories;
+            let charSeries1 = getcInfo[i].series;
+            let charEvents1 = getcInfo[i].events;
+
+            let charName2 = getcInfo[i + 1].name;
+            let charId2 = getcInfo[i + 1].id;
+            let charDesc2 = getcInfo[i + 1].description;
+            let charComics2 = getcInfo[i + 1].comics;
+            let charThumb2 = getcInfo[i + 1].thumbnail;
+            let charStories2 = getcInfo[i + 1].stories;
+            let charSeries2 = getcInfo[i + 1].series;
+            let charEvents2 = getcInfo[i + 1].events;
+
+            let charName3 = getcInfo[i + 2].name;
+            let charId3 = getcInfo[i + 2].id;
+            let charDesc3 = getcInfo[i + 2].description;
+            let charComics3 = getcInfo[i + 2].comics;
+            let charThumb3 = getcInfo[i + 2].thumbnail;
+            let charStories3 = getcInfo[i + 2].stories;
+            let charSeries3 = getcInfo[i + 2].series;
+            let charEvents3 = getcInfo[i + 2].events;
+
         
 
         // displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
@@ -65,38 +94,35 @@ function listCharacters(getcInfo) {
         displayChars += `<h2>Save Your Favorite Super Hero</h2>
         <div class="card-deck">
             <div class="card col-4">
-                <img class="card-img-top" src="${charThumb}" alt="Card image cap">
-                <div class="card-body"></div>
-                <div>
-                    <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
-                    <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+                <img class="card-img-top" src="${charThumb1}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Name: </strong> ${charName1}</h5>
+                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br><strong>Comics: </strong>${charComics1}<br><strong>Stories: </strong>${charStories1}<br><strong>Series: </strong>${charSeries1}<br><strong>Events: </strong>${charEvents1}<br></p>
                 </div>
                 <div class="card-footer">
-                        <small class="text-muted">Character ID: ${charId}</small>
+                        <small class="text-muted">Character ID: ${charId1}</small>
                     <a href="#" class="btn btn-primary float-right disabled">Save</a>
                 </div>
             </div>
             <div class="card col-4">
-            <img class="card-img-top" src="${charThumb}" alt="Card image cap">
-            <div class="card-body"></div>
-            <div>
-                <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+            <img class="card-img-top" src="${charThumb2}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Name: </strong> ${charName2}</h5>
+                <p class="card-text"><strong>Description: </strong>${charDesc2}<br><strong>Comics: </strong>${charComics2}<br><strong>Stories: </strong>${charStories2}<br><strong>Series: </strong>${charSeries2}<br><strong>Events: </strong>${charEvents2}<br></p>
             </div>
             <div class="card-footer">
-                    <small class="text-muted">Character ID: ${charId}</small>
+                    <small class="text-muted">Character ID: ${charId2}</small>
                 <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
                 </div>
             </div>
             <div class="card col-4">
-            <img class="card-img-top" src="${charThumb}" alt="Card image cap">
-            <div class="card-body"></div>
-            <div>
-                <h5 class="card-title"><strong>Name: </strong> ${charName}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc}<br><strong>Comics: </strong>${charComics}<br><strong>Stories: </strong>${charStories}<br><strong>Series: </strong>${charSeries}<br><strong>Events: </strong>${charEvents}<br></p>
+            <img class="card-img-top" src="${charThumb3}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Name: </strong> ${charName3}</h5>
+                <p class="card-text"><strong>Description: </strong>${charDesc3}<br><strong>Comics: </strong>${charComics3}<br><strong>Stories: </strong>${charStories3}<br><strong>Series: </strong>${charSeries3}<br><strong>Events: </strong>${charEvents3}<br></p>
             </div>
             <div class="card-footer">
-                    <small class="text-muted">Character ID: ${charId}</small>
+                    <small class="text-muted">Character ID: ${charId3}</small>
                 <a href="#" class="btn btn-primary float-right">Save</a>
                 </div>
             </div>
