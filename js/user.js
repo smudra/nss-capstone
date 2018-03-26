@@ -13,9 +13,10 @@ var firebase = require("firebase/app");
 
 var provider = new firebase.auth.GoogleAuthProvider();
     
-// let userLogin = document.getElementById("login");
-
 let currentUser = null;
+
+
+
 // User login and log out functions
 
 function googlelogIn() {
@@ -48,25 +49,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 // End user login  and log out functions
 
 
-
-
-// function setUserVars(obj) {
-//     return new Promise((resolve, reject) => {
-//     currentUser.name = obj.name;
-//     currentUser.uid = obj.uid;
-//         resolve(currentUser);
-//     });
-// }
-
-
 module.exports = {
     googlelogIn,
     googleLogOut,
     setUser,
     getUser
-    // setUserVars
 };
-
-// function getUserMarvelCharacter(userObj) {
-
-// }
