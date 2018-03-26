@@ -6,7 +6,7 @@ let $ = require('jquery'),
     db = require("./db-interaction"),
     build = require('./buildFBObj'),
     firebase = require('firebase/app');
-
+    var provider = new firebase.auth.GoogleAuthProvider();
 
 let fan = document.getElementById("body-container");
 
