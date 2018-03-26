@@ -10,7 +10,7 @@ let $ = require('jquery'),
 
 function buildUserObj(userName, userId, userPhoto) {
     let userObj = {
-        name: userName,
+        name: displayName,
         uid: userId,
         profilepic: userPhoto
     };
