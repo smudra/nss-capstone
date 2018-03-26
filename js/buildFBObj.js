@@ -1,17 +1,27 @@
 "use strict";
 
 // Requires
-let user = require('./user.js'),
-    $ = require('jquery');
+let $ = require('jquery'),
+    user = require('./user.js');
 
 
 ////////  Functions  /////////
 // user object
 
-function buildUserObj(uid) {
+function buildUserObj(userName, userId, userPhoto) {
     let userObj = {
-        name: "",
-        uid: user.getUser()
+        name: userName,
+        uid: userId,
+        profilepic: userPhoto
     };
     return userObj;
 }
+
+function buildCharObj(id) {
+    var uid = user.getUser();
+}
+
+module.exports = {
+    buildUserObj, 
+    buildCharObj
+};
