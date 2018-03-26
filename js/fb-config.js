@@ -16,7 +16,6 @@ var config = {
     databaseURL: fbData.databaseURL
 };
 firebase.getFBsettings = function() {
-    // console.log("getFBsettings", config);
     return config;
 };
 
