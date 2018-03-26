@@ -155,4 +155,16 @@ a:hover.notes {
   color: #FFFFFF;
   border: 1px solid #FFFFFF; }
 
+.no-user {
+  color: #F62E26; }
+
+#login, #log-out {
+  color: #F62E26; }
+
+.is-hidden {
+  display: none; }
+
+a.nav-link {
+  text-decoration-style: none; }
+
 /*# sourceMappingURL=main.css.map */

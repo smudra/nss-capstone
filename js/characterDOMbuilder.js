@@ -97,7 +97,7 @@ function listCharacters(getcInfo) {
                 <img class="card-img-top" src="${charThumb1}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>Name: </strong> ${charName1}</h5>
-                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br><strong>Comics: </strong>${charComics1}<br><strong>Stories: </strong>${charStories1}<br><strong>Series: </strong>${charSeries1}<br><strong>Events: </strong>${charEvents1}<br></p>
+                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br><strong>Comics: </strong><a href="${charComics1}" target="_blank">Find all  comics relating to ${charName1} here.</a><br><strong>Stories: </strong><a href="${charStories1}" target="_blank">Read all news articles relating to  ${charName1}.</a><br><strong>Series: </strong><a href="${charSeries1}" target="_blank">Here's our latest tv release for ${charName1}.</a><br><strong>Events: </strong><a href="${charEvents1}" target="_blank">Marvel Universe has all events.</a><br></p>
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
@@ -108,7 +108,7 @@ function listCharacters(getcInfo) {
             <img class="card-img-top" src="${charThumb2}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><strong>Name: </strong> ${charName2}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc2}<br><strong>Comics: </strong>${charComics2}<br><strong>Stories: </strong>${charStories2}<br><strong>Series: </strong>${charSeries2}<br><strong>Events: </strong>${charEvents2}<br></p>
+                <p class="card-text"><strong>Description: </strong>${charDesc2}<br><strong>Comics: </strong><a href="${charComics2}" target="_blank">Find all  comics relating to ${charName2} here.</a><br><strong>Stories: </strong><a href="${charStories2}" target="_blank">Read all news articles relating to  ${charName2}.</a><br><strong>Series: </strong><a href="${charSeries2}" target="_blank">Here's our latest tv release for ${charName2}.</a><br><strong>Events: </strong><a href="${charEvents2}" target="_blank">Marvel Universe has all events.</a><br></p>
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
@@ -119,7 +119,7 @@ function listCharacters(getcInfo) {
             <img class="card-img-top" src="${charThumb3}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><strong>Name: </strong> ${charName3}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc3}<br><strong>Comics: </strong>${charComics3}<br><strong>Stories: </strong>${charStories3}<br><strong>Series: </strong>${charSeries3}<br><strong>Events: </strong>${charEvents3}<br></p>
+                <p class="card-text"><strong>Description: </strong>${charDesc3}<br><strong>Comics: </strong><a href="${charComics3}" target="_blank">Find all  comics relating to ${charName3} here.</a><br><strong>Stories: </strong><a href="${charStories3}" target="_blank">Read all news articles relating to  ${charName3}.</a><br><strong>Series: </strong><a href="${charSeries3}" target="_blank">Here's our latest tv release for ${charName3}.</a><br><strong>Events: </strong><a href="${charEvents3}" target="_blank">Marvel Universe has all events.</a><br></p>
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>

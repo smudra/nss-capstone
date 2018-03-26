@@ -1,8 +1,8 @@
 "use strict";
 
 // Requires
-let user = require('./user.js'),
-    $ = require('jquery');
+let $ = require('jquery'),
+    user = require('./user.js');
 
 
 ////////  Functions  /////////
@@ -15,3 +15,12 @@ function buildUserObj(uid) {
     };
     return userObj;
 }
+
+function buildCharObj(id) {
+    var uid = user.getUser();
+}
+
+module.exports = {
+    buildUserObj, 
+    buildCharObj
+};

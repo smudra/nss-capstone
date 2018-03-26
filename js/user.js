@@ -7,63 +7,51 @@ let $ = require('jquery'),
     db = require("./db-interaction"),
     build = require('./buildFBObj');
 
+var firebase = require("firebase/app");
+        require("firebase/auth");
+        require("firebase/database");
 
-let userLogin = document.getElementById("#login");
+var provider = new firebase.auth.GoogleAuthProvider();
+    
+let currentUser = null;
 
-let currentUser = {
-    name: "",
-    uid: null
+
+
+// User login and log out functions
+
+function googlelogIn() {
+    return firebase.auth().signInWithPopup(provider);
+}
+
+function googleLogOut() {
+    return firebase.auth().signOut();
+}
+
+function setUser(val) {
+    currentUser = val;
+}
+
+function getUser(){
+    return currentUser;
+}
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        currentUser = user.uid;
+        console.log("This user is logged in: ", currentUser);
+    } else {
+        currentUser = null;
+        console.log("user is not logged in.");
+    }
+});
+
+
+// End user login  and log out functions
+
+
+module.exports = {
+    googlelogIn,
+    googleLogOut,
+    setUser,
+    getUser
 };
-
-$('#user-pic').click(() => {
-    userProfile();
-});
-
-function userProfile() {
-    $('#nav-container').html(`<p id="user-pic" class="fas fa-user"><span class="user-style" id="login"> &nbsp; <a href="#">Login</a> </span></p>
-    <p id="log-out"><span class="user-style"> &nbsp; <a href="#">Logout</a> </span></p>`);
-}
-
-function setUserVars(obj) {
-    return new Promise((resolve, reject) => {
-    currentUser.name = obj.name;
-    currentUser.uid = obj.uid;
-        resolve(currentUser);
-    });
-}
-
-// ======= User Login and Logout functions ========
-
-$(document).on("click", "#logout", () => {
-    // console.log("On Clicking logout ");
-    db.googleLogOut();
-    $("#user-pic").addClass("no-user");
-    $("#login").removeClass("no-user");
-    $("#log-out").addClass("no-user");
-});
-
-$(document).on("click", "#login", () => {
-    db.googleLogIn()
-    .then((result) => {
-        db.setUser(result.user.uid);
-        $("#login").addClass("no-user");
-        $("#log-out").removeClass("no-user");
-        $("#user-pic").removeClass("no-user").html(`img src="${result.user.photoURL}" alt="${result.user.displayName} photo from Google User" class="profPic">`);
-        console.log("login complete!");
-        sendToFirebase();
-    });
-});
-
-function sendToFirebase() {
-    let userBuilder = build.buildUserObj();
-    // build comes from buildFBObj. 
-    console.log("What's in userBuilder ", userBuilder);
-    db.addUserFB(userBuilder);
-    // db comes from addUserFB in db - interaction. 
-}
-
-module.exports = {sendToFirebase};
-
-// function getUserMarvelCharacter(userObj) {
-
-// }
