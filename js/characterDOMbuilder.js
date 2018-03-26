@@ -24,8 +24,6 @@ function getCharactersFB(charsObj) {
         // console.log("What's in getCharacterFB charsObj ",charsObj);
 
 // To Display chars on DOM getCharactersFB is in db-interaction
-
-
 /////----- Posting Firebase data to DOM -----/////
 function showChars() {
     getCharactersFB(event)
@@ -35,27 +33,9 @@ function showChars() {
         console.log("listCharacters ", listCharacters);
     });
 } 
-
-// function showChars() {
-//     getCharactersFB(event)
-//     .then(function(getcInfo) {
-//         console.log("what is in getcInfo showChars", getcInfo);
-//         listCharacters(getcInfo);
-//     });
-// }    
 //Loop through Object to place in Array
 function listCharacters(getcInfo) {
     console.log("What's in getCInfo listCharacters ", getcInfo);
-
-    // for(let characters in getcInfo) {
-    //     let charName = getcInfo[characters].name;
-    //     let charId = getcInfo[characters].id;
-    //     let charDesc = getcInfo[characters].description;
-    //     let charComics = getcInfo[characters].comics;
-    //     let charThumb = getcInfo[characters].thumbnail;
-    //     let charStories = getcInfo[characters].stories;
-    //     let charSeries = getcInfo[characters].series;
-    //     let charEvents = getcInfo[characters].events;
 
         for(var i = 0; i < getcInfo.length; (i = i + 3)) {
             console.log("What's in getCInfo length ", getcInfo);
@@ -101,7 +81,7 @@ function listCharacters(getcInfo) {
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
-                    <a href="#" class="btn btn-primary float-right disabled">Save</a>
+                    <a href="#" class="btn btn-primary float-right disabled">Add to Fav</a>
                 </div>
             </div>
             <div class="card col-4">
@@ -112,7 +92,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
-                <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
+                <a href="my-favorites.html" class="btn btn-primary float-right">Add to Fav</a>
                 </div>
             </div>
             <div class="card col-4">
@@ -123,7 +103,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>
-                <a href="#" class="btn btn-primary float-right">Save</a>
+                <a href="#" class="btn btn-primary float-right">Add to Fav</a>
                 </div>
             </div>
         </div>`;
@@ -137,50 +117,9 @@ $("#new-chars").html(function() {
     showChars();
 });
 
-/////----- Creating Index.HTML -----/////
-// function displayCharsDom(char) {
-//     let showCharsDOM = $(`<h2>Save Your Favorite Super Hero</h2>
-//         <div class="card-deck">
-//             <div class="card col-4">
-//                 <img class="card-img-top" src="images/spiderman.png" alt="Card image cap">
-//                 <div class="card-body"></div>
-//                 <div>
-//                     <h5 class="card-title">Spider-Man</h5>
-//                     <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
-//                 </div>
-//                 <div class="card-footer">
-//                         <small class="text-muted">Last updated 3 mins ago</small>
-//                     <a href="#" class="btn btn-primary float-right disabled">Save</a>
-//                 </div>
-//             </div>
-//             <div class="card col-4">
-//                 <img class="card-img-top" src="images/thor.png" alt="Card image cap">
-//                 <div class="card-body"></div>
-//                 <div>
-//                 <h5 class="card-title">Thor</h5>
-//                 <p class="card-text">As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.</p>
-//                 </div>
-//                 <div class="card-footer">
-//                 <small class="text-muted">Last updated 3 mins ago</small>
-//                 <a href="my-favorites.html" class="btn btn-primary float-right">Save</a>
-//                 </div>
-//             </div>
-//             <div class="card col-4">
-//                 <img class="card-img-top" src="images/black-widow.png" alt="Card image cap">
-//                 <div class="card-body"></div>
-//                 <div>
-//                     <h5 class="card-title">Black Natasha Widow</h5>
-//                     <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
-//                 </div>
-//                 <div class="card-footer">
-//                 <small class="text-muted">Last updated 3 mins ago</small>
-//                 <a href="#" class="btn btn-primary float-right disabled">Save</a>
-//                 </div>
-//             </div>
-//         </div>`);
+//////----- Creating my-favorites.HTML -----/////
+// Adding characters to my favorites page
 
-//     $(".character").html(showCharsDOM);
-// }
 
 module.exports = {
     // displayCharsDom,
@@ -287,3 +226,29 @@ module.exports = {
 
 /////----- Loading JSON file on to DOM  -----/////
 
+
+
+// === Working file === //
+
+
+// function showChars() {
+//     getCharactersFB(event)
+//     .then(function(getcInfo) {
+//         console.log("what is in getcInfo showChars", getcInfo);
+//         listCharacters(getcInfo);
+//     });
+// }    
+
+
+// Loop that works but not useful in this instance
+
+
+    // for(let characters in getcInfo) {
+    //     let charName = getcInfo[characters].name;
+    //     let charId = getcInfo[characters].id;
+    //     let charDesc = getcInfo[characters].description;
+    //     let charComics = getcInfo[characters].comics;
+    //     let charThumb = getcInfo[characters].thumbnail;
+    //     let charStories = getcInfo[characters].stories;
+    //     let charSeries = getcInfo[characters].series;
+    //     let charEvents = getcInfo[characters].events;
