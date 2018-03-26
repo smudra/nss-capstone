@@ -161,4 +161,7 @@ a:hover.notes {
 #login, #log-out {
   color: #F62E26; }
 
+.is-hidden {
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */
