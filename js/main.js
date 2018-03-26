@@ -27,12 +27,11 @@ $("#login").click(function() {
     user.googlelogIn()
     .then((result) => {
         user.setUser(result.user.uid);
-        $("#login");
-        $("#userPic").removeClass("no-user").html(`<img src="${result.user.photoURL}" alt="${result.user.displayName} photo from Google" class="profPic rounded-circle" width="50">`);
+        $("#login").hide();
+        $("#log-out").show();
         sendToFirebase();
     });
 });
-
 
 
 //-------- Send user info to Firebase --------//
@@ -44,11 +43,9 @@ function sendToFirebase() {
 
 $("#log-out").click(function(){
     user.googleLogOut();
-    $("#login").removeClass("is-hidden");
-    $("#log-out").addClass("is-hidden");
-});
-
-
+    $("#log-out").hide();
+    $("#login").show();
+   });
 
 
 
