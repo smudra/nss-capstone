@@ -22,14 +22,14 @@ function addUserFB(userObj) {
         type: 'POST',
         data: JSON.stringify(userObj),
         dataType: 'json'
-    }).done((fbID) => {
-        return fbID;
+    }).done((userID) => {
+        return userID;
     });
 }
 
 function updateUserFB(userObj) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/user/${userObj.fbID}.json`,
+        url: `${firebase.getFBsettings().databaseURL}/user/${userObj.userID}.json`,
         type: 'PUT',
         data: JSON.stringify(userObj),
         dataType: 'json'
@@ -56,48 +56,6 @@ function loginUser(userObj) {
     });
 }
 
-function googlelogIn() {
-    return firebase.auth().signInWithPopup(provider);
-}
-
-function googleLogOut() {
-    return firebase.auth().signOut();
-}
-
-function setUser(val) {
-    currentUser = val;
-}
-
-function getUser() {
-    return currentUser;
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        currentUser = user;
-        console.log("This user is logged in: ", currentUser);
-    } else {
-        currentUser = null;
-        console.log("user is not logged in.");
-    }
-});
-
-
-/////----- Posting API data into Firebase -----/////
-
-// function addCharacterFB(characterObj) {
-//     return $.ajax({
-//         url: `${firebase.getFBsettings().databaseURL}/characters.json`,
-//         type: 'PATCH',
-//         data: JSON.stringify(characterObj),
-//         dataType: 'json'
-//     }).done((tacoFBId) => {
-//         return tacoFBId;
-//     });
-// }
-
-
-
 
 
 module.exports = {
@@ -105,11 +63,7 @@ module.exports = {
     addUserFB,
     updateUserFB,
     createUser,
-    loginUser,
-    googlelogIn,
-    googleLogOut,
-    // addCharacterFB,
-    // getCharacterFB
+    loginUser
 };
 
 
@@ -160,3 +114,17 @@ module.exports = {
 // }
 //         console.log("What's in getCharacterFB charsObj ", getCharacterFB());
 
+
+
+/////----- Posting API data into Firebase -----/////
+
+// function addCharacterFB(characterObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json`,
+//         type: 'PATCH',
+//         data: JSON.stringify(characterObj),
+//         dataType: 'json'
+//     }).done((tacoFBId) => {
+//         return tacoFBId;
+//     });
+// }
