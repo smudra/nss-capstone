@@ -65,6 +65,18 @@ function googleLogOut() {
     return firebase.auth().signOut();
 }
 
+/////----- End User Login Area -----/////
+
+/////----- Adding characters to my favorites -----/////
+function loadMyFavChar(login) {
+    return $.ajax ({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="uid"&equalTo="${login}"`
+    }).done((charData) => {
+        return charData;
+    });
+}
+
+
 module.exports = {
     getFBDetails,
     addUserFB,
