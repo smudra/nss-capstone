@@ -8,11 +8,10 @@ let $ = require('jquery'),
 ////////  Functions  /////////
 // user object
 
-function buildUserObj(userName, userId, userPhoto) {
+function buildUserObj(uid) {
     let userObj = {
-        name: displayName,
-        uid: userId,
-        profilepic: userPhoto
+        name: "",
+        uid: user.getUser()
     };
     return userObj;
 }
