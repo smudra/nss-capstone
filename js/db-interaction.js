@@ -8,7 +8,7 @@ let $ = require('jquery'),
 
 function getFBDetails(user) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/user.json?orderBy="uid"&equalTo="${user}"`
+        url: `${firebase.getFBsettings().databaseURL}//user.json?orderBy="uid"&equalTo="${user}"`
     }).done((resolve)  => {
         return resolve;
     }).fail((error) => {
@@ -56,7 +56,14 @@ function loginUser(userObj) {
     });
 }
 
+// This is also in user.js you can delete here.
+function googlelogIn() {
+    return firebase.auth().signInWithPopup(provider);
+}
 
+function googleLogOut() {
+    return firebase.auth().signOut();
+}
 
 module.exports = {
     getFBDetails,
