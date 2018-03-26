@@ -164,4 +164,7 @@ a:hover.notes {
 .is-hidden {
   display: none; }
 
+a.nav-link {
+  text-decoration-style: none; }
+
 /*# sourceMappingURL=main.css.map */
