@@ -2,7 +2,8 @@
 console.log("characterDOMbuilder is in the house");
 
 let $ = require('jquery'),
-firebase = require("./fb-config");
+firebase = require("./fb-config"),
+db = require("./db-interaction");
 
 // All variables
 var showCharsDOM = "";
@@ -15,7 +16,6 @@ function getCharactersFB(charsObj) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
     }).done((getInfo) => {
-        console.log("what's in getInfo from JSON FB ", getInfo);
         return getInfo;
     }).fail((error) => {
         return error;
@@ -28,17 +28,15 @@ function getCharactersFB(charsObj) {
 function showChars() {
     getCharactersFB(event)
     .then((getcInfo) => {
-        console.log("what is in getcInfo showChars", getcInfo);
         listCharacters(getcInfo);
-        console.log("listCharacters ", listCharacters);
+        
     });
 } 
+
 //Loop through Object to place in Array
 function listCharacters(getcInfo) {
-    console.log("What's in getCInfo listCharacters ", getcInfo);
 
         for(var i = 0; i < getcInfo.length; (i = i + 3)) {
-            console.log("What's in getCInfo length ", getcInfo);
             let charName1 = getcInfo[i].name;
             let charId1 = getcInfo[i].id;
             let charDesc1 = getcInfo[i].description;
@@ -71,7 +69,8 @@ function listCharacters(getcInfo) {
         // displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
 
         /////----- Creating Index.HTML -----/////
-        displayChars += `<h2>Save Your Favorite Super Hero</h2>
+        displayChars += 
+        `<h2>Save Your Favorite Super Hero</h2>
         <div class="card-deck">
             <div class="card col-4">
                 <img class="card-img-top" src="${charThumb1}" alt="Card image cap">
@@ -81,7 +80,7 @@ function listCharacters(getcInfo) {
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
-                    <a href="#" class="btn btn-primary float-right disabled">Add to Fav</a>
+                    <a href="#" class="btn btn-primary float-right disabled save-fav">Add to Fav</a>
                 </div>
             </div>
             <div class="card col-4">
@@ -92,7 +91,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
-                <a href="my-favorites.html" class="btn btn-primary float-right">Add to Fav</a>
+                <button href="#" class="btn btn-primary float-right save-fav" >Add to Fav</button>
                 </div>
             </div>
             <div class="card col-4">
@@ -103,7 +102,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>
-                <a href="#" class="btn btn-primary float-right">Add to Fav</a>
+                <button href="#" class="btn btn-primary float-right save-fav">Add to Fav</button>
                 </div>
             </div>
         </div>`;
@@ -120,13 +119,64 @@ $("#new-chars").html(function() {
 //////----- Creating my-favorites.HTML -----/////
 // Adding characters to my favorites page
 
+// var saveToFavs = document.getElementById("save-fav");
+
+
+function showFavChars() {
+    //here you get info from listChars or getCharactersFB
+
+}
+
+function favoritesDetailDOM(noteList) {
+
+    let $showFavsDetails = $(`<div class="body-container"><h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2></div><br><br>
+
+    <div><h2>My Favorite Super Hero</h2></div>`);
+    $(".body-container").html($showFavsDetails);
+
+    for(let myfav in noteList) {
+     let currentNotes = noteList[myfav],
+        noteListItem = $("<div>", {class: "card col-4"}),
+        charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
+        notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+        noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+        noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+     $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
+    }
+}
+// Build Notes area for each character added
+function characterNotes(userCharacter, saveNotes) {
+    return new Promise(function (resolve, reject) {
+        let charNotes = {
+            notes: userCharacter ? userCharacter.notes : "",
+            notesTitle: userCharacter ? `Edit "${userCharacter.title}"` : "Add My Notes",
+            saveNotesText: userCharacter ? "Save Notes" : "Save My Notes",
+            SaveEditBtn: userCharacter ? "save-edit-notes" : "save-new-notes"
+        },
+        notes = 
+        `<div class="card-body">
+            <p class="card-text">
+                <div class="form-group">
+                    <h3 for="comment" class="card-title card-uppercase card-margin">${charNotes.notesTitle}</h3>
+                    <textarea class="form-control" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
+                    <button id="${saveNotes}" class=${charNotes.SaveEditBtn}>${charNotes.saveNotesText}</button>`;
+                    resolve(notes);
+    });
+}
+
+
+
+    // saveToFavs.innerHTML = favoritesDetailDOM();
+
+    ///----- Loading on to DOM after user logs in index.HTML -----/////
 
 module.exports = {
-    // displayCharsDom,
     showChars,
     listCharacters,
-    getCharactersFB
-    // myfavoritesDOM
+    getCharactersFB,
+    favoritesDetailDOM,
+    characterNotes
 };
 
 // /////----- Creating my-favorites.HTML -----/////
