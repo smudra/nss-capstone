@@ -20,7 +20,6 @@ function createUserObj(fan) {
     };
     return userObj;
 }
-var userID = "";
 
 //------- When user clicks login --------//
 $("#login").click(function() {
@@ -49,7 +48,15 @@ $("#log-out").click(function(){
 
 
 
+//-------- Save char info to Firebase --------//
+$(document).on("click", "#save-fav", function() {
+    console.log("saving my fav hero");
+    console.log(event.target.id);
+    var id = event.target.id;
 
+    var myFav = build.buildUserCharObj(id);
+    db.saveMyFavChar(myFav);
+});
 
 
 
