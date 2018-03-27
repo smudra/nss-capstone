@@ -1,9 +1,11 @@
 "use strict";
 
+console.log("DB interaction is here");
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     currentUser = null,
     provider = new firebase.auth.GoogleAuthProvider(),
+    characterDOMbuilder = require('./characterDOMbuilder'),
     marvelCharacters = require('./marvel-characters');
 
 function getFBDetails(user) {
@@ -68,13 +70,29 @@ function googleLogOut() {
 /////----- End User Login Area -----/////
 
 /////----- Adding characters to my favorites -----/////
-function loadMyFavChar(login) {
+// Put characters in FB
+function addMyFavCharFB(myFav) {
     return $.ajax ({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="uid"&equalTo="${login}"`
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+        type: 'POST',
+        data: JSON.stringify(myFav),
+        dataType: 'json'
     }).done((charData) => {
         return charData;
     });
 }
+
+function saveBtn() {
+    console.log("Save my hero");
+}
+// Event listener for save button
+    
+        $(document).on("click", ".save-fav", function() {
+            saveBtn();
+        });
+
+
+// function for userCharacter notes
 
 
 module.exports = {
@@ -82,7 +100,8 @@ module.exports = {
     addUserFB,
     updateUserFB,
     createUser,
-    loginUser
+    loginUser,
+    // characterNotes
 };
 
 
