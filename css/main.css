@@ -71,6 +71,9 @@ footer > p {
   font-size: 1rem;
   line-height: 2rem; }
 
+.float-right {
+  color: #F62E26; }
+
 /* Nav area */
 .navbar {
   padding: 1rem;
