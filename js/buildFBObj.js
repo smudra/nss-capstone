@@ -23,17 +23,30 @@ function buildUserObj(uid) {
 // Under id add character index which is character > Object.key. 
 // Char info should go under id
 
+let userChar = firebase.database().ref("userCharacter");
 
 function buildUserCharObj(characters) {
-    var charObj = {
-        id: "1",
-        uid: user.getUser(),
-        notes: "4"
+    let userChar = {
+        id: $("#userCharid3").key,
+        uid: user.getUser().uid,
+        charNotes: ""
     };
-    console.log("Het hey", Object.values(charObj.id));
-    return charObj;
+    return userChar;
 }
-console.log("Outside", Object.values(buildUserCharObj));
+
+
+// function buildUserCharObj(characters) {
+//     var userChar = {
+//         id: characterDOMbuilder.listCharacters(),
+//         uid: user.getUser(),
+//         notes: ""
+//     };
+//     console.log("Het hey", Object.values(charObj.id));
+//     return userChar;
+// // }
+// console.log("Outside", Object.values(buildUserCharObj));
+
+
 module.exports = {
     buildUserObj, 
     buildUserCharObj
