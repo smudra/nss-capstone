@@ -52,16 +52,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 // Favorite  super hero
 
-function getCharObj() {
-    return characterName;
-}
+// function getCharObj() {
+//     return characterName;
+// }
 
-function showUser(obj) {
-    let userDetails = getCharObj();
-    // $("#my-favs").html(`${userDetails.characterDOMbuilder.listCharacters}`);
-    console.log("what's in user details ", userDetails);
-}
-showUser();
+// function showUser(obj) {
+//     let userDetails = getCharObj();
+//     // $("#my-favs").html(`${userDetails.characterDOMbuilder.listCharacters}`);
+//     console.log("what's in user details ", userDetails);
+// }
+// showUser();
 
 module.exports = {
     googlelogIn,
