@@ -1,10 +1,19 @@
 "use strict";
 
+console.log("DB interaction is here");
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     currentUser = null,
     provider = new firebase.auth.GoogleAuthProvider(),
-    marvelCharacters = require('./marvel-characters');
+    characterDOMbuilder = require('./characterDOMbuilder'),
+    marvelCharacters = require('./marvel-characters'),
+    user = require("./user");
+
+    let userChar = {
+        id: "test char id",
+        uid: "test uid",
+        charNotes: ""
+    };
 
 function getFBDetails(user) {
     return $.ajax({
@@ -65,12 +74,114 @@ function googleLogOut() {
     return firebase.auth().signOut();
 }
 
+/////----- End User Login Area -----/////
+
+/////----- Adding characters to my favorites -----/////
+// Put characters in FB
+function addMyFavCharFB(myFav) {
+    return $.ajax ({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+        type: 'POST',
+        data: JSON.stringify(myFav),
+        dataType: 'json'
+    }).done((charData) => {
+        return charData;
+    });
+}
+
+function saveBtn() {
+    console.log("Save my hero");
+}
+// Event listener for save button
+    
+        $(document).on("click", ".save-fav", function() {
+            saveBtn();
+        });
+
+// load fav area after login
+function getChars(currentUser) {
+    return $.ajax ({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="uid"&equalTo="${currentUser}"`
+    }).done((notesData) => {
+        return notesData;
+    });
+}
+
+
+
+// POST - Submits data to be processed to a userCharacter. Takes one parameter
+function addNotes(noteObj) {
+    return $.ajax({
+        // add notes in the collection
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+        type: 'POST',
+        data: JSON.stringify(noteObj),
+        dataType: 'json'
+    }).done((charNotes) => {
+        return charNotes;
+    });
+}
+
+// Function to delete Notes info
+function deleteNotes(charNotes) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`,
+        method: "DELETE"
+    }).done((data) => {
+        return data;
+    });
+}
+
+// function for userCharacter notes
+function getNotes(charNotes) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
+    }).done((note) => {
+        // console.log("Let's see notes", note);
+        return note;
+    });
+}
+
+
+// GET - Requests/read data from a specified source
+// PUT - Update data to a specified resource.
+// Takes two parameters.
+function editNotes(noteObj, charNotes) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`,
+        type: 'PUT',
+        data: JSON.stringify(noteObj)
+    }).done((data) => {
+        return data;
+    });
+}
+
+function addMyFavCharFB(myFav) {
+    return $.ajax ({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+        type: 'POST',
+        data: JSON.stringify(myFav),
+        dataType: 'json'
+    }).done((charData) => {
+        return charData;
+    });
+}
+
+addMyFavCharFB(userChar)
+.then((taco) => {
+    console.log("Show object User character ", taco);
+}).reject((error) => {
+    console.log("The user Characters has a problem");
+    return error;
+});
+
 module.exports = {
     getFBDetails,
     addUserFB,
     updateUserFB,
     createUser,
-    loginUser
+    loginUser,
+    // characterNotes
 };
 
 

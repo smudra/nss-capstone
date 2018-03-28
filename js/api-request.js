@@ -39,6 +39,7 @@ function getAPIKeyRequest() {
         });
 }
 
+
     // getAPIKeyRequest()
     // .then((marvelData) => {
 
@@ -87,34 +88,37 @@ function getAPIKeyRequest() {
     //     });
     // });
     
-    var refinedData = [];
-function charLoop() {
-            for(var i = 0; i < characterData.length; i++) {
+//     var refinedData = [];
+// function charLoop() {
+//             for(var i = 0; i < characterData.length; i++) {
 
-            charId = characterData[i].id;
-            charName = characterData[i].name;
-            charDescrip = characterData[i].description;
-            charThumbnail = characterData[i].thumbnail.path;
-            charThumbnailExt = characterData[i].thumbnail.extension;
-            charUrl = characterData[i].urls[0].url;
+//             charId = characterData[i].id;
+//             charName = characterData[i].name;
+//             charDescrip = characterData[i].description;
+//             charThumbnail = characterData[i].thumbnail.path;
+//             charThumbnailExt = characterData[i].thumbnail.extension;
+//             charUrl = characterData[i].urls[0].url;
 
-                var characterObj = {
-                        id: charId,
-                        name: charName,
-                        description: charDescrip,
-                        thumbnail: charThumbnail,
-                        thumbnailext: charThumbnailExt, // add extension .jpg to this path.jpg
-                        powers: charUrl
-                };
-/////----- Working Code for POST API data to Firebase  -----/////
-                // refinedData.push(characterObj);
-                // charsToFB();                
-                // // var chars = firebase.database().ref('chars/');
-                // // refinedData.forEach((item) => {
-                // //     chars.push(item);
-                // // });
-            }
-}
+//                 var characterObj = {
+//                         id: charId,
+//                         name: charName,
+//                         description: charDescrip,
+//                         thumbnail: charThumbnail,
+//                         thumbnailext: charThumbnailExt, // add extension .jpg to this path.jpg
+//                         powers: charUrl
+//                 };
+// /////----- Working Code for POST API data to Firebase  -----/////
+
+// // Never use this .push() as it pushes the data to FB everytime you 
+// // load/refresh the page I ended having 23,526 Objects
+//                 // refinedData.push(characterObj);
+//                 // charsToFB();                
+//                 // // var chars = firebase.database().ref('chars/');
+//                 // // refinedData.forEach((item) => {
+//                 // //     chars.push(item);
+//                 // // });
+//             }
+// }
 // var chars = firebase.database().ref('chars/');
 // function charsToFB() {
 // refinedData.forEach((item) => {
