@@ -28,6 +28,11 @@ function getCharactersFB(charsObj) {
 function showChars() {
     getCharactersFB(event)
     .then((getcInfo) => {
+        var idArray = Object.keys(getcInfo);
+        idArray.forEach((key) => {
+        getcInfo[key].userCharid = key;
+        console.log("char data", getcInfo[key]);
+      });
         listCharacters(getcInfo);
         
     });
@@ -39,6 +44,7 @@ function listCharacters(getcInfo) {
         for(var i = 0; i < getcInfo.length; (i = i + 3)) {
             let charName1 = getcInfo[i].name;
             let charId1 = getcInfo[i].id;
+            let userCharid1 = getcInfo[i].userCharid;
             let charDesc1 = getcInfo[i].description;
             let charComics1 = getcInfo[i].comics;
             let charThumb1 = getcInfo[i].thumbnail;
@@ -48,6 +54,7 @@ function listCharacters(getcInfo) {
 
             let charName2 = getcInfo[i + 1].name;
             let charId2 = getcInfo[i + 1].id;
+            let userCharid2 = getcInfo[i + 1].userCharid;
             let charDesc2 = getcInfo[i + 1].description;
             let charComics2 = getcInfo[i + 1].comics;
             let charThumb2 = getcInfo[i + 1].thumbnail;
@@ -57,6 +64,7 @@ function listCharacters(getcInfo) {
 
             let charName3 = getcInfo[i + 2].name;
             let charId3 = getcInfo[i + 2].id;
+            let userCharid3 = getcInfo[i + 2].userCharid;
             let charDesc3 = getcInfo[i + 2].description;
             let charComics3 = getcInfo[i + 2].comics;
             let charThumb3 = getcInfo[i + 2].thumbnail;
@@ -80,7 +88,7 @@ function listCharacters(getcInfo) {
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
-                    <a href="#" class="btn btn-primary float-right disabled save-fav">Add to Fav</a>
+                    <a href="#" class="btn btn-primary float-right save-fav" id="${userCharid1}">Add to Fav</a>
                 </div>
             </div>
             <div class="card col-4">
@@ -91,7 +99,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
-                <button href="#" class="btn btn-primary float-right save-fav" >Add to Fav</button>
+                <button href="#" class="btn btn-primary float-right save-fav" id="${userCharid2}">Add to Fav</button>
                 </div>
             </div>
             <div class="card col-4">
@@ -102,7 +110,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>
-                <button href="#" class="btn btn-primary float-right save-fav">Add to Fav</button>
+                <button href="#" class="btn btn-primary float-right save-fav" id="${userCharid3}">Add to Fav</button>
                 </div>
             </div>
         </div>`;
@@ -179,55 +187,55 @@ module.exports = {
     characterNotes
 };
 
-// /////----- Creating my-favorites.HTML -----/////
-// function myfavoritesDOM(myfav) {
-//     let showMyFavs = $(`
-//     <h2>My Favorite Super Heroes</h2>
-//     <!-- Begin row 1 of Saved Super Heroes Section -->
+/////----- Creating my-favorites.HTML -----/////
+function myfavoritesDOM(myfav) {
+    let showMyFavs = $(`
+    <h2>My Favorite Super Heroes</h2>
+    <!-- Begin row 1 of Saved Super Heroes Section -->
     
-//     <div class="card-deck card-padding">
-//         <div class="card">
-//           <img class="card-img-top" src="images/dare-devil.png" alt="Comic Character Daredevil">
-//           <div class="card-body">
-//             <h3 class="card-title card-uppercase"><a href="favorites-detail.html">Daredevil</a></h3>
-//             <p class="card-text">Abandoned by his mother, Matt Murdock was raised by his father, boxer "Battling Jack" Murdock, in Hell's Kitchen.</p>
-//             <p><strong>Real Name:</strong>  Matthew Michael Murdock<br>
-//             <strong>Height:</strong>  6'0"</p>
-//           </div>
-//           <div class="card-footer">
-//             <a href="favorites-detail.html" class="btn btn-primary float-left notes">Make Notes</a>
-//             <a href="#" class="btn btn-primary float-right">Delete</a>
-//           </div>
-//         </div>
-//         <div class="card">
-//           <img class="card-img-top" src="images/spiderman.png" alt="Comic Character Spider-Man">
-//           <div class="card-body">
-//             <h3 class="card-title card-uppercase"><a href="#">Spider-Man</a></h3>
-//             <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
-//             <p><strong>Real Name:</strong> Peter Benjamin Parker<br>
-//             <strong>Height:</strong> 5'10"</p>
-//           </div>
-//             <div class="card-footer">
-//                 <a href="my-favorites.html" class="btn btn-primary float-left notes disable">Edit Notes</a>
-//                 <a href="#" class="btn btn-primary float-right">Delete</a>
-//             </div>
-//         </div>
-//         <div class="card">
-//             <img class="card-img-top" src="images/black-widow.png" alt="Comic Character Black Widow">
-//             <div class="card-body">
-//                 <h3 class="card-title card-uppercase"><a href="#">Black Widow</a></h3>
-//                 <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
-//                 <p><strong>Real Name:</strong> Natasha Romanova<br>
-//                 <strong>Height:</strong> not known</p>
-//             </div>
-//             <div class="card-footer">
-//                 <a href="#" class="btn btn-primary float-left notes disable">Edit Notes</a>
-//                 <a href="#" class="btn btn-primary float-right">Delete</a>
-//             </div>
-//         </div>
-//     </div>`);
-//     $("body-container").html(showMyFavs);
-// }
+    <div class="card-deck card-padding">
+        <div class="card">
+          <img class="card-img-top" src="images/dare-devil.png" alt="Comic Character Daredevil">
+          <div class="card-body">
+            <h3 class="card-title card-uppercase"><a href="favorites-detail.html">Daredevil</a></h3>
+            <p class="card-text">Abandoned by his mother, Matt Murdock was raised by his father, boxer "Battling Jack" Murdock, in Hell's Kitchen.</p>
+            <p><strong>Real Name:</strong>  Matthew Michael Murdock<br>
+            <strong>Height:</strong>  6'0"</p>
+          </div>
+          <div class="card-footer">
+            <a href="favorites-detail.html" class="btn btn-primary float-left notes">Make Notes</a>
+            <a href="#" class="btn btn-primary float-right">Delete</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="images/spiderman.png" alt="Comic Character Spider-Man">
+          <div class="card-body">
+            <h3 class="card-title card-uppercase"><a href="#">Spider-Man</a></h3>
+            <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
+            <p><strong>Real Name:</strong> Peter Benjamin Parker<br>
+            <strong>Height:</strong> 5'10"</p>
+          </div>
+            <div class="card-footer">
+                <a href="my-favorites.html" class="btn btn-primary float-left notes disable">Edit Notes</a>
+                <a href="#" class="btn btn-primary float-right">Delete</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="images/black-widow.png" alt="Comic Character Black Widow">
+            <div class="card-body">
+                <h3 class="card-title card-uppercase"><a href="#">Black Widow</a></h3>
+                <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
+                <p><strong>Real Name:</strong> Natasha Romanova<br>
+                <strong>Height:</strong> not known</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary float-left notes disable">Edit Notes</a>
+                <a href="#" class="btn btn-primary float-right">Delete</a>
+            </div>
+        </div>
+    </div>`);
+    $("body-container").html(showMyFavs);
+}
 
 // /////----- Creating favorite-details.HTML -----/////
 // function favoritesDetailDOM(myfav) {
