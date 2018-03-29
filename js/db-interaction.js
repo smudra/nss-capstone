@@ -97,12 +97,13 @@ function addMyFavCharFB(userChar) {
 
 function saveBtn(e) {
     userChar.id = e.target.id;
+    console.log("e.target.id", e.target.id);
     userChar.uid = user.getUser();
     addMyFavCharFB(userChar);
-    // characterDOMbuilder.favoritesDetailDOM();
-    let singleChar = characterDOMbuilder.showSingleCharacter(e.target.id);
-    characterDOMbuilder.listFavCharacters();
-    // console.log("Save my Single fav char hero object target", singleChar);
+    characterDOMbuilder.showFavChars();
+    // $("#card-fav").html(characterDOMbuilder.showFavChars()); 
+   
+    // let singleChar = characterDOMbuilder.showSingleCharacter(e.target.id);
 }
 // Event listener for save button
     
@@ -193,6 +194,8 @@ module.exports = {
     updateUserFB,
     createUser,
     loginUser,
+    saveBtn,
+    addMyFavCharFB
     // characterNotes
 };
 
