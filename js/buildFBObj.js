@@ -23,7 +23,7 @@ function buildUserObj(uid) {
 // Under id add character index which is character > Object.key. 
 // Char info should go under id
 
-let userChar = firebase.database().ref("userCharacter");
+// let userChar = firebase.database().ref("userCharacter");
 
 function buildUserCharObj(characters) {
     let userChar = {

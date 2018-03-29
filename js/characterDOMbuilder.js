@@ -1,5 +1,4 @@
 "use strict";
-console.log("characterDOMbuilder is in the house");
 
 let $ = require('jquery'),
 firebase = require("./fb-config"),
@@ -8,6 +7,7 @@ db = require("./db-interaction");
 // All variables
 var showCharsDOM = "";
 let displayChars;
+let showCFavsDetails;
 
 /////----- Getting data From Firebase -----/////
 // Find out what else you need to show on to the DOM
@@ -21,7 +21,8 @@ function getCharactersFB(charsObj) {
         return error;
     });
 }
-        // console.log("What's in getCharacterFB charsObj ",charsObj);
+        
+
 
 // To Display chars on DOM getCharactersFB is in db-interaction
 /////----- Posting Firebase data to DOM -----/////
@@ -31,12 +32,22 @@ function showChars() {
         var idArray = Object.keys(getcInfo);
         idArray.forEach((key) => {
         getcInfo[key].userCharid = key;
-        console.log("char data", getcInfo[key]);
+        // console.log("char data", getcInfo[key]);
       });
         listCharacters(getcInfo);
         
     });
 } 
+function showSingleCharacter(id){
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
+    }).done((getInfo) => {
+        console.log("What's in showSingleChar ", getInfo);
+        return getInfo.responseJSON;
+    }).fail((error) => {
+        return error;
+    });
+}
 
 //Loop through Object to place in Array
 function listCharacters(getcInfo) {
@@ -129,17 +140,63 @@ $("#new-chars").html(function() {
 
 // var saveToFavs = document.getElementById("save-fav");
 
-
-function showFavChars() {
-    //here you get info from listChars or getCharactersFB
-
+// get fav characters from userCharacter based on id
+function getFavCharactersFB(userCharsObj) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`
+    }).done((getucInfo) => {
+        console.log("user char ucInfo data", getucInfo);
+        return getucInfo;
+    }).fail((error) => {
+        return error;
+    });
 }
+
+//here you get info from listChars or getCharactersFB
+function showFavChars() {
+    getFavCharactersFB(Event)
+    .then((getuchInfo) => {
+        listFavCharacters(getuchInfo); 
+
+    });
+}
+
+function listFavCharacters(getuchInfo) {
+    // console.log("I'm inside listFavChars. length", getuchInfo.length);
+    // for(var j = 0; j < getuchInfo.length; j++) {
+    //     let userFavCharId = getuchInfo[j];
+    //     console.log("What's in user userFavCharId", userFavCharId);
+
+        showCFavsDetails += $(`<div class="body-container"><h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2></div><br><br>
+
+    <div><h2>My Favorite Super Hero</h2></div>
+    
+    <div class="card-deck">
+            <div class="card col-4">
+                <img class="card-img-top" src="userFavCharId}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Name: </strong> userFavCharId}</h5>
+                </div>
+            </div>
+        </div>`
+        
+    );
+    $("#my-favs").html(showCFavsDetails);
+    // }
+}
+
+$("#my-favs").html(function() {
+    showFavChars();
+});
+
 
 function favoritesDetailDOM(noteList) {
 
     let $showFavsDetails = $(`<div class="body-container"><h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2></div><br><br>
 
-    <div><h2>My Favorite Super Hero</h2></div>`);
+    <div><h2>My Favorite Super Hero</h2></div>`
+        
+);
     $(".body-container").html($showFavsDetails);
 
     for(let myfav in noteList) {
@@ -184,7 +241,11 @@ module.exports = {
     listCharacters,
     getCharactersFB,
     favoritesDetailDOM,
-    characterNotes
+    characterNotes,
+    showSingleCharacter,
+    getFavCharactersFB,
+    showFavChars,
+    listFavCharacters
 };
 
 /////----- Creating my-favorites.HTML -----/////

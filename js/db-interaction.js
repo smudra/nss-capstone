@@ -10,10 +10,12 @@ let $ = require('jquery'),
     user = require("./user");
 
     let userChar = {
-        id: "test char id",
-        uid: "test uid",
-        charNotes: ""
+        id: "",
+        charNotes: "",
+        uid: user.getUser()
     };
+// console.log(" what's in user Character", user.getUser(), user);
+
 
 function getFBDetails(user) {
     return $.ajax({
@@ -78,24 +80,34 @@ function googleLogOut() {
 
 /////----- Adding characters to my favorites -----/////
 // Put characters in FB
-function addMyFavCharFB(myFav) {
+function addMyFavCharFB(userChar) {
+    console.log("User Character here JSON.stringify(userChar)", JSON.stringify(userChar));
     return $.ajax ({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
         type: 'POST',
-        data: JSON.stringify(myFav),
+        data: JSON.stringify(userChar),
         dataType: 'json'
     }).done((charData) => {
         return charData;
+    }).fail((error) => {
+        // console.log("The addMyFAVCharFB has errored out");
+        return error;
     });
 }
 
-function saveBtn() {
-    console.log("Save my hero");
+function saveBtn(e) {
+    userChar.id = e.target.id;
+    userChar.uid = user.getUser();
+    addMyFavCharFB(userChar);
+    // characterDOMbuilder.favoritesDetailDOM();
+    let singleChar = characterDOMbuilder.showSingleCharacter(e.target.id);
+    characterDOMbuilder.listFavCharacters();
+    // console.log("Save my Single fav char hero object target", singleChar);
 }
 // Event listener for save button
     
-        $(document).on("click", ".save-fav", function() {
-            saveBtn();
+        $(document).on("click", ".save-fav", function(e) {
+            saveBtn(e);
         });
 
 // load fav area after login
@@ -156,24 +168,24 @@ function editNotes(noteObj, charNotes) {
     });
 }
 
-function addMyFavCharFB(myFav) {
-    return $.ajax ({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
-        type: 'POST',
-        data: JSON.stringify(myFav),
-        dataType: 'json'
-    }).done((charData) => {
-        return charData;
-    });
-}
+// function addMyFavCharFB(myFav) {
+//     return $.ajax ({
+//         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+//         type: 'POST',
+//         data: JSON.stringify(myFav),
+//         dataType: 'json'
+//     }).done((charData) => {
+//         return charData;
+//     });
+// }
 
-addMyFavCharFB(userChar)
-.then((taco) => {
-    console.log("Show object User character ", taco);
-}).reject((error) => {
-    console.log("The user Characters has a problem");
-    return error;
-});
+// addMyFavCharFB(userChar)
+// .then((taco) => {
+//     console.log("Show object User character ", taco);
+// }).reject((error) => {
+//     console.log("The user Characters has a problem");
+//     return error;
+// });
 
 module.exports = {
     getFBDetails,
