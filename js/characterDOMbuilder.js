@@ -21,8 +21,20 @@ function getCharactersFB(charsObj) {
         return error;
     });
 }
-        
 
+function getFavCharactersFB(charsObj) {
+    console.log("What's in getFavCharactersFB");
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`
+    }).done((getAhaInfo) => {
+        return getAhaInfo;
+    }).then((newInfo) => {
+        console.log("user char newucInfo data", newInfo);
+        return newInfo;
+    }).fail((error) => {
+        return error;
+    });
+}
 
 // To Display chars on DOM getCharactersFB is in db-interaction
 /////----- Posting Firebase data to DOM -----/////
@@ -34,24 +46,29 @@ function showChars() {
         getcInfo[key].userCharid = key;
         // console.log("char data", getcInfo[key]);
       });
-        listCharacters(getcInfo);
-        
+        listCharacters(getcInfo);      
     });
 } 
-function showSingleCharacter(id){
-    return $.ajax({
+let showSingleCharacter = (id) => {
+    return new Promise((resolve, reject) => {
+       return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
     }).done((getInfo) => {
+        displayFavCharacter();   
         console.log("What's in showSingleChar ", getInfo);
-        return getInfo.responseJSON;
-    }).fail((error) => {
-        return error;
+            resolve (getInfo.responseJSON);
+        }).fail((error) => {
+            return reject(error);
+        }); 
     });
-}
+    
+};
+
+
 
 //Loop through Object to place in Array
 function listCharacters(getcInfo) {
-
+// console.log("What's in getcInfo blah bah", getcInfo);
         for(var i = 0; i < getcInfo.length; (i = i + 3)) {
             let charName1 = getcInfo[i].name;
             let charId1 = getcInfo[i].id;
@@ -141,75 +158,116 @@ $("#new-chars").html(function() {
 // var saveToFavs = document.getElementById("save-fav");
 
 // get fav characters from userCharacter based on id
-function getFavCharactersFB(userCharsObj) {
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`
-    }).done((getucInfo) => {
-        console.log("user char ucInfo data", getucInfo);
-        return getucInfo;
-    }).fail((error) => {
-        return error;
-    });
-}
+
+
+
+// function getFavCharactersFB(userCharsObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
+//     }).done((getuInfo) => {
+//         console.log("user char ucInfo data", getuInfo);
+//         return getuInfo;
+//     }).fail((error) => {
+//         return error;
+//     });
+// }
 
 //here you get info from listChars or getCharactersFB
+
 function showFavChars() {
-    getFavCharactersFB(Event)
+    getFavCharactersFB(event)
     .then((getuchInfo) => {
-        listFavCharacters(getuchInfo); 
+        // console.log("Anything should happen", getuchInfo);
+        var idFavs = Object.keys(getuchInfo);
+        idFavs.forEach((key) => {
+            getuchInfo[key].userFavid = key;
+            // console.log("char Fav data", getuchInfo[key]);
+        });
+        favoritesDetailDOM(getuchInfo);
+    }); 
+}
+// console.log("What's in showFavChars()", showFavChars());
 
-    });
+function favoritesDetailDOM(getuchInfo) {
+    console.log("What is in getuchInfo", getuchInfo);
+    let characterPromises = [];
+    for(let myfav in getuchInfo) {
+        let myfavSaved = myfav.id;
+        console.log("my fav id getuchInfo", getuchInfo[myfav]);
+        
+        showSingleCharacter(getuchInfo[myfav].id);
+        }  
+}
+$("#card-fav").html(favoritesDetailDOM()); 
+
+    function displayFavCharacter() {
+        console.log("What's in displayFavCharacters ");
+        let $showFavsDetails = `
+            <h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+
+            <div><h2>My Favorite Super Hero</h2></div>
+            <div class="card card-fav" id="card-fav"></div>`;
+
+    $("#body-container").html($showFavsDetails); 
 }
 
-function listFavCharacters(getuchInfo) {
-    // console.log("I'm inside listFavChars. length", getuchInfo.length);
-    // for(var j = 0; j < getuchInfo.length; j++) {
-    //     let userFavCharId = getuchInfo[j];
-    //     console.log("What's in user userFavCharId", userFavCharId);
 
-        showCFavsDetails += $(`<div class="body-container"><h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2></div><br><br>
-
-    <div><h2>My Favorite Super Hero</h2></div>
-    
-    <div class="card-deck">
-            <div class="card col-4">
-                <img class="card-img-top" src="userFavCharId}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Name: </strong> userFavCharId}</h5>
-                </div>
-            </div>
-        </div>`
+// $("#my-favs").html(function() {
+    // displayFavCharacter();
+// .then((charsFavData) => {
+        //     console.log("What's in charsData", charsFavData);
         
-    );
-    $("#my-favs").html(showCFavsDetails);
+        // let currentNotes = getuchInfo[myfav],
+        //    noteListItem = $("<div>", {class: "card col-4"}),
+        //    charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
+        //    notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+        //    noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+        //    noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+        // $(".card-fav").append(noteListItem);
+
+    // let $showFavsDetails = $(`<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+
+    // <div><h2>My Favorite Super Hero</h2></div>
+    // <div class="card card-fav"></div>`
+    // <div class="card-deck card-padding">
+    //         <div class="card col-4">
+    //             <img class="card-img-top" src="images/thor.png" alt="Card image cap">
+    //             <div class="card-body">
+    //                 <h5 class="card-title"><strong>Name: </strong> userFavCharId</h5>
+    //             </div>
+    //         </div>
+    //         <div class="card">
+    //       <div class="card-body">
+    //         <p class="card-text">
+    //             <div class="form-group">
+    //                 <h3 for="comment" class="card-title card-uppercase card-margin">Notes</h3>
+    //                 <textarea class="form-control" rows="10" id="comment">Season 3: In it, Matt is in much the same position we saw him at the end of The Defenders: half dead and being cared for by a group of nuns. One in particular should be his long-absent mother, which means a good portion of Daredevil season 3 could see Matt out of commission as Daredevil.
+    //                 </textarea>
+    //             </div></p>
+    //         <div class="card-footer">
+    //             <a href="#" class="btn btn-primary float-left notes disable">Save</a>
+    //             <a href="#" class="btn btn-primary float-right">Delete</a>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     </div>
+        
+        
+// );
+//     $(".body-container").html($showFavsDetails);
+
+    // for(let myfav in noteList) {
+    //  let currentNotes = noteList[myfav],
+    //     noteListItem = $("<div>", {class: "card col-4"}),
+    //     charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
+    //     notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+    //     noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+    //     noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+    //  $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
     // }
-}
 
-$("#my-favs").html(function() {
-    showFavChars();
-});
-
-
-function favoritesDetailDOM(noteList) {
-
-    let $showFavsDetails = $(`<div class="body-container"><h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2></div><br><br>
-
-    <div><h2>My Favorite Super Hero</h2></div>`
-        
-);
-    $(".body-container").html($showFavsDetails);
-
-    for(let myfav in noteList) {
-     let currentNotes = noteList[myfav],
-        noteListItem = $("<div>", {class: "card col-4"}),
-        charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
-        notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
-        noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
-        noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
-
-     $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
-    }
-}
 // Build Notes area for each character added
 function characterNotes(userCharacter, saveNotes) {
     return new Promise(function (resolve, reject) {
@@ -245,58 +303,58 @@ module.exports = {
     showSingleCharacter,
     getFavCharactersFB,
     showFavChars,
-    listFavCharacters
+    // listFavCharacters
 };
 
 /////----- Creating my-favorites.HTML -----/////
-function myfavoritesDOM(myfav) {
-    let showMyFavs = $(`
-    <h2>My Favorite Super Heroes</h2>
-    <!-- Begin row 1 of Saved Super Heroes Section -->
+// function myfavoritesDOM(myfav) {
+//     let showMyFavs = $(`
+//     <h2>My Favorite Super Heroes</h2>
+//     <!-- Begin row 1 of Saved Super Heroes Section -->
     
-    <div class="card-deck card-padding">
-        <div class="card">
-          <img class="card-img-top" src="images/dare-devil.png" alt="Comic Character Daredevil">
-          <div class="card-body">
-            <h3 class="card-title card-uppercase"><a href="favorites-detail.html">Daredevil</a></h3>
-            <p class="card-text">Abandoned by his mother, Matt Murdock was raised by his father, boxer "Battling Jack" Murdock, in Hell's Kitchen.</p>
-            <p><strong>Real Name:</strong>  Matthew Michael Murdock<br>
-            <strong>Height:</strong>  6'0"</p>
-          </div>
-          <div class="card-footer">
-            <a href="favorites-detail.html" class="btn btn-primary float-left notes">Make Notes</a>
-            <a href="#" class="btn btn-primary float-right">Delete</a>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="images/spiderman.png" alt="Comic Character Spider-Man">
-          <div class="card-body">
-            <h3 class="card-title card-uppercase"><a href="#">Spider-Man</a></h3>
-            <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
-            <p><strong>Real Name:</strong> Peter Benjamin Parker<br>
-            <strong>Height:</strong> 5'10"</p>
-          </div>
-            <div class="card-footer">
-                <a href="my-favorites.html" class="btn btn-primary float-left notes disable">Edit Notes</a>
-                <a href="#" class="btn btn-primary float-right">Delete</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="images/black-widow.png" alt="Comic Character Black Widow">
-            <div class="card-body">
-                <h3 class="card-title card-uppercase"><a href="#">Black Widow</a></h3>
-                <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
-                <p><strong>Real Name:</strong> Natasha Romanova<br>
-                <strong>Height:</strong> not known</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary float-left notes disable">Edit Notes</a>
-                <a href="#" class="btn btn-primary float-right">Delete</a>
-            </div>
-        </div>
-    </div>`);
-    $("body-container").html(showMyFavs);
-}
+//     <div class="card-deck card-padding">
+//         <div class="card">
+//           <img class="card-img-top" src="images/dare-devil.png" alt="Comic Character Daredevil">
+//           <div class="card-body">
+//             <h3 class="card-title card-uppercase"><a href="favorites-detail.html">Daredevil</a></h3>
+//             <p class="card-text">Abandoned by his mother, Matt Murdock was raised by his father, boxer "Battling Jack" Murdock, in Hell's Kitchen.</p>
+//             <p><strong>Real Name:</strong>  Matthew Michael Murdock<br>
+//             <strong>Height:</strong>  6'0"</p>
+//           </div>
+//           <div class="card-footer">
+//             <a href="favorites-detail.html" class="btn btn-primary float-left notes">Make Notes</a>
+//             <a href="#" class="btn btn-primary float-right">Delete</a>
+//           </div>
+//         </div>
+//         <div class="card">
+//           <img class="card-img-top" src="images/spiderman.png" alt="Comic Character Spider-Man">
+//           <div class="card-body">
+//             <h3 class="card-title card-uppercase"><a href="#">Spider-Man</a></h3>
+//             <p class="card-text">Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider.</p>
+//             <p><strong>Real Name:</strong> Peter Benjamin Parker<br>
+//             <strong>Height:</strong> 5'10"</p>
+//           </div>
+//             <div class="card-footer">
+//                 <a href="my-favorites.html" class="btn btn-primary float-left notes disable">Edit Notes</a>
+//                 <a href="#" class="btn btn-primary float-right">Delete</a>
+//             </div>
+//         </div>
+//         <div class="card">
+//             <img class="card-img-top" src="images/black-widow.png" alt="Comic Character Black Widow">
+//             <div class="card-body">
+//                 <h3 class="card-title card-uppercase"><a href="#">Black Widow</a></h3>
+//                 <p class="card-text">Natasha Romanova, known by many aliases, is an expert spy, athlete, and assassin.</p>
+//                 <p><strong>Real Name:</strong> Natasha Romanova<br>
+//                 <strong>Height:</strong> not known</p>
+//             </div>
+//             <div class="card-footer">
+//                 <a href="#" class="btn btn-primary float-left notes disable">Edit Notes</a>
+//                 <a href="#" class="btn btn-primary float-right">Delete</a>
+//             </div>
+//         </div>
+//     </div>`);
+//     $("body-container").html(showMyFavs);
+// }
 
 // /////----- Creating favorite-details.HTML -----/////
 // function favoritesDetailDOM(myfav) {
