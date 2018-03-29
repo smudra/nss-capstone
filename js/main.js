@@ -24,8 +24,8 @@ function createUserObj(fan) {
     };
     return userObj;
 }
-var userCharacter = firebase.database().ref("userCharacter");
-console.log(" user Character ", userCharacter);
+// var userCharacter = firebase.database().ref("userCharacter");
+// console.log(" user Character ", userCharacter);
 // buildUserCharObj(characters)
 // id: $("#characters").val(),
 //         uid: user.getUser().uid,
