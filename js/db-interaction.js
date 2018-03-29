@@ -95,15 +95,27 @@ function addMyFavCharFB(userChar) {
     });
 }
 
+//When loading sav fav page user needs to log in
+function loadMyFavCharToDom() {
+    let currentUser = user.getUser();
+    characterDOMbuilder.showSingleCharacter(currentUser)
+    .then((characters) => {
+        characterDOMbuilder.makeCharacterPageFormat(characters);
+    });
+}
+
+$("#card-fav").click(function() {
+    $(".card-fav").html("");
+    loadMyFavCharToDom();
+});
+
 function saveBtn(e) {
     userChar.id = e.target.id;
     console.log("e.target.id", e.target.id);
     userChar.uid = user.getUser();
     addMyFavCharFB(userChar);
     characterDOMbuilder.showFavChars();
-    // $("#card-fav").html(characterDOMbuilder.showFavChars()); 
-   
-    // let singleChar = characterDOMbuilder.showSingleCharacter(e.target.id);
+    // $("#card-fav").html(characterDOMbuilder.showFavChars());
 }
 // Event listener for save button
     
