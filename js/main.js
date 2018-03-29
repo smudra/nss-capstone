@@ -99,6 +99,7 @@ function loadMyFavsToDOM() {
 //     });
 // });
 
+
 // Delete notes and reload the DOM with blank notes area --//
 $(document).on("click", ".delete-btn", function() {
     let charNotes = $(this).data("delete-id");
@@ -108,7 +109,7 @@ $(document).on("click", ".delete-btn", function() {
     });
 });
 
-
+// buildNoteObj is in characterDOMbuilder.js
 
 // I dont need this on click function form
 $("#comment").click(function() {
