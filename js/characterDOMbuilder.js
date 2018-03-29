@@ -60,15 +60,22 @@ let showSingleCharacter = (id) => {
         }).fail((error) => {
             return reject(error);
         }); 
-    });
-    
+    });   
 };
 
+function loopSavedCharInfo(getInfo) {
+    console.log("what's in saved name", getInfo);
+    for(let savedChar in getInfo) {
+        let savedName = getInfo[savedChar];
+        console.log("what's in saved name", savedName);
+    }
+}
+
+$("#card-fav").html(showSingleCharacter);
 
 
 //Loop through Object to place in Array
 function listCharacters(getcInfo) {
-// console.log("What's in getcInfo blah bah", getcInfo);
         for(var i = 0; i < getcInfo.length; (i = i + 3)) {
             let charName1 = getcInfo[i].name;
             let charId1 = getcInfo[i].id;
@@ -193,15 +200,16 @@ function favoritesDetailDOM(getuchInfo) {
     let characterPromises = [];
     for(let myfav in getuchInfo) {
         let myfavSaved = myfav.id;
-        console.log("my fav id getuchInfo", getuchInfo[myfav]);
-        
+        console.log("my fav id getuchInfo", getuchInfo[myfav]);       
         showSingleCharacter(getuchInfo[myfav].id);
         }  
 }
 $("#card-fav").html(favoritesDetailDOM()); 
 
+
+
     function displayFavCharacter() {
-        console.log("What's in displayFavCharacters ");
+        // console.log("What's in displayFavCharacters ");
         let $showFavsDetails = `
             <h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
