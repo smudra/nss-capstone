@@ -25,14 +25,14 @@ function buildUserObj(uid) {
 
 // let userChar = firebase.database().ref("userCharacter");
 
-function buildUserCharObj(characters) {
-    let userChar = {
-        id: $("#userCharid3").key,
-        uid: user.getUser().uid,
-        charNotes: ""
-    };
-    return userChar;
-}
+// function buildUserCharObj(characters) {
+//     let userChar = {
+//         id: $("#userCharid3").key,
+//         uid: user.getUser().uid,
+//         charNotes: ""
+//     };
+//     return userChar;
+// }
 
 
 // function buildUserCharObj(characters) {
@@ -49,5 +49,5 @@ function buildUserCharObj(characters) {
 
 module.exports = {
     buildUserObj, 
-    buildUserCharObj
+    // buildUserCharObj
 };
