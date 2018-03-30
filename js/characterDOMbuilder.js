@@ -209,6 +209,7 @@ function showFavChars() {
     }); 
 }
 // console.log("What's in showFavChars()", showFavChars());
+let showFavsDetails;
 
 function favoritesDetailDOM(getuchInfo) {
     console.log("What is in getuchInfo", getuchInfo);
@@ -225,21 +226,7 @@ $("#card-fav").html(favoritesDetailDOM());
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
     function displayFavCharacter(getInfo) {
-        console.log("What's in displayFavCharacters ", getInfo);
-        // let displayFavComics = getInfo;
-        // for(var i = 0; i < getcInfo.length; (i = i + 3)) {
-            // let k = 0; 
-            console.log("Get Info in displayFavChar", getInfo.name);
-            // let favName = getInfo[k].name;
-            // let favId1 = getInfo[k].id;
-            // let favCharid1 = getInfo[k].userCharid;
-            // let favDesc1 = getInfo[k].description;
-            // let favComics1 = getInfo[k].comics;
-            // let favThumb1 = getInfo[k].thumbnail;
-            // let favStories1 = getInfo[k].stories;
-            // let favSeries1 = getInfo[k].series;
-            // let favEvents1 = getInfo[k].events;
-        let $showFavsDetails = 
+        showFavsDetails += 
         `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
             <div><h2>My Favorite Super Hero</h2></div>
@@ -258,7 +245,7 @@ $("#card-fav").html(favoritesDetailDOM());
             </div>
             </div>`;
 
-    $("#body-container").html($showFavsDetails); 
+    $("#body-container").html(showFavsDetails); 
 }
 
 
@@ -322,7 +309,7 @@ $("#card-fav").html(favoritesDetailDOM());
 // in db-interaction page
 // function buildNotesObj() {
 //     let noteObj = {
-//         addNotes: $("#form notes").val(),
+//         addNotes: $("#form-notes").val(),
 //         uid: user.getUser()
 //     };
 //     return noteObj;
@@ -342,7 +329,7 @@ function characterNotes(note, charNotes) {
             <p class="card-text">
                 <div class="form-group">
                     <h3 for="comment" class="card-title card-uppercase card-margin">${charNotes.notesTitle}</h3>
-                    <textarea class="form-control" id="form notes" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
+                    <textarea class="form-control" id="form-notes" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
                     <button id="${charNotes}" class=${charNotes.SaveEditBtn}>${charNotes.saveNotesText}</button>`;
                     resolve(notes);
     });
