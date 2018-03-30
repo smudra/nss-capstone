@@ -7,11 +7,12 @@ let $ = require('jquery'),
     provider = new firebase.auth.GoogleAuthProvider(),
     characterDOMbuilder = require('./characterDOMbuilder'),
     marvelCharacters = require('./marvel-characters'),
-    user = require("./user");
+    user = require("./user"),
+    allSavedChars = require('./allSavedChars');
 
     let userChar = {
         id: "",
-        addNotes: $("#form notes").val(),
+        addNotes: $("#form-notes").val(),
         uid: user.getUser()
     };
 // console.log(" what's in user Character", user.getUser(), user);
@@ -109,13 +110,22 @@ $("#card-fav").click(function() {
     loadMyFavCharToDom();
 });
 
+
+// function saveBtn(e) {
+//     userChar.id = e.target.id;
+//     console.log("e.target.id", e.target.id);
+//     userChar.uid = user.getUser();
+//     addMyFavCharFB(userChar);
+//     let allUserChars = allSavedChars.getAllFavChars();
+//     allSavedChars.dispAllFavChars(allUserChars);
+// }
+
 function saveBtn(e) {
     userChar.id = e.target.id;
     console.log("e.target.id", e.target.id);
     userChar.uid = user.getUser();
     addMyFavCharFB(userChar);
     characterDOMbuilder.showFavChars();
-    // $("#card-fav").html(characterDOMbuilder.showFavChars());
 }
 // Event listener for save button
     
