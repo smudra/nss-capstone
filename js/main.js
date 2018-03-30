@@ -10,6 +10,7 @@ let $ = require('jquery'),
     user = require('./user'),
     userProfile = require('./user-profile'),
     characterDOMbuilder = require('./characterDOMbuilder'),
+    allSavedChars = require('./allSavedChars'),
     marvelCharacters = require('./marvel-characters');
 
     var firebase = require("firebase/app");
