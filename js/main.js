@@ -59,7 +59,7 @@ $("#log-out").click(function(){
 
 //-------- Load the Notes Area to DOM --------//
 // Using the REST API
-function loadMyFavsToDOM() {
+function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
     let currentUser = user.getUser();
     db.getChars(currentUser)
@@ -69,35 +69,35 @@ function loadMyFavsToDOM() {
     });
 }
 // Send New Notes to FB and reload updated notes to DOM
-// $(document).on("click", ".save-new-note", function() {
-//     let noteObj = buildUserCharObj();
-//     db.addNotes(noteObj)
-//     .then((charNotes) => {
-//         console.log("What's in the new noteObj ", charNotes);
-//         loadMyFavsToDOM();
-//     });
-// });
+$(document).on("click", ".save-new-note", function() {
+    let noteObj = characterDOMbuilder.buildNotesObj();
+    db.addNotes(noteObj)
+    .then((charNotes) => {
+        console.log("What's in the new noteObj ", charNotes);
+        loadMyNotesToDOM();
+    });
+});
 
 // Get the notes from database for editing on DOM
-// $(document).on("click", ".edit-btn", function() {
-//     let charNotes = $(this).data("edit-id");
-//     db.getNotes(charNotes)
-//     .then((note) => {
-//         return characterDOMbuilder.characterNotes(userCharacter, saveNotes);
-//     }).then((finishedNote) => {
-//         $("card-deck card-padding").html(finishedNote);
-//     });
-// });
+$(document).on("click", ".edit-btn", function() {
+    let charNotes = $(this).data("edit-id");
+    db.getNotes(charNotes)
+    .then((note) => {
+        return characterDOMbuilder.characterNotes(note, charNotes);
+    }).then((finishedNote) => {
+        $(".card-padding").html(finishedNote);
+    });
+});
 
 // Save edited notes to FB then reload DOM with updated notes Data
-// $(document).on("click", ".save-notes-edit", function() {
-//     let noteObj = buildUserCharObj(),
-//     charNotes = $(this).atrr("id");
-//     db.editNotes(noteObj, charNotes)
-//     .then((data) => {
-//         loadMyFavsToDOM();
-//     });
-// });
+$(document).on("click", ".save-notes-edit", function() {
+    let noteObj = characterDOMbuilder.buildNotesObj(),
+    charNotes = $(this).atrr("id");
+    db.editNotes(noteObj, charNotes)
+    .then((data) => {
+        loadMyNotesToDOM();
+    });
+});
 
 
 // Delete notes and reload the DOM with blank notes area --//
@@ -105,11 +105,11 @@ $(document).on("click", ".delete-btn", function() {
     let charNotes = $(this).data("delete-id");
     db.deleteNotes(charNotes)
     .then(() => {
-        loadMyFavsToDOM();
+        loadMyNotesToDOM();
     });
 });
 
-// buildNoteObj is in characterDOMbuilder.js
+// userChar is in db-interaction.js
 
 // I dont need this on click function form
 $("#comment").click(function() {
@@ -128,7 +128,7 @@ $("#login").click(function() {
         user.setUser(result.user.uid);
         $("#login").addClass("is-hidden");
         $("#log-out").removeClass("is-hidden");
-        loadMyFavsToDOM();
+        loadMyNotesToDOM();
     });
 });
 
@@ -138,7 +138,7 @@ $("#login").click(function() {
 //     console.log(event.target.id);
 //     var id = event.target.id;
 
-//     var myFav = build.buildUserCharObj(id);
+//     var myFav = build.userChar(id);
 //     db.saveMyFavChar(myFav);
 // });
 
