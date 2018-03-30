@@ -11,7 +11,7 @@ let $ = require('jquery'),
 
     let userChar = {
         id: "",
-        charNotes: "",
+        addNotes: $("#form notes").val(),
         uid: user.getUser()
     };
 // console.log(" what's in user Character", user.getUser(), user);
