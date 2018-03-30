@@ -49,12 +49,13 @@ function showChars() {
         listCharacters(getcInfo);      
     });
 } 
+
 let showSingleCharacter = (id) => {
     return new Promise((resolve, reject) => {
        return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
     }).done((getInfo) => {
-        displayFavCharacter();   
+        displayFavCharacter(getInfo);   
         console.log("What's in showSingleChar ", getInfo);
             resolve (getInfo.responseJSON);
         }).fail((error) => {
@@ -62,6 +63,20 @@ let showSingleCharacter = (id) => {
         }); 
     });   
 };
+
+// let showSingleCharacter = (id) => {
+//     return new Promise((resolve, reject) => {
+//        return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
+//     }).done((getInfo) => {
+//         displayFavCharacter();   
+//         console.log("What's in showSingleChar ", getInfo);
+//             resolve (getInfo.responseJSON);
+//         }).fail((error) => {
+//             return reject(error);
+//         }); 
+//     });   
+// };
 
 function loopSavedCharInfo(getInfo) {
     console.log("what's in saved name", getInfo);
@@ -184,7 +199,7 @@ $("#new-chars").html(function() {
 function showFavChars() {
     getFavCharactersFB(event)
     .then((getuchInfo) => {
-        // console.log("Anything should happen", getuchInfo);
+        console.log("Anything should happen", getuchInfo);
         var idFavs = Object.keys(getuchInfo);
         idFavs.forEach((key) => {
             getuchInfo[key].userFavid = key;
@@ -207,14 +222,41 @@ function favoritesDetailDOM(getuchInfo) {
 $("#card-fav").html(favoritesDetailDOM()); 
 
 
-
-    function displayFavCharacter() {
-        // console.log("What's in displayFavCharacters ");
-        let $showFavsDetails = `
-            <h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+// get info from displayFavCharacter() into 
+//favoritesDetailDom()
+    function displayFavCharacter(getInfo) {
+        console.log("What's in displayFavCharacters ", getInfo);
+        // let displayFavComics = getInfo;
+        // for(var i = 0; i < getcInfo.length; (i = i + 3)) {
+            // let k = 0; 
+            console.log("Get Info in displayFavChar", getInfo.name);
+            // let favName = getInfo[k].name;
+            // let favId1 = getInfo[k].id;
+            // let favCharid1 = getInfo[k].userCharid;
+            // let favDesc1 = getInfo[k].description;
+            // let favComics1 = getInfo[k].comics;
+            // let favThumb1 = getInfo[k].thumbnail;
+            // let favStories1 = getInfo[k].stories;
+            // let favSeries1 = getInfo[k].series;
+            // let favEvents1 = getInfo[k].events;
+        let $showFavsDetails = 
+        `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
             <div><h2>My Favorite Super Hero</h2></div>
-            <div class="card card-fav" id="card-fav"></div>`;
+            <div class="card-deck">
+            <div class="card col-4">
+                <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Name: </strong> ${getInfo.name}</h5>
+                    <p class="card-text"><strong>Description: </strong>${getInfo.description}<br><strong>Comics: </strong><a href="${getInfo.comics}" target="_blank">Find all  comics relating to ${getInfo.name} here.</a><br><strong>Stories: </strong><a href="${getInfo.stories}" target="_blank">Read all news articles relating to  ${getInfo.name}.</a><br><strong>Series: </strong><a href="${getInfo.series}" target="_blank">Here's our latest tv release for ${getInfo.name}.</a><br><strong>Events: </strong><a href="${getInfo.events}" target="_blank">Marvel Universe has all events.</a><br></p>
+                </div>
+                <div class="card-footer">
+                        <small class="text-muted">Character ID: ${getInfo.id}</small>
+                    <a href="#" class="btn btn-primary float-right save-fav" id="getInfo[k].userCharid">Add to Fav</a>
+                    <a href="#" class="btn btn-primary float-right save-fav" id="${getInfo.userCharid}">Add to Fav</a>
+                </div>
+            </div>
+            </div>`;
 
     $("#body-container").html($showFavsDetails); 
 }
@@ -265,7 +307,7 @@ $("#card-fav").html(favoritesDetailDOM());
 // );
 //     $(".body-container").html($showFavsDetails);
 
-    // for(let myfav in noteList) {
+    // for(let note in noteList) {
     //  let currentNotes = noteList[myfav],
     //     noteListItem = $("<div>", {class: "card col-4"}),
     //     charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
@@ -276,22 +318,32 @@ $("#card-fav").html(favoritesDetailDOM());
     //  $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
     // }
 
+// Build a Note Object buildNotesObj() is userChar 
+// in db-interaction page
+// function buildNotesObj() {
+//     let noteObj = {
+//         addNotes: $("#form notes").val(),
+//         uid: user.getUser()
+//     };
+//     return noteObj;
+// }
+
 // Build Notes area for each character added
-function characterNotes(userCharacter, saveNotes) {
+function characterNotes(note, charNotes) {
     return new Promise(function (resolve, reject) {
         let charNotes = {
-            notes: userCharacter ? userCharacter.notes : "",
-            notesTitle: userCharacter ? `Edit "${userCharacter.title}"` : "Add My Notes",
-            saveNotesText: userCharacter ? "Save Notes" : "Save My Notes",
-            SaveEditBtn: userCharacter ? "save-edit-notes" : "save-new-notes"
+            notes: note ? note.notes : "",
+            notesTitle: note ? `Edit "${note.title}"` : "Add My Notes",
+            saveNotesText: note ? "Save Notes" : "Save My Notes",
+            SaveEditBtn: note ? "save-edit-notes" : "save-new-notes"
         },
         notes = 
         `<div class="card-body">
             <p class="card-text">
                 <div class="form-group">
                     <h3 for="comment" class="card-title card-uppercase card-margin">${charNotes.notesTitle}</h3>
-                    <textarea class="form-control" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
-                    <button id="${saveNotes}" class=${charNotes.SaveEditBtn}>${charNotes.saveNotesText}</button>`;
+                    <textarea class="form-control" id="form notes" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
+                    <button id="${charNotes}" class=${charNotes.SaveEditBtn}>${charNotes.saveNotesText}</button>`;
                     resolve(notes);
     });
 }
@@ -311,6 +363,7 @@ module.exports = {
     showSingleCharacter,
     getFavCharactersFB,
     showFavChars,
+    displayFavCharacter
     // listFavCharacters
 };
 
