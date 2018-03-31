@@ -50,13 +50,13 @@ function showChars() {
     });
 } 
 
-let showSingleCharacter = (id) => {
+let showSingleCharacter = (id, addingNotes) => { 
     return new Promise((resolve, reject) => {
        return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
     }).done((getInfo) => {
-        displayFavCharacter(getInfo);   
-        console.log("What's in showSingleChar ", getInfo);
+        console.log("What's in showSingleChar: , Add Notes: ", id, addingNotes);
+        displayFavCharacter(getInfo, addingNotes);
             resolve (getInfo.responseJSON);
         }).fail((error) => {
             return reject(error);
@@ -64,13 +64,34 @@ let showSingleCharacter = (id) => {
     });   
 };
 
-function loopSavedCharInfo(getInfo) {
-    console.log("what's in saved name", getInfo);
-    for(let savedChar in getInfo) {
-        let savedName = getInfo[savedChar];
-        console.log("what's in saved name", savedName);
-    }
+//here you get info from listChars or getCharactersFB
+
+function showFavChars() {
+    getFavCharactersFB(event)
+    .then((getuchInfo) => {
+        console.log("Anything should happen", getuchInfo);
+        var idFavs = Object.keys(getuchInfo);
+        idFavs.forEach((key) => {
+            getuchInfo[key].userFavid = key;
+            // console.log("char Fav data", getuchInfo[key]);
+        });
+        favoritesDetailDOM(getuchInfo);
+    }); 
 }
+
+function favoritesDetailDOM(getuchInfo) {
+    console.log("What is in getuchInfo", getuchInfo);
+    let characterPromises = [];
+    for(let myfav in getuchInfo) {
+        // let myfavSaved = myfav.id;
+        // let myAddNotes = getuchInfo[myfav].addNotes;
+
+        console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
+        console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
+        showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes);
+        }  
+}
+$("#card-fav").html(favoritesDetailDOM()); 
 
 $("#card-fav").html(showSingleCharacter);
 
@@ -166,42 +187,19 @@ function listCharacters(getcInfo) {
 $("#new-chars").html(function() {
      showChars();
 });
-//here you get info from listChars or getCharactersFB
 
-function showFavChars() {
-    getFavCharactersFB(event)
-    .then((getuchInfo) => {
-        console.log("Anything should happen", getuchInfo);
-        var idFavs = Object.keys(getuchInfo);
-        idFavs.forEach((key) => {
-            getuchInfo[key].userFavid = key;
-            // console.log("char Fav data", getuchInfo[key]);
-        });
-        favoritesDetailDOM(getuchInfo);
-    }); 
-}
 // console.log("What's in showFavChars()", showFavChars());
 let showFavsDetails;
 let showFavsHeader;
 let noteDisplay;
-function favoritesDetailDOM(getuchInfo) {
-    console.log("What is in getuchInfo", getuchInfo);
-    let characterPromises = [];
-    for(let myfav in getuchInfo) {
-        // let myfavSaved = myfav.id;
-        // let myAddNotes = getuchInfo[myfav].addNotes;
-
-        console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
-        console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
-        showSingleCharacter(getuchInfo[myfav].id);
-        }  
-}
-$("#card-fav").html(favoritesDetailDOM()); 
-
+let loadNotes;
 
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
-    function displayFavCharacter(getInfo) {
+    function displayFavCharacter(getInfo, addingNotes) {
+
+        console.log("What's in loadNotes? ", addingNotes);
+
         showFavsHeader = `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
         <div><h2>My Favorite Super Hero</h2></div>`;
@@ -220,17 +218,24 @@ $("#card-fav").html(favoritesDetailDOM());
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right save-fav" id="${getInfo.userCharid}">Delete SuperHero</a>
+                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id">Delete SuperHero</a>
                 </div>
             </div>
 
-            <div class="card col-4">
+            <div class="card card-padding">
                 <div class="card-body">
-                <p class="card-text">
-                    <div class="form-group" id="comment"></div>
-                </p>
+                    <p class="card-text">
+                        <div class="form-group">
+                            <h3 for="comment" class="card-title card-uppercase card-margin">Notes</h3>
+                            <textarea class="form-control" rows="10" id="comment">${addingNotes}
+                            </textarea>
+                        </div></p>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary float-left notes save-new-note save-notes-edit">Save</a>
+                        <a href="#" class="btn btn-primary float-right edit-btn">Edit Notes</a>
+                    </div>
                 </div>
-            </div
+            </div>
         </div>`;
 
 
@@ -244,7 +249,7 @@ $("#card-fav").html(favoritesDetailDOM());
 //line 105.
 
 function makeNotesPageFormat(noteList) {
-    console.log("What's in notelist ", noteList);
+    console.log("What's in notelist. It comes undefined ", noteList);
     noteDisplay = $(`
         <div class="card-body">
             <p class="card-text">
@@ -259,6 +264,10 @@ function makeNotesPageFormat(noteList) {
             noteFooter = $("<div>", {class: "card-footer"}),
             noteEdit = $("<div>", {"data-edit-id": note, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
             noteDelete = $("<div>", {"data-delete-id": note, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+            notesTitle.append(
+                `<p>${currentNotes.addNotes}</p>`
+            );
     
             $(".card").append(noteListItem.append(notesTitle).append(noteFooter).append(noteEdit).append(noteDelete));
     }
