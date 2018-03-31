@@ -25,14 +25,7 @@ function createUserObj(fan) {
     };
     return userObj;
 }
-// var userCharacter = firebase.database().ref("userCharacter");
-// console.log(" user Character ", userCharacter);
-// buildUserCharObj(characters)
-// id: $("#characters").val(),
-//         uid: user.getUser().uid,
-//         charNotes: ""
-//     };
-//     return userChar;
+
 //------- When user clicks login --------//
 $("#login").click(function() {
     user.googlelogIn()
@@ -63,18 +56,18 @@ $("#log-out").click(function(){
 function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
     let currentUser = user.getUser();
-    db.getChars(currentUser)
+    db.getNotes(currentUser)
     .then((notesData) => {
         console.log("I got some super heroes here", notesData);
-        characterDOMbuilder.favoritesDetailDOM(notesData);
+        characterDOMbuilder.makeNotesPageFormat(notesData);
     });
 }
 // Send New Notes to FB and reload updated notes to DOM
 $(document).on("click", ".save-new-note", function() {
-    let noteObj = characterDOMbuilder.buildNotesObj();
+    let noteObj = db.userChar;
     db.addNotes(noteObj)
-    .then((charNotes) => {
-        console.log("What's in the new noteObj ", charNotes);
+    .then((userCharacterId) => {
+        console.log("What's in the new noteObj ", userCharacterId);
         loadMyNotesToDOM();
     });
 });
@@ -92,8 +85,9 @@ $(document).on("click", ".edit-btn", function() {
 
 // Save edited notes to FB then reload DOM with updated notes Data
 $(document).on("click", ".save-notes-edit", function() {
-    let noteObj = characterDOMbuilder.buildNotesObj(),
+    let noteObj = db.userChar,
     charNotes = $(this).atrr("id");
+    console.log("charNotes ", charNotes);
     db.editNotes(noteObj, charNotes)
     .then((data) => {
         loadMyNotesToDOM();
@@ -112,12 +106,12 @@ $(document).on("click", ".delete-btn", function() {
 
 // userChar is in db-interaction.js
 
-// I dont need this on click function form
+// Prints on the DOM click FORM function
 $("#comment").click(function() {
     console.log("Clicked the text area");
-    var notesArea = characterDOMbuilder.characterNotes()
-    .then(function(notesArea) {
-        $(".body-container").html(notesArea);
+    var characterNotes = characterDOMbuilder.characterNotes()
+    .then(function(characterNotes) {
+        $(".body-container").html(characterNotes);
     });
 });
 
@@ -142,7 +136,6 @@ $("#login").click(function() {
 //     var myFav = build.userChar(id);
 //     db.saveMyFavChar(myFav);
 // });
-
 
 
 
