@@ -64,20 +64,6 @@ let showSingleCharacter = (id) => {
     });   
 };
 
-// let showSingleCharacter = (id) => {
-//     return new Promise((resolve, reject) => {
-//        return $.ajax({
-//         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
-//     }).done((getInfo) => {
-//         displayFavCharacter();   
-//         console.log("What's in showSingleChar ", getInfo);
-//             resolve (getInfo.responseJSON);
-//         }).fail((error) => {
-//             return reject(error);
-//         }); 
-//     });   
-// };
-
 function loopSavedCharInfo(getInfo) {
     console.log("what's in saved name", getInfo);
     for(let savedChar in getInfo) {
@@ -124,8 +110,6 @@ function listCharacters(getcInfo) {
 
         
 
-        // displayChars += charName + charId + charDesc + charComics + charThumb + charStories + charSeries + charEvents;
-
         /////----- Creating Index.HTML -----/////
         displayChars += 
         `<h2>Save Your Favorite Super Hero</h2>
@@ -134,7 +118,11 @@ function listCharacters(getcInfo) {
                 <img class="card-img-top" src="${charThumb1}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>Name: </strong> ${charName1}</h5>
-                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br><strong>Comics: </strong><a href="${charComics1}" target="_blank">Find all  comics relating to ${charName1} here.</a><br><strong>Stories: </strong><a href="${charStories1}" target="_blank">Read all news articles relating to  ${charName1}.</a><br><strong>Series: </strong><a href="${charSeries1}" target="_blank">Here's our latest tv release for ${charName1}.</a><br><strong>Events: </strong><a href="${charEvents1}" target="_blank">Marvel Universe has all events.</a><br></p>
+                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br>
+                    <strong>Comics: </strong><a href="${charComics1}" target="_blank">Find all  comics relating to ${charName1} here.</a><br>
+                    <strong>Stories: </strong><a href="${charStories1}" target="_blank">Read all news articles relating to  ${charName1}.</a><br>
+                    <strong>Series: </strong><a href="${charSeries1}" target="_blank">Here's our latest tv release for ${charName1}.</a><br>
+                    <strong>Events: </strong><a href="${charEvents1}" target="_blank">Marvel Universe has all events.</a><br></p>
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
@@ -145,7 +133,12 @@ function listCharacters(getcInfo) {
             <img class="card-img-top" src="${charThumb2}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><strong>Name: </strong> ${charName2}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc2}<br><strong>Comics: </strong><a href="${charComics2}" target="_blank">Find all  comics relating to ${charName2} here.</a><br><strong>Stories: </strong><a href="${charStories2}" target="_blank">Read all news articles relating to  ${charName2}.</a><br><strong>Series: </strong><a href="${charSeries2}" target="_blank">Here's our latest tv release for ${charName2}.</a><br><strong>Events: </strong><a href="${charEvents2}" target="_blank">Marvel Universe has all events.</a><br></p>
+                <p class="card-text"><strong>Description: </strong>${charDesc2}<br>
+                    <strong>Comics: </strong><a href="${charComics2}" target="_blank">Find all  comics relating to ${charName2} here.</a><br>
+                    <strong>Stories: </strong><a href="${charStories2}" target="_blank">Read all news articles relating to  ${charName2}.</a><br>
+                    <strong>Series: </strong><a href="${charSeries2}" target="_blank">Here's our latest tv release for ${charName2}.</a><br>
+                    <strong>Events: </strong><a href="${charEvents2}" target="_blank">Marvel Universe has all events.</a><br>
+                </p>
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
@@ -171,29 +164,8 @@ function listCharacters(getcInfo) {
 }
 
 $("#new-chars").html(function() {
-    showChars();
+     showChars();
 });
-
-//////----- Creating my-favorites.HTML -----/////
-// Adding characters to my favorites page
-
-// var saveToFavs = document.getElementById("save-fav");
-
-// get fav characters from userCharacter based on id
-
-
-
-// function getFavCharactersFB(userCharsObj) {
-//     return $.ajax({
-//         url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
-//     }).done((getuInfo) => {
-//         console.log("user char ucInfo data", getuInfo);
-//         return getuInfo;
-//     }).fail((error) => {
-//         return error;
-//     });
-// }
-
 //here you get info from listChars or getCharactersFB
 
 function showFavChars() {
@@ -210,13 +182,17 @@ function showFavChars() {
 }
 // console.log("What's in showFavChars()", showFavChars());
 let showFavsDetails;
-
+let showFavsHeader;
+let noteDisplay;
 function favoritesDetailDOM(getuchInfo) {
     console.log("What is in getuchInfo", getuchInfo);
     let characterPromises = [];
     for(let myfav in getuchInfo) {
-        let myfavSaved = myfav.id;
-        console.log("my fav id getuchInfo", getuchInfo[myfav]);       
+        // let myfavSaved = myfav.id;
+        // let myAddNotes = getuchInfo[myfav].addNotes;
+
+        console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
+        console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
         showSingleCharacter(getuchInfo[myfav].id);
         }  
 }
@@ -226,120 +202,92 @@ $("#card-fav").html(favoritesDetailDOM());
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
     function displayFavCharacter(getInfo) {
-        showFavsDetails += 
-        `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+        showFavsHeader = `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
-            <div><h2>My Favorite Super Hero</h2></div>
-            <div class="card-deck">
+        <div><h2>My Favorite Super Hero</h2></div>`;
+
+        showFavsDetails += 
+        `<div class="card-deck">
             <div class="card col-4">
                 <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>Name: </strong> ${getInfo.name}</h5>
-                    <p class="card-text"><strong>Description: </strong>${getInfo.description}<br><strong>Comics: </strong><a href="${getInfo.comics}" target="_blank">Find all  comics relating to ${getInfo.name} here.</a><br><strong>Stories: </strong><a href="${getInfo.stories}" target="_blank">Read all news articles relating to  ${getInfo.name}.</a><br><strong>Series: </strong><a href="${getInfo.series}" target="_blank">Here's our latest tv release for ${getInfo.name}.</a><br><strong>Events: </strong><a href="${getInfo.events}" target="_blank">Marvel Universe has all events.</a><br></p>
+                    <p class="card-text"><strong>Description: </strong>${getInfo.description}<br>
+                    <strong>Comics: </strong><a href="${getInfo.comics}" target="_blank">Find all  comics relating to ${getInfo.name} here.</a><br>
+                    <strong>Stories: </strong><a href="${getInfo.stories}" target="_blank">Read all news articles relating to  ${getInfo.name}.</a><br>
+                    <strong>Series: </strong><a href="${getInfo.series}" target="_blank">Here's our latest tv release for ${getInfo.name}.</a><br>
+                    <strong>Events: </strong><a href="${getInfo.events}" target="_blank">Marvel Universe has all events.</a><br></p>
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right save-fav" id="getInfo[k].userCharid">Add to Fav</a>
-                    <a href="#" class="btn btn-primary float-right save-fav" id="${getInfo.userCharid}">Add to Fav</a>
+                    <a href="#" class="btn btn-primary float-right save-fav" id="${getInfo.userCharid}">Delete SuperHero</a>
                 </div>
             </div>
-            </div>`;
 
-    $("#body-container").html(showFavsDetails); 
+            <div class="card col-4">
+                <div class="card-body">
+                <p class="card-text">
+                    <div class="form-group" id="comment"></div>
+                </p>
+                </div>
+            </div
+        </div>`;
+
+
+    $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
 }
 
-
-// $("#my-favs").html(function() {
-    // displayFavCharacter();
-// .then((charsFavData) => {
-        //     console.log("What's in charsData", charsFavData);
-        
-        // let currentNotes = getuchInfo[myfav],
-        //    noteListItem = $("<div>", {class: "card col-4"}),
-        //    charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
-        //    notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
-        //    noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
-        //    noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
-
-        // $(".card-fav").append(noteListItem);
-
-    // let $showFavsDetails = $(`<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
-
-    // <div><h2>My Favorite Super Hero</h2></div>
-    // <div class="card card-fav"></div>`
-    // <div class="card-deck card-padding">
-    //         <div class="card col-4">
-    //             <img class="card-img-top" src="images/thor.png" alt="Card image cap">
-    //             <div class="card-body">
-    //                 <h5 class="card-title"><strong>Name: </strong> userFavCharId</h5>
-    //             </div>
-    //         </div>
-    //         <div class="card">
-    //       <div class="card-body">
-    //         <p class="card-text">
-    //             <div class="form-group">
-    //                 <h3 for="comment" class="card-title card-uppercase card-margin">Notes</h3>
-    //                 <textarea class="form-control" rows="10" id="comment">Season 3: In it, Matt is in much the same position we saw him at the end of The Defenders: half dead and being cared for by a group of nuns. One in particular should be his long-absent mother, which means a good portion of Daredevil season 3 could see Matt out of commission as Daredevil.
-    //                 </textarea>
-    //             </div></p>
-    //         <div class="card-footer">
-    //             <a href="#" class="btn btn-primary float-left notes disable">Save</a>
-    //             <a href="#" class="btn btn-primary float-right">Delete</a>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     </div>
-        
-        
-// );
-//     $(".body-container").html($showFavsDetails);
-
-    // for(let note in noteList) {
-    //  let currentNotes = noteList[myfav],
-    //     noteListItem = $("<div>", {class: "card col-4"}),
-    //     charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
-    //     notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
-    //     noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
-    //     noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
-
-    //  $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
-    // }
-
-// Build a Note Object buildNotesObj() is userChar 
-// in db-interaction page
-// function buildNotesObj() {
-//     let noteObj = {
-//         addNotes: $("#form-notes").val(),
-//         uid: user.getUser()
-//     };
-//     return noteObj;
-// }
+// $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
 
 // Build Notes area for each character added
-function characterNotes(note, charNotes) {
+// What is this function for? Ref in db-interaction
+//line 105.
+
+function makeNotesPageFormat(noteList) {
+    console.log("What's in notelist ", noteList);
+    noteDisplay = $(`
+        <div class="card-body">
+            <p class="card-text">
+                <div class="form-group" id="comment"></div>
+            </p>
+        </div>`);
+
+    for(let note in noteList) {
+            let currentNotes = noteList[note],
+            noteListItem = $("<h3>", {class: "card-title card-uppercase card-margin"}),
+            notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+            noteFooter = $("<div>", {class: "card-footer"}),
+            noteEdit = $("<div>", {"data-edit-id": note, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+            noteDelete = $("<div>", {"data-delete-id": note, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+    
+            $(".card").append(noteListItem.append(notesTitle).append(noteFooter).append(noteEdit).append(noteDelete));
+    }
+}
+
+function characterNotes(userCharacter, userCharacterId) {
     return new Promise(function (resolve, reject) {
         let charNotes = {
-            notes: note ? note.notes : "",
-            notesTitle: note ? `Edit "${note.title}"` : "Add My Notes",
-            saveNotesText: note ? "Save Notes" : "Save My Notes",
-            SaveEditBtn: note ? "save-edit-notes" : "save-new-notes"
+            addNotes: userCharacter ? userCharacter.addNotes : "",
+            notesTitle: userCharacter ? `Edit "${userCharacter.title}"` : "Add My Notes",
+            btnText: userCharacter ? "Save Notes" : "Save My Notes",
+            btnId: userCharacter ? "save-edit-notes" : "save-new-notes"
         },
         notes = 
         `<div class="card-body">
             <p class="card-text">
                 <div class="form-group">
-                    <h3 for="comment" class="card-title card-uppercase card-margin">${charNotes.notesTitle}</h3>
+                    <h3 id="comment" class="card-title card-uppercase card-margin">${charNotes.notesTitle}</h3>
                     <textarea class="form-control" id="form-notes" rows="10" id="comment" placeholder="title" value="my favorite super hero notes"></textarea>
-                    <button id="${charNotes}" class=${charNotes.SaveEditBtn}>${charNotes.saveNotesText}</button>`;
-                    resolve(notes);
+                    <button id="${userCharacterId}" class=${charNotes.btnId}>${charNotes.btnText}</button>
+                </div>
+            </p>
+        </div>`;
+        
+        resolve(notes);
     });
 }
 
 
-
-    // saveToFavs.innerHTML = favoritesDetailDOM();
-
-    ///----- Loading on to DOM after user logs in index.HTML -----/////
 
 module.exports = {
     showChars,
@@ -350,9 +298,35 @@ module.exports = {
     showSingleCharacter,
     getFavCharactersFB,
     showFavChars,
-    displayFavCharacter
+    displayFavCharacter,
+    makeNotesPageFormat
     // listFavCharacters
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div class="card-footer">
+//                 <a href="#" class="btn btn-primary float-left notes disable">Add Notes</a>
+//                 <a href="#" class="btn btn-primary float-right">Save Notes</a>
+//             </div>
+//           </div>
+
 
 /////----- Creating my-favorites.HTML -----/////
 // function myfavoritesDOM(myfav) {
@@ -477,3 +451,104 @@ module.exports = {
     //     let charStories = getcInfo[characters].stories;
     //     let charSeries = getcInfo[characters].series;
     //     let charEvents = getcInfo[characters].events;
+
+
+
+
+
+//// To delete this extra code below ///
+
+// $("#my-favs").html(function() {
+    // displayFavCharacter();
+// .then((charsFavData) => {
+        //     console.log("What's in charsData", charsFavData);
+        
+        // let currentNotes = getuchInfo[myfav],
+        //    noteListItem = $("<div>", {class: "card col-4"}),
+        //    charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
+        //    notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+        //    noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+        //    noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+        // $(".card-fav").append(noteListItem);
+
+    // let $showFavsDetails = $(`<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+
+    // <div><h2>My Favorite Super Hero</h2></div>
+    // <div class="card card-fav"></div>`
+    // <div class="card-deck card-padding">
+    //         <div class="card col-4">
+    //             <img class="card-img-top" src="images/thor.png" alt="Card image cap">
+    //             <div class="card-body">
+    //                 <h5 class="card-title"><strong>Name: </strong> userFavCharId</h5>
+    //             </div>
+    //         </div>
+    //         <div class="card">
+    //       <div class="card-body">
+    //         <p class="card-text">
+    //             <div class="form-group">
+    //                 <h3 for="comment" class="card-title card-uppercase card-margin">Notes</h3>
+    //                 <textarea class="form-control" rows="10" id="comment">Season 3: In it, Matt is in much the same position we saw him at the end of The Defenders: half dead and being cared for by a group of nuns. One in particular should be his long-absent mother, which means a good portion of Daredevil season 3 could see Matt out of commission as Daredevil.
+    //                 </textarea>
+    //             </div></p>
+    //         <div class="card-footer">
+    //             <a href="#" class="btn btn-primary float-left notes disable">Save</a>
+    //             <a href="#" class="btn btn-primary float-right">Delete</a>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     </div>
+        
+        
+// );
+//     $(".body-container").html($showFavsDetails);
+
+    // for(let note in noteList) {
+    //  let currentNotes = noteList[myfav],
+    //     noteListItem = $("<div>", {class: "card col-4"}),
+    //     charImage = $(".card-img-top").prepend($("<img>", {src: "images/dare-devil.png"})),
+    //     notesTitle = $("<textarea/>", {class: "form-control"}).text(currentNotes.notesTitle),
+    //     noteEdit = $("<div>", {"data-edit-id": myfav, class:"edit-btn btn btn-primary float-left notes", text: "Edit Notes"}),
+    //     noteDelete = $("<div>", {"data-delete-id": myfav, class:"delete-btn btn btn-primary float-right", text: "Delete Notes"});
+
+    //  $(".card").append(noteListItem.append(notesTitle).append(noteEdit).append(noteDelete));
+    // }
+
+// Build a Note Object buildNotesObj() is userChar 
+// in db-interaction page
+// function buildNotesObj() {
+//     let noteObj = {
+//         addNotes: $("#form-notes").val(),
+//         uid: user.getUser()
+//     };
+//     return noteObj;
+// }
+
+
+    // saveToFavs.innerHTML = favoritesDetailDOM();
+
+    ///----- Loading on to DOM after user logs in index.HTML -----/////
+
+    ////// End Delete extra code //////
+
+
+
+//////----- Creating my-favorites.HTML -----/////
+// Adding characters to my favorites page
+
+// var saveToFavs = document.getElementById("save-fav");
+
+// get fav characters from userCharacter based on id
+
+
+
+// function getFavCharactersFB(userCharsObj) {
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/characters.json?orderBy="uid"`
+//     }).done((getuInfo) => {
+//         console.log("user char ucInfo data", getuInfo);
+//         return getuInfo;
+//     }).fail((error) => {
+//         return error;
+//     });
+// }
