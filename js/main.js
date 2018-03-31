@@ -55,7 +55,8 @@ $("#log-out").click(function(){
 // Using the REST API
 function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
-    let currentUser = user.getUser();
+    let currentUser = `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`;
+    // let currentUser = user.getUser();
     db.getNotes(currentUser)
     .then((notesData) => {
         console.log("I got some super heroes here", notesData);
@@ -64,7 +65,7 @@ function loadMyNotesToDOM() {
 }
 // Send New Notes to FB and reload updated notes to DOM
 $(document).on("click", ".save-new-note", function() {
-    let noteObj = db.userChar;
+    let noteObj = db.userChar.addNotes;
     db.addNotes(noteObj)
     .then((userCharacterId) => {
         console.log("What's in the new noteObj ", userCharacterId);
@@ -85,7 +86,7 @@ $(document).on("click", ".edit-btn", function() {
 
 // Save edited notes to FB then reload DOM with updated notes Data
 $(document).on("click", ".save-notes-edit", function() {
-    let noteObj = db.userChar,
+    let noteObj = db.userChar.addNotes,
     charNotes = $(this).atrr("id");
     console.log("charNotes ", charNotes);
     db.editNotes(noteObj, charNotes)
