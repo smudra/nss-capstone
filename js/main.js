@@ -10,6 +10,7 @@ let $ = require('jquery'),
     user = require('./user'),
     userProfile = require('./user-profile'),
     characterDOMbuilder = require('./characterDOMbuilder'),
+    allSavedChars = require('./allSavedChars'),
     marvelCharacters = require('./marvel-characters');
 
     var firebase = require("firebase/app");
@@ -24,14 +25,7 @@ function createUserObj(fan) {
     };
     return userObj;
 }
-// var userCharacter = firebase.database().ref("userCharacter");
-// console.log(" user Character ", userCharacter);
-// buildUserCharObj(characters)
-// id: $("#characters").val(),
-//         uid: user.getUser().uid,
-//         charNotes: ""
-//     };
-//     return userChar;
+
 //------- When user clicks login --------//
 $("#login").click(function() {
     user.googlelogIn()
@@ -59,45 +53,46 @@ $("#log-out").click(function(){
 
 //-------- Load the Notes Area to DOM --------//
 // Using the REST API
-function loadMyFavsToDOM() {
+function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
     let currentUser = user.getUser();
-    db.getChars(currentUser)
+    db.getNotes(currentUser)
     .then((notesData) => {
         console.log("I got some super heroes here", notesData);
-        characterDOMbuilder.favoritesDetailDOM(notesData);
+        characterDOMbuilder.makeNotesPageFormat(notesData);
     });
 }
 // Send New Notes to FB and reload updated notes to DOM
-// $(document).on("click", ".save-new-note", function() {
-//     let noteObj = buildUserCharObj();
-//     db.addNotes(noteObj)
-//     .then((charNotes) => {
-//         console.log("What's in the new noteObj ", charNotes);
-//         loadMyFavsToDOM();
-//     });
-// });
+$(document).on("click", ".save-new-note", function() {
+    let noteObj = db.userChar;
+    db.addNotes(noteObj)
+    .then((userCharacterId) => {
+        console.log("What's in the new noteObj ", userCharacterId);
+        loadMyNotesToDOM();
+    });
+});
 
 // Get the notes from database for editing on DOM
-// $(document).on("click", ".edit-btn", function() {
-//     let charNotes = $(this).data("edit-id");
-//     db.getNotes(charNotes)
-//     .then((note) => {
-//         return characterDOMbuilder.characterNotes(userCharacter, saveNotes);
-//     }).then((finishedNote) => {
-//         $("card-deck card-padding").html(finishedNote);
-//     });
-// });
+$(document).on("click", ".edit-btn", function() {
+    let charNotes = $(this).data("edit-id");
+    db.getNotes(charNotes)
+    .then((note) => {
+        return characterDOMbuilder.characterNotes(note, charNotes);
+    }).then((finishedNote) => {
+        $(".card-padding").html(finishedNote);
+    });
+});
 
 // Save edited notes to FB then reload DOM with updated notes Data
-// $(document).on("click", ".save-notes-edit", function() {
-//     let noteObj = buildUserCharObj(),
-//     charNotes = $(this).atrr("id");
-//     db.editNotes(noteObj, charNotes)
-//     .then((data) => {
-//         loadMyFavsToDOM();
-//     });
-// });
+$(document).on("click", ".save-notes-edit", function() {
+    let noteObj = db.userChar,
+    charNotes = $(this).atrr("id");
+    console.log("charNotes ", charNotes);
+    db.editNotes(noteObj, charNotes)
+    .then((data) => {
+        loadMyNotesToDOM();
+    });
+});
 
 
 // Delete notes and reload the DOM with blank notes area --//
@@ -105,18 +100,18 @@ $(document).on("click", ".delete-btn", function() {
     let charNotes = $(this).data("delete-id");
     db.deleteNotes(charNotes)
     .then(() => {
-        loadMyFavsToDOM();
+        loadMyNotesToDOM();
     });
 });
 
-// buildNoteObj is in characterDOMbuilder.js
+// userChar is in db-interaction.js
 
-// I dont need this on click function form
+// Prints on the DOM click FORM function
 $("#comment").click(function() {
     console.log("Clicked the text area");
-    var notesArea = characterDOMbuilder.characterNotes()
-    .then(function(notesArea) {
-        $(".body-container").html(notesArea);
+    var characterNotes = characterDOMbuilder.characterNotes()
+    .then(function(characterNotes) {
+        $(".body-container").html(characterNotes);
     });
 });
 
@@ -128,7 +123,7 @@ $("#login").click(function() {
         user.setUser(result.user.uid);
         $("#login").addClass("is-hidden");
         $("#log-out").removeClass("is-hidden");
-        loadMyFavsToDOM();
+        loadMyNotesToDOM();
     });
 });
 
@@ -138,10 +133,9 @@ $("#login").click(function() {
 //     console.log(event.target.id);
 //     var id = event.target.id;
 
-//     var myFav = build.buildUserCharObj(id);
+//     var myFav = build.userChar(id);
 //     db.saveMyFavChar(myFav);
 // });
-
 
 
 

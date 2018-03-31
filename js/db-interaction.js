@@ -7,13 +7,20 @@ let $ = require('jquery'),
     provider = new firebase.auth.GoogleAuthProvider(),
     characterDOMbuilder = require('./characterDOMbuilder'),
     marvelCharacters = require('./marvel-characters'),
-    user = require("./user");
+    user = require("./user"),
+    allSavedChars = require('./allSavedChars');
 
     let userChar = {
         id: "",
-        charNotes: "",
+        addNotes: "",
         uid: user.getUser()
     };
+
+    // let userChar = {
+    //     id: "",
+    //     addNotes: $("#form-notes").val(),
+    //     uid: user.getUser()
+    // }; 
 // console.log(" what's in user Character", user.getUser(), user);
 
 
@@ -95,12 +102,13 @@ function addMyFavCharFB(userChar) {
     });
 }
 
+// What is makeCharacterPageFormat
 //When loading sav fav page user needs to log in
 function loadMyFavCharToDom() {
     let currentUser = user.getUser();
     characterDOMbuilder.showSingleCharacter(currentUser)
     .then((characters) => {
-        characterDOMbuilder.makeCharacterPageFormat(characters);
+        characterDOMbuilder.makeNotesPageFormat(characters);
     });
 }
 
@@ -115,16 +123,15 @@ function saveBtn(e) {
     userChar.uid = user.getUser();
     addMyFavCharFB(userChar);
     characterDOMbuilder.showFavChars();
-    // $("#card-fav").html(characterDOMbuilder.showFavChars());
 }
 // Event listener for save button
     
-        $(document).on("click", ".save-fav", function(e) {
-            saveBtn(e);
-        });
+    $(document).on("click", ".save-fav", function(e) {
+        saveBtn(e);
+    });
 
-// load fav area after login
-function getChars(currentUser) {
+// load notes area after login
+function getNotes(currentUser) {
     return $.ajax ({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="uid"&equalTo="${currentUser}"`
     }).done((notesData) => {
@@ -132,9 +139,10 @@ function getChars(currentUser) {
     });
 }
 
+// Load Notes to DOM
 
-
-// POST - Submits data to be processed to a userCharacter. Takes one parameter
+// POST - Submits Notes to be processed to userCharacter
+// collection in FB. Takes one parameter
 function addNotes(noteObj) {
     return $.ajax({
         // add notes in the collection
@@ -181,6 +189,28 @@ function editNotes(noteObj, charNotes) {
     });
 }
 
+module.exports = {
+    getFBDetails,
+    addUserFB,
+    updateUserFB,
+    createUser,
+    loginUser,
+    saveBtn,
+    addMyFavCharFB
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 // function addMyFavCharFB(myFav) {
 //     return $.ajax ({
 //         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
@@ -199,26 +229,6 @@ function editNotes(noteObj, charNotes) {
 //     console.log("The user Characters has a problem");
 //     return error;
 // });
-
-module.exports = {
-    getFBDetails,
-    addUserFB,
-    updateUserFB,
-    createUser,
-    loginUser,
-    saveBtn,
-    addMyFavCharFB
-    // characterNotes
-};
-
-
-
-
-
-
-
-
-
 
 
 // function setCharObj(obj) {
