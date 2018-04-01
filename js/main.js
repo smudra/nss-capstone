@@ -25,14 +25,7 @@ function createUserObj(fan) {
     };
     return userObj;
 }
-// function addNotesObj() {
-//     let noteObj = {
-        
-//         addNotes: $("#comment").val(),
-//         uid: user.getUser()
-//     };
-//     return noteObj;
-// }
+
 
 //------- When user clicks login --------//
 $("#login").click(function() {
@@ -71,15 +64,37 @@ function loadMyNotesToDOM() {
         characterDOMbuilder.displayFavCharacter(notesData);
     });
 }
+
+// function addNotesObj() {
+//     let noteObj = {
+//         id: "",
+//         addNotes: $("#comment").val(),
+//         uid: user.getUser()
+//     };
+//     return noteObj;
+// }
+
+var userCharNotes = characterDOMbuilder.userCharInfo;
+
+
+// var userCharInfo = document.getElementById("#comment").value;
+// var userCharInfo = $("#comment").val();
+console.log("Text area notes should come here", userCharNotes);
+// $('#comment').val(userCharInfo);
+
+
+
 // Send New Notes to FB and reload updated notes to DOM
+
 $(document).on("click", ".save-new-note", function() {
     let noteObj = db.userChar;
-    let noteID = characterDOMbuilder.editButtonId();
-    // let noteID = $(this).data("myFavID");
+    // let noteID = characterDOMbuilder.editButtonId().val();
+    $('#comment').val(userCharNotes);
+    // let charNotes = $(".form-control").val();
     // let songID = $(this).data("delete-id");
 
-    console.log("What's in the revised noteObj ", user.getUser());
-    console.log("noteID characterDOMbuilder.editButtonId() ", noteID);
+    // console.log("This should contain text box notes: char Notes", noteID);
+    // console.log("This noteID should have character Key", noteID);
 
     db.editNotes(noteObj)
     .then((userCharacterId) => {

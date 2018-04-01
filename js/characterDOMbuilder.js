@@ -56,7 +56,7 @@ let showSingleCharacter = (id, addingNotes, myFavId) => {
         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
     }).done((getInfo) => {
         console.log("What's in showSingleChar: , Add Notes: , myFavID: ", id, addingNotes, myFavId);
-        displayFavCharacter(getInfo, addingNotes, myFavId);
+        displayFavCharacter(getInfo, addingNotes, myFavId, id);
             resolve (getInfo.responseJSON);
         }).fail((error) => {
             return reject(error);
@@ -80,7 +80,7 @@ function showFavChars() {
 }
 
 function favoritesDetailDOM(getuchInfo) {
-    // console.log("What is in getuchInfo", getuchInfo);
+    console.log("What is in getuchInfo", getuchInfo);
     let characterPromises = [];
     for(let myfav in getuchInfo) {
 
@@ -193,13 +193,15 @@ let showFavsHeader;
 let noteDisplay;
 let loadNotes;
 let dispMyFavid;
+let dispMyCharid;
 
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
-    function displayFavCharacter(getInfo, addingNotes, myFavID) {
+    function displayFavCharacter(getInfo, addingNotes, myFavID, id) {
         dispMyFavid = myFavID;
+        dispMyCharid = id;
         
-        // console.log("What's in dispMyFavid?" , dispMyFavid);
+        console.log("This should have character ID" , dispMyFavid);
 
         // console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
 
@@ -232,7 +234,8 @@ let dispMyFavid;
                             <h3 class="card-title card-uppercase card-margin">Notes</h3>
                             <textarea class="form-control" rows="10" id=${dispMyFavid}>${addingNotes}
                             </textarea>
-                        </div></p>
+                        </div>
+                        </p>
                     <div class="card-footer">
                         <a href="#" class="btn btn-primary float-left notes save-new-note ">Save / Edit</a>
                         <a href="#" class="btn btn-primary float-right save-notes-edit">Edit Notes</a>
@@ -244,14 +247,23 @@ let dispMyFavid;
 
     $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
 
+// var userCharInfo = document.getElementById("#comment").value;
+var notevalue = dispMyFavid.addingNotes; 
+console.log("Text area notes should come here", notevalue);
+
+
     return dispMyFavid;
 }
-
 // let buttonID = null;
 
 function editButtonId() {
     return dispMyFavid;
 }
+
+// working code --- Save this ---
+// {/* <textarea class="form-control" rows="10" id=${dispMyFavid}>${addingNotes}
+//                             </textarea>
+//  */}
 
 
 // $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
