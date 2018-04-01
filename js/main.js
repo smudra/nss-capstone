@@ -74,10 +74,13 @@ function loadMyNotesToDOM() {
 // Send New Notes to FB and reload updated notes to DOM
 $(document).on("click", ".save-new-note", function() {
     let noteObj = db.userChar;
-    let noteID = $(this).data("myFavID");
+    let noteID = characterDOMbuilder.editButtonId();
+    // let noteID = $(this).data("myFavID");
     // let songID = $(this).data("delete-id");
 
     console.log("What's in the revised noteObj ", user.getUser());
+    console.log("noteID characterDOMbuilder.editButtonId() ", noteID);
+
     db.editNotes(noteObj)
     .then((userCharacterId) => {
         console.log("What's in the new noteObj ", userCharacterId);
