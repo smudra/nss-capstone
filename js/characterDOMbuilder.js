@@ -29,7 +29,7 @@ function getFavCharactersFB(charsObj) {
     }).done((getAhaInfo) => {
         return getAhaInfo;
     }).then((newInfo) => {
-        console.log("user char newucInfo data", newInfo);
+        // console.log("user char newucInfo data", newInfo);
         return newInfo;
     }).fail((error) => {
         return error;
@@ -69,7 +69,7 @@ let showSingleCharacter = (id, addingNotes, myFavId) => {
 function showFavChars() {
     getFavCharactersFB(event)
     .then((getuchInfo) => {
-        console.log("Anything should happen", getuchInfo);
+        // console.log("Anything should happen", getuchInfo);
         var idFavs = Object.keys(getuchInfo);
         idFavs.forEach((key) => {
             getuchInfo[key].userFavid = key;
@@ -80,15 +80,13 @@ function showFavChars() {
 }
 
 function favoritesDetailDOM(getuchInfo) {
-    console.log("What is in getuchInfo", getuchInfo);
+    // console.log("What is in getuchInfo", getuchInfo);
     let characterPromises = [];
     for(let myfav in getuchInfo) {
-        // let myfavSaved = myfav.id;
-        // let myAddNotes = getuchInfo[myfav].addNotes;
 
-        console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
-        console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
-        console.log("my fav userFavid", getuchInfo[myfav].userFavid);
+        // console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
+        // console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
+        // console.log("my fav userFavid", getuchInfo[myfav].userFavid);
         showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes, getuchInfo[myfav].userFavid);
         }  
 }
@@ -201,9 +199,9 @@ let dispMyFavid;
     function displayFavCharacter(getInfo, addingNotes, myFavID) {
         dispMyFavid = myFavID;
         
-        console.log("What's in dispMyFavid?" , dispMyFavid);
+        // console.log("What's in dispMyFavid?" , dispMyFavid);
 
-        console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
+        // console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
 
         showFavsHeader = `<h2><a href="index.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
