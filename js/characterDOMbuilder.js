@@ -50,13 +50,13 @@ function showChars() {
     });
 } 
 
-let showSingleCharacter = (id, addingNotes) => { 
+let showSingleCharacter = (id, addingNotes, myFavId) => { 
     return new Promise((resolve, reject) => {
        return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
     }).done((getInfo) => {
-        console.log("What's in showSingleChar: , Add Notes: ", id, addingNotes);
-        displayFavCharacter(getInfo, addingNotes);
+        console.log("What's in showSingleChar: , Add Notes: , myFavID: ", id, addingNotes, myFavId);
+        displayFavCharacter(getInfo, addingNotes, myFavId);
             resolve (getInfo.responseJSON);
         }).fail((error) => {
             return reject(error);
@@ -88,7 +88,8 @@ function favoritesDetailDOM(getuchInfo) {
 
         console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
         console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
-        showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes);
+        console.log("my fav userFavid", getuchInfo[myfav].userFavid);
+        showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes, getuchInfo[myfav].userFavid);
         }  
 }
 $("#card-fav").html(favoritesDetailDOM()); 
@@ -193,12 +194,12 @@ let showFavsDetails;
 let showFavsHeader;
 let noteDisplay;
 let loadNotes;
+let dispMyFavid;
 
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
-    function displayFavCharacter(getInfo, addingNotes) {
-
-        console.log("What's in loadNotes? ", addingNotes);
+    function displayFavCharacter(getInfo, addingNotes, myFavID) {
+        // console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
 
         showFavsHeader = `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
@@ -226,13 +227,13 @@ let loadNotes;
                 <div class="card-body">
                     <p class="card-text">
                         <div class="form-group">
-                            <h3 for="comment" class="card-title card-uppercase card-margin">Notes</h3>
-                            <textarea class="form-control" rows="10" id="comment">${addingNotes}
+                            <h3 class="card-title card-uppercase card-margin">Notes</h3>
+                            <textarea class="form-control" rows="10" id=${myFavID}>${addingNotes}
                             </textarea>
                         </div></p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary float-left notes save-new-note save-notes-edit">Save</a>
-                        <a href="#" class="btn btn-primary float-right edit-btn">Edit Notes</a>
+                        <a href="#" class="btn btn-primary float-left notes save-new-note ">Save / Edit</a>
+                        <a href="#" class="btn btn-primary float-right save-notes-edit">Edit Notes</a>
                     </div>
                 </div>
             </div>
@@ -249,7 +250,7 @@ let loadNotes;
 //line 105.
 
 function makeNotesPageFormat(noteList) {
-    console.log("What's in notelist. It comes undefined ", noteList);
+    // console.log("What's in notelist. It comes undefined ", noteList);
     noteDisplay = $(`
         <div class="card-body">
             <p class="card-text">
