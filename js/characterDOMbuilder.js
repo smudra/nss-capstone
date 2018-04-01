@@ -199,15 +199,19 @@ let dispMyFavid;
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
     function displayFavCharacter(getInfo, addingNotes, myFavID) {
-        // console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
+        dispMyFavid = myFavID;
+        
+        console.log("What's in dispMyFavid?" , dispMyFavid);
 
-        showFavsHeader = `<h2><a href="my-favorites.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+        console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
+
+        showFavsHeader = `<h2><a href="index.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
 
         <div><h2>My Favorite Super Hero</h2></div>`;
 
         showFavsDetails += 
         `<div class="card-deck">
-            <div class="card col-4">
+            <div class="card">
                 <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>Name: </strong> ${getInfo.name}</h5>
@@ -228,7 +232,7 @@ let dispMyFavid;
                     <p class="card-text">
                         <div class="form-group">
                             <h3 class="card-title card-uppercase card-margin">Notes</h3>
-                            <textarea class="form-control" rows="10" id=${myFavID}>${addingNotes}
+                            <textarea class="form-control" rows="10" id=${dispMyFavid}>${addingNotes}
                             </textarea>
                         </div></p>
                     <div class="card-footer">
@@ -241,7 +245,16 @@ let dispMyFavid;
 
 
     $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
+
+    return dispMyFavid;
 }
+
+// let buttonID = null;
+
+function editButtonId() {
+    return dispMyFavid;
+}
+
 
 // $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
 
@@ -309,8 +322,8 @@ module.exports = {
     getFavCharactersFB,
     showFavChars,
     displayFavCharacter,
-    makeNotesPageFormat
-    // listFavCharacters
+    makeNotesPageFormat,
+    editButtonId
 };
 
 
