@@ -6,9 +6,7 @@ let $ = require('jquery'),
     currentUser = null,
     provider = new firebase.auth.GoogleAuthProvider(),
     characterDOMbuilder = require('./characterDOMbuilder'),
-    marvelCharacters = require('./marvel-characters'),
-    user = require("./user"),
-    allSavedChars = require('./allSavedChars');
+    user = require("./user");
 
     let userChar = {
         id: "",
@@ -22,7 +20,17 @@ let $ = require('jquery'),
     //     uid: user.getUser()
     // }; 
 // console.log(" what's in user Character", user.getUser(), user);
+// function makeFBCall(url) {
+//     return $.ajax({
+//         url: url,
+//         dataType: "json"
+//     });
+// }
 
+// makeFBCall(`${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`)
+// .then((characters, user, userCharacter) => {
+//     characterDOMbuilder.makeNotesPageFormat(noteList)
+// })
 
 function getFBDetails(user) {
     return $.ajax({
@@ -143,12 +151,12 @@ function getNotes(currentUser) {
 
 // POST - Submits Notes to be processed to userCharacter
 // collection in FB. Takes one parameter
-function addNotes(noteObj) {
+function addNotes(noteFormObj) {
     return $.ajax({
         // add notes in the collection
         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
         type: 'POST',
-        data: JSON.stringify(noteObj),
+        data: JSON.stringify(noteFormObj),
         dataType: 'json'
     }).done((charNotes) => {
         return charNotes;
@@ -156,9 +164,10 @@ function addNotes(noteObj) {
 }
 
 // Function to delete Notes info
-function deleteNotes(charNotes) {
+function deleteNotes(userCharacterId) {
+    console.log("deleteNotes userCharacterId", userCharacterId);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`,
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
         method: "DELETE"
     }).done((data) => {
         return data;
@@ -166,12 +175,13 @@ function deleteNotes(charNotes) {
 }
 
 // function for userCharacter notes
-function getNotes(charNotes) {
+function getNote(userCharacterId) {
+    console.log("getNote userCharacterId", userCharacterId);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
-    }).done((note) => {
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`
+    }).done((notesData) => {
         // console.log("Let's see notes", note);
-        return note;
+        return notesData;
     });
 }
 
@@ -179,11 +189,12 @@ function getNotes(charNotes) {
 // GET - Requests/read data from a specified source
 // PUT - Update data to a specified resource.
 // Takes two parameters.
-function editNotes(noteObj, charNotes) {
+function editNotes(noteFormObj, userCharacterId) {
+    console.log("editNotes noteFormObj, userCharacterId", noteFormObj, userCharacterId);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`,
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
         type: 'PUT',
-        data: JSON.stringify(noteObj)
+        data: JSON.stringify(noteFormObj)
     }).done((data) => {
         return data;
     });
@@ -196,7 +207,12 @@ module.exports = {
     createUser,
     loginUser,
     saveBtn,
-    addMyFavCharFB
+    addMyFavCharFB,
+    getNotes,
+    addNotes,
+    deleteNotes,
+    getNote,
+    editNotes
 };
 
 
