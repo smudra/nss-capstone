@@ -15,7 +15,7 @@ var firebase = require("firebase/app");
 var provider = new firebase.auth.GoogleAuthProvider();
     
 let currentUser = null;
-let characterName = null;
+// let characterName = null;
 
 
 // User login and log out functions

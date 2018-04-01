@@ -25,6 +25,14 @@ function createUserObj(fan) {
     };
     return userObj;
 }
+// function addNotesObj() {
+//     let noteObj = {
+        
+//         addNotes: $("#comment").val(),
+//         uid: user.getUser()
+//     };
+//     return noteObj;
+// }
 
 //------- When user clicks login --------//
 $("#login").click(function() {
@@ -55,18 +63,22 @@ $("#log-out").click(function(){
 // Using the REST API
 function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
-    let currentUser = `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`;
+    let currentUser = user.getUser();
     // let currentUser = user.getUser();
     db.getNotes(currentUser)
     .then((notesData) => {
         console.log("I got some super heroes here", notesData);
-        characterDOMbuilder.makeNotesPageFormat(notesData);
+        characterDOMbuilder.displayFavCharacter(notesData);
     });
 }
 // Send New Notes to FB and reload updated notes to DOM
 $(document).on("click", ".save-new-note", function() {
-    let noteObj = db.userChar.addNotes;
-    db.addNotes(noteObj)
+    let noteObj = db.userChar;
+    let noteID = $(this).data("myFavID");
+    // let songID = $(this).data("delete-id");
+
+    console.log("What's in the revised noteObj ", user.getUser());
+    db.editNotes(noteObj)
     .then((userCharacterId) => {
         console.log("What's in the new noteObj ", userCharacterId);
         loadMyNotesToDOM();
@@ -86,8 +98,9 @@ $(document).on("click", ".edit-btn", function() {
 
 // Save edited notes to FB then reload DOM with updated notes Data
 $(document).on("click", ".save-notes-edit", function() {
-    let noteObj = db.userChar.addNotes,
-    charNotes = $(this).atrr("id");
+    console.log("I'm inside the edit button notes");
+    let noteObj = db.userChar,
+    charNotes = $(this).attr("id");
     console.log("charNotes ", charNotes);
     db.editNotes(noteObj, charNotes)
     .then((data) => {

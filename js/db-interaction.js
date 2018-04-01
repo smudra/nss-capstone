@@ -139,9 +139,9 @@ function saveBtn(e) {
     });
 
 // load notes area after login
-function getNotes(currentUser) {
+function getNotes(charNotes) {
     return $.ajax ({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="uid"&equalTo="${currentUser}"`
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
     }).done((notesData) => {
         return notesData;
     });
