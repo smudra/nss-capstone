@@ -65,38 +65,11 @@ function loadMyNotesToDOM() {
     });
 }
 
-// function addNotesObj() {
-//     let noteObj = {
-//         id: "",
-//         addNotes: $("#comment").val(),
-//         uid: user.getUser()
-//     };
-//     return noteObj;
-// }
-
-var userCharNotes = characterDOMbuilder.userCharInfo;
-
-
-// var userCharInfo = document.getElementById("#comment").value;
-// var userCharInfo = $("#comment").val();
-console.log("Text area notes should come here", userCharNotes);
-// $('#comment').val(userCharInfo);
-
 let noteID;
 let noteInput;
 let noteObjText;
-// function noteInputText() {
-//     $( "textarea" )
-//     .keyup(function() {
-//         var noteInput = $( this ).val();
-//         $( "${myFavs.addNotes}" ).text( noteInput );
-//     })
-//     .keyup();
-// }
-//  $("textarea:text").val();
-//     console.log("value of textarea ", $("textarea:text").val());
 $(document).on("click", ".save-new-note", function(e) {
-   console.log("e inside function", e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3]);
+//    console.log("e inside function", e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3]);
 
    let textareaId = e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3].id;
     let noteObj = db.userChar;
@@ -104,30 +77,21 @@ $(document).on("click", ".save-new-note", function(e) {
     noteID = $("#" + textareaId)["0"];
     // noteInput = noteInputText();
     noteObjText = characterDOMbuilder.editButtonId();
-    console.log("This noteID should have character Key", noteID);
+    // console.log("This noteID should have character Key", noteID);
     let noteIDobj = {
         addNotes: textNotes
     };
     
-    console.log("Text notes value", textNotes);
-
-    console.log("noteIDObj should have noteID, addnotes and user uid", noteIDobj);
-    // console.log("noteInput should have anything added in the textbox", noteInput);
-    // $('#comment').val(userCharNotes);
-    // let charNotes = $(".form-control").val();
-    // let songID = $(this).data("delete-id");
-
-    console.log("This should contain user Character Record of Save button: Whole Rec", noteID, noteID.id);
+    // console.log("Text notes value", textNotes);
+    // console.log("noteIDObj should have noteID, addnotes and user uid", noteIDobj);
+    // console.log("This should contain user Character Record of Save button: Whole Rec", noteID, noteID.id);
     
-
-    db.editNotes(noteIDobj, noteID.id)
+db.editNotes(noteIDobj, noteID.id)
     .then((userCharacterId) => {
         console.log("What's in the new noteObj ", userCharacterId);
         loadMyNotesToDOM();
     });
 });
-
-
 
 // Delete notes and reload the DOM with blank notes area --//
 $(document).on("click", ".delete-btn", function(e) {
@@ -142,123 +106,34 @@ $(document).on("click", ".delete-btn", function(e) {
 });
 
 
-//// ---- Working code ---- ////
-// Send New Notes to FB and reload updated notes to DOM
-
-// $(document).on("click", ".save-new-note", function() {
-//     let noteObj = db.userChar;
-//     noteID = characterDOMbuilder.editButtonId();
-//     let noteIDobj = {
-//         id: noteID.id,
-//         addNotes: noteID.addNotes,
-//         uid: noteID.uid
-//     };
-    
-//     console.log("noteIDObj should have noteID, addnotes and user uid", noteIDobj);
-//     // $('#comment').val(userCharNotes);
-//     // let charNotes = $(".form-control").val();
-//     // let songID = $(this).data("delete-id");
-
-//     console.log("This should contain user Character Record of Save button: Whole Rec", noteID, noteID.id);
-//     // console.log("This noteID should have character Key", noteID);
-
-//     db.editNotes(noteIDobj, noteID.userFavid)
-//     .then((userCharacterId) => {
-//         console.log("What's in the new noteObj ", userCharacterId);
+// Save edited notes to FB then reload DOM with updated notes Data
+// $(document).on("click", ".save-notes-edit", function() {
+//     console.log("I'm inside the edit button notes");
+//     let noteObj = db.userChar,
+//     charNotes = $(this).attr("id");
+//     console.log("charNotes ", charNotes);
+//     db.editNotes(noteObj, charNotes)
+//     .then((data) => {
 //         loadMyNotesToDOM();
 //     });
 // });
 
-////// ----- End Working code ----- ///
-// Get the notes from database for editing on DOM
-// $(document).on("click", ".edit-btn", function() {
-//     let charNotes = $(this).data("edit-id");
-//     db.getNotes(charNotes)
-//     .then((note) => {
-//         return characterDOMbuilder.characterNotes(note, charNotes);
-//     }).then((finishedNote) => {
-//         $(".card-padding").html(finishedNote);
-//     });
-// });
-
-// Save edited notes to FB then reload DOM with updated notes Data
-$(document).on("click", ".save-notes-edit", function() {
-    console.log("I'm inside the edit button notes");
-    let noteObj = db.userChar,
-    charNotes = $(this).attr("id");
-    console.log("charNotes ", charNotes);
-    db.editNotes(noteObj, charNotes)
-    .then((data) => {
-        loadMyNotesToDOM();
-    });
-});
-
 // userChar is in db-interaction.js
-
 // Prints on the DOM click FORM function
 $("#comment").click(function() {
-    console.log("Clicked the text area");
     var characterNotes = characterDOMbuilder.characterNotes()
     .then(function(characterNotes) {
         $(".body-container").html(characterNotes);
     });
 });
 
-//-------- Save char info to Firebase --------//
-$("#login").click(function() {
-    user.googlelogIn()
-    .then((result) => {
-        console.log("result from login ", result.user.uid);
-        user.setUser(result.user.uid);
-        $("#login").addClass("is-hidden");
-        $("#log-out").removeClass("is-hidden");
-        loadMyNotesToDOM();
-    });
-});
-
-
-// $(document).on("click", "#save-fav", function() {
-//     console.log("saving my fav hero");
-//     console.log(event.target.id);
-//     var id = event.target.id;
-
-//     var myFav = build.userChar(id);
-//     db.saveMyFavChar(myFav);
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// //-------- Save User info to Firebase --------//
 // $("#login").click(function() {
 //     user.googlelogIn()
 //     .then((result) => {
-//         db.addUserFB(build.buildUserObj(result.addUserFB.displayName, result.user.uid, result.user.photoURL));
 //         user.setUser(result.user.uid);
-//         // $("#login").addClass("no-user");
-//         // $("#user-pic").removeClass("no-user").html(`img src="${result.user.photoURL}" alt="${result.user.displayName} photo from Google User" class="profPic">`);
-//         userID = result.user.uid;
-//         console.log("login complete!", userID);
-//         // sendToFirebase();
+//         $("#login").addClass("is-hidden");
+//         $("#log-out").removeClass("is-hidden");
+//         loadMyNotesToDOM();
 //     });
 // });
-
-// function sendToFirebase() {
-//     let userBuilder = build.buildUserObj();
-//     // build comes from buildFBObj. 
-//     console.log("What's in userBuilder ", userBuilder);
-//     db.addUserFB(userBuilder);
-//     // db comes from addUserFB in db - interaction. 
-// }
