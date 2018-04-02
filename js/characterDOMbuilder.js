@@ -197,6 +197,7 @@ let loadNotes;
 let dispMyFavid;
 let dispMyCharid;
 let dispMyFavs;
+let userCharInfo;
 
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
@@ -216,7 +217,7 @@ let dispMyFavs;
         <div><h2>My Favorite Super Hero</h2></div>`;
 
         showFavsDetails += 
-        `<div class="card-deck">
+        `<div class="card-deck" data-card-deck-id=${myFavs.userFavid}>
             <div class="card">
                 <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
                 <div class="card-body">
@@ -229,7 +230,7 @@ let dispMyFavs;
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id">Delete SuperHero</a>
+                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid}>Delete SuperHero</a>
                 </div>
             </div>
 
@@ -238,12 +239,12 @@ let dispMyFavs;
                     <p class="card-text">
                         <div class="form-group">
                             <h3 class="card-title card-uppercase card-margin">Notes</h3>
-                            <textarea class="form-control" rows="10" id=${myFavs.userFavid} value="${myFavs.addNotes}">${myFavs.addNotes}
+                            <textarea class="form-control" rows="10" id=${myFavs.userFavid}>${myFavs.addNotes}
                             </textarea>
                         </div>
                         </p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary float-left notes save-new-note ">Save / Edit</a>
+                        <a href="#" class="btn btn-primary float-left notes save-new-note">Save / Edit</a>
                         <a href="#" class="btn btn-primary float-right save-notes-edit">Edit Notes</a>
                     </div>
                 </div>
@@ -252,7 +253,7 @@ let dispMyFavs;
 
     $("#body-container").html(showFavsDetails).prepend(showFavsHeader);
 
-// var userCharInfo = document.getElementById("#").value;
+    // userCharInfo = $("#myFavs.userFavid").value;
 // var notevalue = dispMyFavid.addingNotes; 
 // console.log("Text area notes should come here", dispMyFavs);
 
