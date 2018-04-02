@@ -26,8 +26,8 @@ function createUserObj(fan) {
     return userObj;
 }
 
-//------- When user clicks login --------//
 
+//------- When user clicks login --------//
 $("#login").click(function() {
     user.googlelogIn()
     .then((result) => {
@@ -37,6 +37,7 @@ $("#login").click(function() {
         sendToFirebase();
     });
 });
+
 
 //-------- Send user info to Firebase --------//
 
@@ -56,7 +57,6 @@ $("#log-out").click(function(){
 function loadMyNotesToDOM() {
     console.log("Need some Super Heroes here");
     let currentUser = user.getUser();
-    // let currentUser = user.getUser();
     db.getNotes(currentUser)
     .then((notesData) => {
         console.log("I got some super heroes here", notesData);
@@ -64,13 +64,15 @@ function loadMyNotesToDOM() {
     });
 }
 
+
 let noteID;
 let noteInput;
 let noteObjText;
-$(document).on("click", ".save-new-note", function(e) {
+$(document).on("click", ".save-new-note", function($e) {
+    $e.preventDefault();
 //    console.log("e inside function", e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3]);
 
-   let textareaId = e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3].id;
+   let textareaId = $e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3].id;
     let noteObj = db.userChar;
     let textNotes = $("#" + textareaId)["0"].value;
     noteID = $("#" + textareaId)["0"];
@@ -92,18 +94,36 @@ db.editNotes(noteIDobj, noteID.id)
     });
 });
 
+
+
 // Delete notes and reload the DOM with blank notes area --//
-$(document).on("click", ".delete-btn", function(e) {
-    console.log("e", e);
-    
-    db.deleteNotes(e.currentTarget.dataset.id)
+$(document).on("click", ".delete-btn", function($e) {
+    $e.preventDefault();
+    console.log("e target the card", $($e.currentTarget).closest("#" + $e.currentTarget.dataset.id));
+
+    $($e.currentTarget).closest(".card-deck").remove();
+    // console.log("e.currentTarget.dataset.id", e.currentTarget.dataset.id);
+    db.deleteNotes($e.currentTarget.dataset.id)
     .then(() => {
         // function get rid of the card deck
         // parentnode or data id to target the card deck
-        loadMyNotesToDOM();
+        // characterDOMbuilder.showFavChars();
+        // window.location.reload();
     });
 });
 
+
+// Save edited notes to FB then reload DOM with updated notes Data
+// $(document).on("click", ".save-notes-edit", function() {
+//     console.log("I'm inside the edit button notes");
+//     let noteObj = db.userChar,
+//     charNotes = $(this).attr("id");
+//     console.log("charNotes ", charNotes);
+//     db.editNotes(noteObj, charNotes)
+//     .then((data) => {
+//         loadMyNotesToDOM();
+//     });
+// });
 
 // userChar is in db-interaction.js
 // Prints on the DOM click FORM function
@@ -111,5 +131,16 @@ $("#comment").click(function() {
     var characterNotes = characterDOMbuilder.characterNotes()
     .then(function(characterNotes) {
         $(".body-container").html(characterNotes);
+    });
+});
+
+//-------- Save char info to Firebase --------//
+$("#login").click(function() {
+    user.googlelogIn()
+    .then((result) => {
+        user.setUser(result.user.uid);
+        $("#login").addClass("is-hidden");
+        $("#log-out").removeClass("is-hidden");
+        loadMyNotesToDOM();
     });
 });
