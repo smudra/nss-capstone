@@ -14,24 +14,6 @@ let $ = require('jquery'),
         uid: user.getUser()
     };
 
-    // let userChar = {
-    //     id: "",
-    //     addNotes: $("#form-notes").val(),
-    //     uid: user.getUser()
-    // }; 
-// console.log(" what's in user Character", user.getUser(), user);
-// function makeFBCall(url) {
-//     return $.ajax({
-//         url: url,
-//         dataType: "json"
-//     });
-// }
-
-// makeFBCall(`${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`)
-// .then((characters, user, userCharacter) => {
-//     characterDOMbuilder.makeNotesPageFormat(noteList)
-// })
-
 function getFBDetails(user) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}//user.json?orderBy="uid"&equalTo="${user}"`
@@ -96,7 +78,6 @@ function googleLogOut() {
 /////----- Adding characters to my favorites -----/////
 // Put characters in FB
 function addMyFavCharFB(userChar) {
-    console.log("User Character here JSON.stringify(userChar)", JSON.stringify(userChar));
     return $.ajax ({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
         type: 'POST',
@@ -105,7 +86,6 @@ function addMyFavCharFB(userChar) {
     }).done((charData) => {
         return charData;
     }).fail((error) => {
-        // console.log("The addMyFAVCharFB has errored out");
         return error;
     });
 }
@@ -116,7 +96,7 @@ function loadMyFavCharToDom() {
     let currentUser = user.getUser();
     characterDOMbuilder.showSingleCharacter(currentUser)
     .then((characters) => {
-        characterDOMbuilder.makeNotesPageFormat(characters);
+        characterDOMbuilder.displayFavCharacter(characters);
     });
 }
 
@@ -127,7 +107,6 @@ $("#card-fav").click(function() {
 
 function saveBtn(e) {
     userChar.id = e.target.id;
-    console.log("e.target.id", e.target.id);
     userChar.uid = user.getUser();
     addMyFavCharFB(userChar);
     characterDOMbuilder.showFavChars();
@@ -138,56 +117,9 @@ function saveBtn(e) {
         saveBtn(e);
     });
 
-// load notes area after login
-// function getNotes(charNotes) {
-//     return $.ajax ({
-//         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
-//     }).done((notesData) => {
-//         return notesData;
-//     });
-// }
-
-// Load Notes to DOM
-
-// POST - Submits Notes to be processed to userCharacter
-// collection in FB. Takes one parameter
-// function addNotes(noteFormObj) {
-//     return $.ajax({
-//         // add notes in the collection
-//         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
-//         type: 'POST',
-//         data: JSON.stringify(noteFormObj),
-//         dataType: 'json'
-//     }).done((charNotes) => {
-//         return charNotes;
-//     });
-// }
-
-// Function to delete Notes info
-function deleteNotes(userCharacterId) {
-    console.log("deleteNotes userCharacterId", userCharacterId);
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
-        method: "DELETE"
-    }).done((data) => {
-        return data;
-    });
-}
-
-// // function for userCharacter notes
-// function getNote(userCharacterId) {
-//     console.log("getNote userCharacterId", userCharacterId);
-//     return $.ajax({
-//         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`
-//     }).done((notesData) => {
-//         // console.log("Let's see notes", note);
-//         return notesData;
-//     });
-// }
-
-
 // GET - Requests/read data from a specified source
 // PUT - Update data to a specified resource.
+// PATCH - Updates only the Object key specified. In this case Adding Notes
 // Takes two parameters.
 function editNotes(noteFormObj, userCharacterId) {
     console.log("editNotes noteFormObj, userCharacterId", noteFormObj, userCharacterId);
@@ -201,6 +133,18 @@ function editNotes(noteFormObj, userCharacterId) {
     });
 }
 
+// Function to delete Notes info
+function deleteNotes(userCharacterId) {
+    console.log("deleteNotes userCharacterId", userCharacterId);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
+        method: "DELETE"
+    }).done((data) => {
+        return data;
+    });
+}
+
+
 module.exports = {
     getFBDetails,
     addUserFB,
@@ -209,10 +153,7 @@ module.exports = {
     loginUser,
     saveBtn,
     addMyFavCharFB,
-    // getNotes,
-    // addNotes,
     deleteNotes,
-    // getNote,
     editNotes
 };
 
