@@ -26,8 +26,8 @@ function createUserObj(fan) {
     return userObj;
 }
 
-
 //------- When user clicks login --------//
+
 $("#login").click(function() {
     user.googlelogIn()
     .then((result) => {
@@ -37,7 +37,6 @@ $("#login").click(function() {
         sendToFirebase();
     });
 });
-
 
 //-------- Send user info to Firebase --------//
 
@@ -106,18 +105,6 @@ $(document).on("click", ".delete-btn", function(e) {
 });
 
 
-// Save edited notes to FB then reload DOM with updated notes Data
-// $(document).on("click", ".save-notes-edit", function() {
-//     console.log("I'm inside the edit button notes");
-//     let noteObj = db.userChar,
-//     charNotes = $(this).attr("id");
-//     console.log("charNotes ", charNotes);
-//     db.editNotes(noteObj, charNotes)
-//     .then((data) => {
-//         loadMyNotesToDOM();
-//     });
-// });
-
 // userChar is in db-interaction.js
 // Prints on the DOM click FORM function
 $("#comment").click(function() {
@@ -126,14 +113,3 @@ $("#comment").click(function() {
         $(".body-container").html(characterNotes);
     });
 });
-
-// //-------- Save User info to Firebase --------//
-// $("#login").click(function() {
-//     user.googlelogIn()
-//     .then((result) => {
-//         user.setUser(result.user.uid);
-//         $("#login").addClass("is-hidden");
-//         $("#log-out").removeClass("is-hidden");
-//         loadMyNotesToDOM();
-//     });
-// });
