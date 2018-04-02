@@ -50,13 +50,13 @@ function showChars() {
     });
 } 
 
-let showSingleCharacter = (id, addingNotes, myFavId) => { 
+let showSingleCharacter = (myFavs) => { 
     return new Promise((resolve, reject) => {
        return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/characters/${id}.json`
+        url: `${firebase.getFBsettings().databaseURL}/characters/${myFavs.id}.json`
     }).done((getInfo) => {
-        console.log("What's in showSingleChar: , Add Notes: , myFavID: ", id, addingNotes, myFavId);
-        displayFavCharacter(getInfo, addingNotes, myFavId, id);
+        // console.log("What's in showSingleChar: , Add Notes: , myFavID: ", id, addingNotes, myFavId);
+        displayFavCharacter(getInfo, myFavs);
             resolve (getInfo.responseJSON);
         }).fail((error) => {
             return reject(error);
@@ -87,7 +87,9 @@ function favoritesDetailDOM(getuchInfo) {
         // console.log("my fav id getuchInfo", getuchInfo[myfav].id); 
         // console.log("my fav My Add Notes", getuchInfo[myfav].addNotes); 
         // console.log("my fav userFavid", getuchInfo[myfav].userFavid);
-        showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes, getuchInfo[myfav].userFavid);
+        // showSingleCharacter(getuchInfo[myfav].id, getuchInfo[myfav].addNotes, getuchInfo[myfav].userFavid);
+
+        showSingleCharacter(getuchInfo[myfav]);
         }  
 }
 $("#card-fav").html(favoritesDetailDOM()); 
@@ -194,14 +196,19 @@ let noteDisplay;
 let loadNotes;
 let dispMyFavid;
 let dispMyCharid;
+let dispMyFavs;
+let userCharInfo;
 
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
-    function displayFavCharacter(getInfo, addingNotes, myFavID, id) {
-        dispMyFavid = myFavID;
-        dispMyCharid = id;
+    function displayFavCharacter(getInfo, myFavs) {
+        dispMyFavid = myFavs.userFavid;
+        dispMyCharid = myFavs.id;
+        dispMyFavs = myFavs;
         
-        console.log("This should have character ID" , dispMyFavid);
+        console.log("This should have character Key" , dispMyFavid);
+        console.log("This should have character ID" , dispMyCharid);
+        console.log("This should have MyFavs obj dispMyFavs" , dispMyFavs);
 
         // console.log("What's in displayFavChar? CharInfo:  Adding Notes: , userFavId: ", getInfo, addingNotes, myFavID);
 
@@ -210,7 +217,7 @@ let dispMyCharid;
         <div><h2>My Favorite Super Hero</h2></div>`;
 
         showFavsDetails += 
-        `<div class="card-deck">
+        `<div class="card-deck" data-card-deck-id=${myFavs.userFavid}>
             <div class="card">
                 <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
                 <div class="card-body">
@@ -223,7 +230,7 @@ let dispMyCharid;
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id">Delete SuperHero</a>
+                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid}>Delete SuperHero</a>
                 </div>
             </div>
 
@@ -232,32 +239,30 @@ let dispMyCharid;
                     <p class="card-text">
                         <div class="form-group">
                             <h3 class="card-title card-uppercase card-margin">Notes</h3>
-                            <textarea class="form-control" rows="10" id=${dispMyFavid}>${addingNotes}
+                            <textarea class="form-control" rows="10" id=${myFavs.userFavid}>${myFavs.addNotes}
                             </textarea>
                         </div>
                         </p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary float-left notes save-new-note ">Save / Edit</a>
+                        <a href="#" class="btn btn-primary float-left notes save-new-note">Save / Edit</a>
                         <a href="#" class="btn btn-primary float-right save-notes-edit">Edit Notes</a>
                     </div>
                 </div>
             </div>
         </div>`;
 
+    $("#body-container").html(showFavsDetails).prepend(showFavsHeader);
 
-    $("#body-container").html(showFavsDetails).prepend(showFavsHeader).append(makeNotesPageFormat());
+    // userCharInfo = $("#myFavs.userFavid").value;
+// var notevalue = dispMyFavid.addingNotes; 
+// console.log("Text area notes should come here", dispMyFavs);
 
-// var userCharInfo = document.getElementById("#comment").value;
-var notevalue = dispMyFavid.addingNotes; 
-console.log("Text area notes should come here", notevalue);
-
-
-    return dispMyFavid;
+    return dispMyFavs;
 }
 // let buttonID = null;
 
 function editButtonId() {
-    return dispMyFavid;
+    return dispMyFavs;
 }
 
 // working code --- Save this ---

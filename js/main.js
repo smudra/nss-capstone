@@ -82,37 +82,104 @@ var userCharNotes = characterDOMbuilder.userCharInfo;
 console.log("Text area notes should come here", userCharNotes);
 // $('#comment').val(userCharInfo);
 
+let noteID;
+let noteInput;
+let noteObjText;
+// function noteInputText() {
+//     $( "textarea" )
+//     .keyup(function() {
+//         var noteInput = $( this ).val();
+//         $( "${myFavs.addNotes}" ).text( noteInput );
+//     })
+//     .keyup();
+// }
+//  $("textarea:text").val();
+//     console.log("value of textarea ", $("textarea:text").val());
+$(document).on("click", ".save-new-note", function(e) {
+   console.log("e inside function", e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3]);
 
-
-// Send New Notes to FB and reload updated notes to DOM
-
-$(document).on("click", ".save-new-note", function() {
+   let textareaId = e.currentTarget.parentNode.parentNode.childNodes[2].childNodes[3].id;
     let noteObj = db.userChar;
-    // let noteID = characterDOMbuilder.editButtonId().val();
-    $('#comment').val(userCharNotes);
+    let textNotes = $("#" + textareaId)["0"].value;
+    noteID = $("#" + textareaId)["0"];
+    // noteInput = noteInputText();
+    noteObjText = characterDOMbuilder.editButtonId();
+    console.log("This noteID should have character Key", noteID);
+    let noteIDobj = {
+        addNotes: textNotes
+    };
+    
+    console.log("Text notes value", textNotes);
+
+    console.log("noteIDObj should have noteID, addnotes and user uid", noteIDobj);
+    // console.log("noteInput should have anything added in the textbox", noteInput);
+    // $('#comment').val(userCharNotes);
     // let charNotes = $(".form-control").val();
     // let songID = $(this).data("delete-id");
 
-    // console.log("This should contain text box notes: char Notes", noteID);
-    // console.log("This noteID should have character Key", noteID);
+    console.log("This should contain user Character Record of Save button: Whole Rec", noteID, noteID.id);
+    
 
-    db.editNotes(noteObj)
+    db.editNotes(noteIDobj, noteID.id)
     .then((userCharacterId) => {
         console.log("What's in the new noteObj ", userCharacterId);
         loadMyNotesToDOM();
     });
 });
 
-// Get the notes from database for editing on DOM
-$(document).on("click", ".edit-btn", function() {
-    let charNotes = $(this).data("edit-id");
-    db.getNotes(charNotes)
-    .then((note) => {
-        return characterDOMbuilder.characterNotes(note, charNotes);
-    }).then((finishedNote) => {
-        $(".card-padding").html(finishedNote);
+
+
+// Delete notes and reload the DOM with blank notes area --//
+$(document).on("click", ".delete-btn", function(e) {
+    console.log("e", e);
+    
+    db.deleteNotes(e.currentTarget.dataset.id)
+    .then(() => {
+        // function get rid of the card deck
+        // parentnode or data id to target the card deck
+        loadMyNotesToDOM();
     });
 });
+
+
+//// ---- Working code ---- ////
+// Send New Notes to FB and reload updated notes to DOM
+
+// $(document).on("click", ".save-new-note", function() {
+//     let noteObj = db.userChar;
+//     noteID = characterDOMbuilder.editButtonId();
+//     let noteIDobj = {
+//         id: noteID.id,
+//         addNotes: noteID.addNotes,
+//         uid: noteID.uid
+//     };
+    
+//     console.log("noteIDObj should have noteID, addnotes and user uid", noteIDobj);
+//     // $('#comment').val(userCharNotes);
+//     // let charNotes = $(".form-control").val();
+//     // let songID = $(this).data("delete-id");
+
+//     console.log("This should contain user Character Record of Save button: Whole Rec", noteID, noteID.id);
+//     // console.log("This noteID should have character Key", noteID);
+
+//     db.editNotes(noteIDobj, noteID.userFavid)
+//     .then((userCharacterId) => {
+//         console.log("What's in the new noteObj ", userCharacterId);
+//         loadMyNotesToDOM();
+//     });
+// });
+
+////// ----- End Working code ----- ///
+// Get the notes from database for editing on DOM
+// $(document).on("click", ".edit-btn", function() {
+//     let charNotes = $(this).data("edit-id");
+//     db.getNotes(charNotes)
+//     .then((note) => {
+//         return characterDOMbuilder.characterNotes(note, charNotes);
+//     }).then((finishedNote) => {
+//         $(".card-padding").html(finishedNote);
+//     });
+// });
 
 // Save edited notes to FB then reload DOM with updated notes Data
 $(document).on("click", ".save-notes-edit", function() {
@@ -122,16 +189,6 @@ $(document).on("click", ".save-notes-edit", function() {
     console.log("charNotes ", charNotes);
     db.editNotes(noteObj, charNotes)
     .then((data) => {
-        loadMyNotesToDOM();
-    });
-});
-
-
-// Delete notes and reload the DOM with blank notes area --//
-$(document).on("click", ".delete-btn", function() {
-    let charNotes = $(this).data("delete-id");
-    db.deleteNotes(charNotes)
-    .then(() => {
         loadMyNotesToDOM();
     });
 });

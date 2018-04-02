@@ -139,29 +139,29 @@ function saveBtn(e) {
     });
 
 // load notes area after login
-function getNotes(charNotes) {
-    return $.ajax ({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
-    }).done((notesData) => {
-        return notesData;
-    });
-}
+// function getNotes(charNotes) {
+//     return $.ajax ({
+//         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
+//     }).done((notesData) => {
+//         return notesData;
+//     });
+// }
 
 // Load Notes to DOM
 
 // POST - Submits Notes to be processed to userCharacter
 // collection in FB. Takes one parameter
-function addNotes(noteFormObj) {
-    return $.ajax({
-        // add notes in the collection
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
-        type: 'POST',
-        data: JSON.stringify(noteFormObj),
-        dataType: 'json'
-    }).done((charNotes) => {
-        return charNotes;
-    });
-}
+// function addNotes(noteFormObj) {
+//     return $.ajax({
+//         // add notes in the collection
+//         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json`,
+//         type: 'POST',
+//         data: JSON.stringify(noteFormObj),
+//         dataType: 'json'
+//     }).done((charNotes) => {
+//         return charNotes;
+//     });
+// }
 
 // Function to delete Notes info
 function deleteNotes(userCharacterId) {
@@ -174,16 +174,16 @@ function deleteNotes(userCharacterId) {
     });
 }
 
-// function for userCharacter notes
-function getNote(userCharacterId) {
-    console.log("getNote userCharacterId", userCharacterId);
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`
-    }).done((notesData) => {
-        // console.log("Let's see notes", note);
-        return notesData;
-    });
-}
+// // function for userCharacter notes
+// function getNote(userCharacterId) {
+//     console.log("getNote userCharacterId", userCharacterId);
+//     return $.ajax({
+//         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`
+//     }).done((notesData) => {
+//         // console.log("Let's see notes", note);
+//         return notesData;
+//     });
+// }
 
 
 // GET - Requests/read data from a specified source
@@ -193,9 +193,10 @@ function editNotes(noteFormObj, userCharacterId) {
     console.log("editNotes noteFormObj, userCharacterId", noteFormObj, userCharacterId);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
-        type: 'PUT',
+        type: 'PATCH',
         data: JSON.stringify(noteFormObj)
     }).done((data) => {
+        console.log("url for firebase", `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`);
         return data;
     });
 }
@@ -208,10 +209,10 @@ module.exports = {
     loginUser,
     saveBtn,
     addMyFavCharFB,
-    getNotes,
-    addNotes,
+    // getNotes,
+    // addNotes,
     deleteNotes,
-    getNote,
+    // getNote,
     editNotes
 };
 
