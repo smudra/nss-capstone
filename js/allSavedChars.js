@@ -5,7 +5,7 @@ firebase = require("./fb-config"),
 db = require("./db-interaction"),
 user = require("./user");
 
-/// This file is test code. Please discard///
+/// This file is different test code. Please discard///
 
 function getAllFavChars() {
     return $.ajax({
@@ -411,7 +411,17 @@ module.exports = {
 //     });
 // });
 
-
+// Save edited notes to FB then reload DOM with updated notes Data
+// $(document).on("click", ".save-notes-edit", function() {
+//     console.log("I'm inside the edit button notes");
+//     let noteObj = db.userChar,
+//     charNotes = $(this).attr("id");
+//     console.log("charNotes ", charNotes);
+//     db.editNotes(noteObj, charNotes)
+//     .then((data) => {
+//         loadMyNotesToDOM();
+//     });
+// });
 
 // $(document).on("click", "#save-fav", function() {
 //     console.log("saving my fav hero");
@@ -444,4 +454,16 @@ module.exports = {
 //     // db comes from addUserFB in db - interaction. 
 // }
 
+
+
+// //-------- Save User info to Firebase --------//
+// $("#login").click(function() {
+//     user.googlelogIn()
+//     .then((result) => {
+//         user.setUser(result.user.uid);
+//         $("#login").addClass("is-hidden");
+//         $("#log-out").removeClass("is-hidden");
+//         loadMyNotesToDOM();
+//     });
+// });
 

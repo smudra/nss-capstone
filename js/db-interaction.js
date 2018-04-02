@@ -135,15 +135,24 @@ function editNotes(noteFormObj, userCharacterId) {
 
 // Function to delete Notes info
 function deleteNotes(userCharacterId) {
-    console.log("deleteNotes userCharacterId", userCharacterId);
+    // console.log("deleteNotes userCharacterId", userCharacterId);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter/${userCharacterId}.json`,
         method: "DELETE"
     }).done((data) => {
+        // console.log("deleteNotes data", data);
         return data;
     });
 }
-
+// load notes area after login
+function getNotes(charNotes) {
+    console.log("GetNotes running charNotes", charNotes);
+    return $.ajax ({
+        url: `${firebase.getFBsettings().databaseURL}/userCharacter/${charNotes}.json`
+    }).done((notesData) => {
+        return notesData;
+    });
+}
 
 module.exports = {
     getFBDetails,
@@ -154,7 +163,8 @@ module.exports = {
     saveBtn,
     addMyFavCharFB,
     deleteNotes,
-    editNotes
+    editNotes,
+    getNotes
 };
 
 

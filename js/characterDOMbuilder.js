@@ -190,6 +190,7 @@ let userCharInfo;
 // get info from displayFavCharacter() into 
 //favoritesDetailDom()
     function displayFavCharacter(getInfo, myFavs) {
+        console.log("displayFavCharacter getInfo, myFavs", getInfo, myFavs);
         dispMyFavid = myFavs.userFavid;
         dispMyCharid = myFavs.id;
         dispMyFavs = myFavs;
@@ -212,7 +213,7 @@ let userCharInfo;
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid}>Delete SuperHero</a>
+                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid} onmousedown="return false">Delete SuperHero</a>
                 </div>
             </div>
 
@@ -226,8 +227,7 @@ let userCharInfo;
                         </div>
                         </p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary float-left notes save-new-note">Save / Edit</a>
-                        <a href="#" class="btn btn-primary float-right save-notes-edit">Edit Notes</a>
+                        <a href="#" class="btn btn-primary float-right notes save-new-note" onmousedown="return false">Save / Edit</a>
                     </div>
                 </div>
             </div>
