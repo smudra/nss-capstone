@@ -98,7 +98,6 @@ db.editNotes(noteIDobj, noteID.id)
 
 // Delete notes and reload the DOM with blank notes area --//
 $(document).on("click", ".delete-btn", function($e) {
-    $e.preventDefault();
     console.log("e target the card", $($e.currentTarget).closest("#" + $e.currentTarget.dataset.id));
 
     $($e.currentTarget).closest(".card-deck").remove();
@@ -135,12 +134,12 @@ $("#comment").click(function() {
 });
 
 //-------- Save char info to Firebase --------//
-$("#login").click(function() {
-    user.googlelogIn()
-    .then((result) => {
-        user.setUser(result.user.uid);
-        $("#login").addClass("is-hidden");
-        $("#log-out").removeClass("is-hidden");
-        loadMyNotesToDOM();
-    });
-});
+// $("#login").click(function() {
+//     user.googlelogIn()
+//     .then((result) => {
+//         user.setUser(result.user.uid);
+//         $("#login").addClass("is-hidden");
+//         $("#log-out").removeClass("is-hidden");
+//         loadMyNotesToDOM();
+//     });
+// });
