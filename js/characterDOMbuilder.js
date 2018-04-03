@@ -137,7 +137,7 @@ function listCharacters(getcInfo) {
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
-                    <a href="#" class="btn btn-primary float-right save-fav" id="${userCharid1}">Add to Fav</a>
+                    <a href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid1}">Add to Fav</a>
                 </div>
             </div>
             <div class="card col-4">
@@ -153,7 +153,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId2}</small>
-                <button href="#" class="btn btn-primary float-right save-fav" id="${userCharid2}">Add to Fav</button>
+                <button href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid2}">Add to Fav</button>
                 </div>
             </div>
             <div class="card col-4">
@@ -164,7 +164,7 @@ function listCharacters(getcInfo) {
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>
-                <button href="#" class="btn btn-primary float-right save-fav" id="${userCharid3}">Add to Fav</button>
+                <button href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid3}">Add to Fav</button>
                 </div>
             </div>
         </div>`;
@@ -196,11 +196,11 @@ let userCharInfo;
         dispMyFavs = myFavs;
         
 
-        showFavsHeader = `<h2><a href="index.html" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></h2><br><br>
+        showFavsHeader = `<button onclick="pageRefresh()"><a href="javascript: void(0)" class="btn btn-primary float-left notes disable">Back to Super Heroes</a></button><br><br>
         <div><h2>My Favorite Super Hero</h2></div>`;
 
         showFavsDetails += 
-        `<div class="card-deck" data-card-deck-id=${myFavs.userFavid}>
+        `<div class="card-deck card-group card-resize" data-card-deck-id=${myFavs.userFavid}>
             <div class="card">
                 <img class="card-img-top" src="${getInfo.thumbnail}" alt="Card image cap">
                 <div class="card-body">
@@ -213,7 +213,7 @@ let userCharInfo;
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Character ID: ${getInfo.id}</small>
-                    <a href="#" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid} onmousedown="return false">Delete SuperHero</a>
+                    <a href="javascript: void(0)" class="btn btn-primary float-right delete-btn" id="delete-id" data-id=${myFavs.userFavid} onmousedown="return false">Delete SuperHero</a>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@ let userCharInfo;
                         </div>
                         </p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary float-right notes save-new-note" onmousedown="return false">Save / Edit</a>
+                        <a href="javascript: void(0)" class="btn btn-primary float-right notes save-new-note" onmousedown="return false">Save / Edit</a>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,9 @@ let userCharInfo;
 function editButtonId() {
     return dispMyFavs;
 }
-
+function pageRefresh() {
+    location.reload();
+}
 module.exports = {
     showChars,
     listCharacters,
@@ -251,5 +253,6 @@ module.exports = {
     getFavCharactersFB,
     showFavChars,
     displayFavCharacter,
-    editButtonId
+    editButtonId,
+    pageRefresh
 };
