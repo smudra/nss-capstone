@@ -139,6 +139,9 @@ footer > p {
 .card-uppercase {
   text-transform: uppercase; }
 
+.card-resize {
+  width: 70%; }
+
 .text-muted {
   font-weight: 300; }
 
