@@ -111,11 +111,25 @@ function saveBtn(e) {
     addMyFavCharFB(userChar);
     characterDOMbuilder.showFavChars();
 }
+
+// Begin Test code --------//
+
+// Once the character on page on click disable save btn
+// $('button').click(function(){    
+//     alert("test");
+//     $(this).attr("disabled","disabled");
+// });
+
+{/* <button type='button' id = 'rbutton_1' onclick="disable('1')">Click me</button> */}
+
+/// End Test Code -------- //
+
 // Event listener for save button
     
-    $(document).on("click", ".save-fav", function(e) {
-        saveBtn(e);
-    });
+$(document).on("click", ".save-fav", function(e) {
+    console.log("Save button e", e);
+    saveBtn(e);
+});
 
 // GET - Requests/read data from a specified source
 // PUT - Update data to a specified resource.
