@@ -129,7 +129,11 @@ footer > p {
     border-color: $marvel-red;
 }
 .btn-link:hover {
-    text-decoration: none;
+    color: $marvel-red;
+    text-decoration: underline;
+}
+.btn-link {
+    color: $marvel-red;
 }
 .btn-link.focus, .btn-link:focus {
     text-decoration: none;
