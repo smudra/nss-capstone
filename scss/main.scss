@@ -36,10 +36,10 @@ h1 {
     font-weight: $font-bold;
 }
 h2 {
-    padding: 0 3rem;
+    // padding: 0 3rem;
     font-size: 2.25rem;
     color: $white;
-    margin: 1rem 0;
+    margin-bottom: 1.5rem;
 }
 h3 {
     font-size: 1.5rem;
@@ -128,21 +128,32 @@ footer > p {
     background-color: $marvel-red;
     border-color: $marvel-red;
 }
+.btn-link:hover {
+    text-decoration: none;
+}
+.btn-link.focus, .btn-link:focus {
+    text-decoration: none;
+}
 .input-width {
     width: 50% !important;
     padding: .5rem 3rem 5rem 3rem;
-
 }
 .card-padding {
     padding: 3rem;
     padding-top: 0;
 }
+.card-deck {
+    margin-bottom: 3rem;
+}
 .card {
     border-radius: 0;
-    margin: 2em;
+    margin: 0 2rem 2rem 0;
 }
-.card-title {
+h3.card-title {
     margin-bottom: 0;
+    color: $marvel-red;
+    font-weight: $font-thin;
+    text-decoration-style: none;
 }
 .card-margin {
     margin-bottom: .5rem;
@@ -153,9 +164,6 @@ footer > p {
 .card-uppercase {
     text-transform: uppercase;
 }
-// .card-group {
-//     margin-left: 0;
-// }
 .card-resize {
     width: 70%;
 }
@@ -194,4 +202,7 @@ a.nav-link {
 }
 .card-fav {
     height: 500px;
+}
+.card-header {
+    padding: .75rem .25rem;
 }

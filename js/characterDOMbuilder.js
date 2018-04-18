@@ -27,6 +27,7 @@ function getFavCharactersFB(charsObj) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userCharacter.json?orderBy="id"`
     }).done((getAhaInfo) => {
+        console.log("FB url", getAhaInfo);
         return getAhaInfo;
     }).then((newInfo) => {
         return newInfo;
@@ -73,6 +74,30 @@ function showFavChars() {
         favoritesDetailDOM(getuchInfo);
     }); 
 }
+// function check if the id exists in UserCharacter FB
+
+function doesCharIdExistFB(id) {
+    console.log("value doesCharIDExistsFb", id);
+    var charsRef = 'https://nss-capstone-powercache-reboot.firebaseio.com/userCharacter.json?orderBy="id"';
+    
+    charsRef.child(id).once("value", function(snapshot) {
+    var charExists = (snapshot.val() !== null);
+    if (charExists) {
+        console.log("True");
+    } else {
+        console.log("false");
+    }
+    return charExists;
+    }); 
+    return id;
+}
+
+// ref.child("users").orderByChild("ID").equalTo("U1EL5623").once("value",snapshot => {
+//     const userData = snapshot.val();
+//     if (userData){
+//       console.log("exists!");
+//     }
+// });
 
 function favoritesDetailDOM(getuchInfo) {
     console.log("What is in getuchInfo", getuchInfo);
@@ -119,7 +144,9 @@ function listCharacters(getcInfo) {
             let charSeries3 = getcInfo[i + 2].series;
             let charEvents3 = getcInfo[i + 2].events;
 
-        
+            // console.log('CharID1charName1, db.doesCharIdExistFB(CharId1', charId1, charName1, doesCharIdExistFB(charId1));
+            // console.log("charId2, charName2, db.doesCharIdExistFB(charId2)", charId2, charName2, db.doesCharIdExistFB(charId2));  
+            // console.log("charId3, charName3, db.doesCharIdExistFB(charId3)", charId3, charName3, db.doesCharIdExistFB(charId3));
 
         /////----- Creating Index.HTML -----/////
         displayChars += 
@@ -127,40 +154,64 @@ function listCharacters(getcInfo) {
         <div class="card-deck">
             <div class="card col-4">
                 <img class="card-img-top" src="${charThumb1}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Name: </strong> ${charName1}</h5>
-                    <p class="card-text"><strong>Description: </strong>${charDesc1}<br>
-                    <strong>Comics: </strong><a href="${charComics1}" target="_blank">Find all  comics relating to ${charName1} here.</a><br>
-                    <strong>Stories: </strong><a href="${charStories1}" target="_blank">Read all news articles relating to  ${charName1}.</a><br>
-                    <strong>Series: </strong><a href="${charSeries1}" target="_blank">Here's our latest tv release for ${charName1}.</a><br>
-                    <strong>Events: </strong><a href="${charEvents1}" target="_blank">Marvel Universe has all events.</a><br></p>
+                <div class="card-body" id="accordion">
+                  <div class="card-header mb-0" id="headingOne">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h3 class="card-title"><strong>Name: </strong> ${charName1}</h3>
+                      </button>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <p class="card-text"><strong>Description: </strong>${charDesc1}<br>
+                        <strong>Comics: </strong><a href="${charComics1}" target="_blank">Find all  comics relating to ${charName1} here.</a><br>
+                        <strong>Stories: </strong><a href="${charStories1}" target="_blank">Read all news articles relating to  ${charName1}.</a><br>
+                        <strong>Series: </strong><a href="${charSeries1}" target="_blank">Here's our latest tv release for ${charName1}.</a><br>
+                        <strong>Events: </strong><a href="${charEvents1}" target="_blank">Marvel Universe has all events.</a><br></p>
+                  </div>            
                 </div>
                 <div class="card-footer">
                         <small class="text-muted">Character ID: ${charId1}</small>
                     <a href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid1}">Add to Fav</a>
                 </div>
             </div>
+
             <div class="card col-4">
             <img class="card-img-top" src="${charThumb2}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"><strong>Name: </strong> ${charName2}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc2}<br>
-                    <strong>Comics: </strong><a href="${charComics2}" target="_blank">Find all  comics relating to ${charName2} here.</a><br>
-                    <strong>Stories: </strong><a href="${charStories2}" target="_blank">Read all news articles relating to  ${charName2}.</a><br>
-                    <strong>Series: </strong><a href="${charSeries2}" target="_blank">Here's our latest tv release for ${charName2}.</a><br>
-                    <strong>Events: </strong><a href="${charEvents2}" target="_blank">Marvel Universe has all events.</a><br>
-                </p>
-            </div>
-            <div class="card-footer">
-                    <small class="text-muted">Character ID: ${charId2}</small>
-                <button href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid2}">Add to Fav</button>
+            <div class="card-body" id="accordion">
+                <div class="card-header mb-0" id="headingOne">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h3 class="card-title"><strong>Name: </strong> ${charName2}</h3>
+                    </button>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <p class="card-text"><strong>Description: </strong>${charDesc2}<br>
+                        <strong>Comics: </strong><a href="${charComics2}" target="_blank">Find all  comics relating to ${charName2} here.</a><br>
+                        <strong>Stories: </strong><a href="${charStories2}" target="_blank">Read all news articles relating to  ${charName2}.</a><br>
+                        <strong>Series: </strong><a href="${charSeries2}" target="_blank">Here's our latest tv release for ${charName2}.</a><br>
+                        <strong>Events: </strong><a href="${charEvents2}" target="_blank">Marvel Universe has all events.</a><br>
+                    </p>
                 </div>
             </div>
+
+                <div class="card-footer">
+                        <small class="text-muted">Character ID: ${charId2}</small>
+                    <button href="javascript: void(0)" class="btn btn-primary float-right save-fav" id="${userCharid2}">Add to Fav</button>
+                </div>
+            </div>
+
             <div class="card col-4">
             <img class="card-img-top" src="${charThumb3}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"><strong>Name: </strong> ${charName3}</h5>
-                <p class="card-text"><strong>Description: </strong>${charDesc3}<br><strong>Comics: </strong><a href="${charComics3}" target="_blank">Find all  comics relating to ${charName3} here.</a><br><strong>Stories: </strong><a href="${charStories3}" target="_blank">Read all news articles relating to  ${charName3}.</a><br><strong>Series: </strong><a href="${charSeries3}" target="_blank">Here's our latest tv release for ${charName3}.</a><br><strong>Events: </strong><a href="${charEvents3}" target="_blank">Marvel Universe has all events.</a><br></p>
+            <div class="card-body" id="accordion">
+                <div class="card-header mb-0" id="headingOne">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h3 class="card-title"><strong>Name: </strong> ${charName3}</h3>
+                    </button>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <p class="card-text"><strong>Description: </strong>${charDesc3}<br><strong>Comics: </strong><a href="${charComics3}" target="_blank">Find all  comics relating to ${charName3} here.</a><br><strong>Stories: </strong><a href="${charStories3}" target="_blank">Read all news articles relating to  ${charName3}.</a><br><strong>Series: </strong><a href="${charSeries3}" target="_blank">Here's our latest tv release for ${charName3}.</a><br><strong>Events: </strong><a href="${charEvents3}" target="_blank">Marvel Universe has all events.</a><br></p>
+                </div>
             </div>
             <div class="card-footer">
                     <small class="text-muted">Character ID: ${charId3}</small>
@@ -254,5 +305,6 @@ module.exports = {
     showFavChars,
     displayFavCharacter,
     editButtonId,
-    pageRefresh
+    pageRefresh,
+    doesCharIdExistFB
 };

@@ -90,6 +90,7 @@ function addMyFavCharFB(userChar) {
     });
 }
 
+
 // What is makeCharacterPageFormat
 //When loading sav fav page user needs to log in
 function loadMyFavCharToDom() {
@@ -120,7 +121,7 @@ function saveBtn(e) {
 //     $(this).attr("disabled","disabled");
 // });
 
-{/* <button type='button' id = 'rbutton_1' onclick="disable('1')">Click me</button> */}
+// {/* <button type='button' id = 'rbutton_1' onclick="disable('1')">Click me</button> */}
 
 /// End Test Code -------- //
 
@@ -178,7 +179,8 @@ module.exports = {
     addMyFavCharFB,
     deleteNotes,
     editNotes,
-    getNotes
+    getNotes,
+    // doesCharIdExistFB
 };
 
 
