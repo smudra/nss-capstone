@@ -11,7 +11,8 @@ let $ = require('jquery'),
     userProfile = require('./user-profile'),
     characterDOMbuilder = require('./characterDOMbuilder'),
     allSavedChars = require('./allSavedChars'),
-    marvelCharacters = require('./marvel-characters');
+    marvelCharacters = require('./marvel-characters'),
+    search = require('./search');
 
     var firebase = require("firebase/app");
         require("firebase/auth");
